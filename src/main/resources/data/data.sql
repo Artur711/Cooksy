@@ -1,0 +1,1 @@
+insert into USERS (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHOTO_URL, USER_TYPE) values ('Patrick', 'Swayze', 'p.swayze@gmail.com', 'swayze52!', '', '');
