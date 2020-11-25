@@ -1,1 +1,2 @@
 insert into USERS (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHOTO_URL, USER_TYPE) values ('Patrick', 'Swayze', 'p.swayze@gmail.com', 'swayze52!', '', '');
+insert into PRODUCTS (NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GM_ID) values ('PHONE', 100.00, 1, 1, 1);
