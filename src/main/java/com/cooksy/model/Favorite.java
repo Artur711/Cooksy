@@ -5,23 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "recipes")
-
-public class Recipe {
-
+@NoArgsConstructor
+@Table(name = "Favorites")
+public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long recipeId;
-
-    private Long productId;
-    private String description;
-    private String photoUrl;
-
-    private String author;
+    private Long favoriteId;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipeId")
+    private List<Recipe> recipes;
 }

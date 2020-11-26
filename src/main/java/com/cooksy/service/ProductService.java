@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProductService {
-    private ProductRepository productRepository;
-    private ProductToProductDtoConverter productToProductDtoConverter;
-    private ProductDtoToProductConverter productDtoToProductConverter;
+    private final ProductRepository productRepository;
+    private final ProductToProductDtoConverter productToProductDtoConverter;
+    private final ProductDtoToProductConverter productDtoToProductConverter;
 
 
     public List<ProductDto> getAll() {
