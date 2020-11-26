@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 
 @Data
 @NoArgsConstructor
@@ -17,5 +16,5 @@ public class UserDto {
     private String email;
     private String password;
     private String photoUrl;
-    private String userType;
+    private int userType;
 }

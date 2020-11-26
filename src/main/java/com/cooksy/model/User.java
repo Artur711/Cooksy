@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,18 +18,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
     private String email;
     private String password;
-
-    @Column(name = "photo_url")
     private String photoUrl;
 
-    @Column(name = "user_type")
-    private String userType;
+//    @OneToOne
+//    @JoinColumn(name = "USER_TYPE_ID")
+    private int userType;
 }
