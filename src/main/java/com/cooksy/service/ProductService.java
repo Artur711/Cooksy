@@ -13,7 +13,6 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
     private ProductToProductDtoConverter productToProductDtoConverter;
