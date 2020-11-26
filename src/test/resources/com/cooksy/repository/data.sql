@@ -1,0 +1,12 @@
+-- insert into USERS (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHOTO_URL, USER_TYPE)
+--  values
+--         ('Adam', 'Adamowski', 'example@gmail.com', 'example1234', '', 1),
+--         ('Artur', 'Dobry', 'example@gmail.com', 'example1234', '', 2),
+--         ('Adam', 'Sławny', 'example@gmail.com', 'example1234', '', 1),
+--         ('Bob', 'Dylan', 'example@gmail.com', 'example1234', '', 1),
+--         ('Bbara', 'Fiszek', 'example@gmail.com', 'example1234', '', 2),
+--         ('Alicja', 'Kowaniak', 'example@gmail.com', 'example1234', '', 1),
+--         ('Bartłmiej', 'Fiszek', 'example@gmail.com', 'example1234', '', 1),
+--         ('Anastazja', 'Bakcyl', 'example@gmail.com', 'example1234', '', 1),
+--         ('Antoni', 'Donat', 'example@gmail.com', 'example1234', '', 2),
+--         ('Beata', 'Chorman', 'example@gmail.com', 'example1234', '', 1);
