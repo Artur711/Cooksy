@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -24,7 +23,7 @@ public class User {
     private String password;
     private String photoUrl;
 
-//    @OneToOne
-//    @JoinColumn(name = "USER_TYPE_ID")
-    private int userType;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "USER_TYPE_ID")
+    private UserType userType;
 }

@@ -17,7 +17,7 @@ public class UserToUserDtoConverter {
                 user.getEmail(),
                 user.getPassword(),
                 user.getPhotoUrl(),
-                user.getUserType());
+                Math.toIntExact(user.getUserType().getUserTypeId()));
     }
 
     public List<UserDto> convertAll(List<User> users) {

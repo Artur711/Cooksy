@@ -1,5 +1,6 @@
 package com.cooksy.dto;
 
+import com.cooksy.model.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,5 @@ public class UserDto {
     private String email;
     private String password;
     private String photoUrl;
-    private int userType;
+    private long userTypeId;
 }
