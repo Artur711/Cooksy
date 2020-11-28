@@ -1,13 +1,15 @@
 package com.cooksy.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FavoriteDto {
-    private List<RecipeDto> favorites;
+    private Long favoriteId;
+    private Long userId;
+    private Long recipeId;
 }
