@@ -1,8 +1,6 @@
 package com.cooksy.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -23,7 +21,16 @@ public class User {
     private String password;
     private String photoUrl;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_TYPE_ID")
     private UserType userType;
+
+    public User(String firstName, String lastName, String email, String password, String photoUrl, UserType userType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.photoUrl = photoUrl;
+        this.userType = userType;
+    }
 }

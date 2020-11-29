@@ -1,6 +1,5 @@
 package com.cooksy.dto;
 
-import com.cooksy.model.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
