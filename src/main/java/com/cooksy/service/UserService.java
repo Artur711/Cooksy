@@ -46,7 +46,8 @@ public class UserService {
 
     public void addUser(UserDto userDto) {
         log.info(String.format("Starts save user: %s", userDto.toString()));
-        userRepository.save(userDtoToUserConverter.convert(userDto));
+        User user = userDtoToUserConverter.convert(userDto);
+        userRepository.save(user);
     }
 
     public void updateUser(Long userId, UserDto userDto) {

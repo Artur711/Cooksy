@@ -21,16 +21,7 @@ public class User {
     private String password;
     private String photoUrl;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_TYPE_ID")
     private UserType userType;
-
-    public User(String firstName, String lastName, String email, String password, String photoUrl, UserType userType) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.photoUrl = photoUrl;
-        this.userType = userType;
-    }
 }
