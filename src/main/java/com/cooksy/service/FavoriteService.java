@@ -29,7 +29,8 @@ public class FavoriteService {
     }
 
     public void addToFavorite(FavoriteDto favoriteDto) {
-        favoriteRepository.addRecipeToUserFavorite(favoriteDtoToFavoriteConverter.convert(favoriteDto).getRecipe().getRecipeId(),
-                favoriteDtoToFavoriteConverter.convert(favoriteDto).getUser().getUserId());
+        favoriteRepository.save(favoriteDtoToFavoriteConverter.convert(favoriteDto));
     }
+
+
 }
