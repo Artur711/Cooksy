@@ -4,7 +4,7 @@ import com.cooksy.dto.FavoriteDto;
 import com.cooksy.model.Favorite;
 import com.cooksy.service.RecipeService;
 import com.cooksy.service.UserService;
-import com.cooksy.util.RecipeDtoToRecipeConverter;
+import com.cooksy.util.converter.RecipeDtoToRecipeConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
