@@ -3,10 +3,9 @@ package com.cooksy.service;
 import com.cooksy.dto.ProductDto;
 import com.cooksy.model.Product;
 import com.cooksy.repository.ProductRepository;
-import com.cooksy.util.ProductDtoToProductConverter;
-import com.cooksy.util.ProductToProductDtoConverter;
+import com.cooksy.util.converter.ProductDtoToProductConverter;
+import com.cooksy.util.converter.ProductToProductDtoConverter;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.cooksy.util;
+package com.cooksy.util.converter;
 
 import com.cooksy.dto.RecipeDto;
 import com.cooksy.model.Recipe;

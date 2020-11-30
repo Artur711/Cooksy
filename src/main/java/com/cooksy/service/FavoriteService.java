@@ -31,6 +31,4 @@ public class FavoriteService {
     public void addToFavorite(FavoriteDto favoriteDto) {
         favoriteRepository.save(favoriteDtoToFavoriteConverter.convert(favoriteDto));
     }
-
-
 }

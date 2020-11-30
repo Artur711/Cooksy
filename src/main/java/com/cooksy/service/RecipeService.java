@@ -3,8 +3,8 @@ package com.cooksy.service;
 import com.cooksy.dto.RecipeDto;
 import com.cooksy.model.Recipe;
 import com.cooksy.repository.RecipeRepository;
-import com.cooksy.util.RecipeDtoToRecipeConverter;
-import com.cooksy.util.RecipeToRecipeDtoConverter;
+import com.cooksy.util.converter.RecipeDtoToRecipeConverter;
+import com.cooksy.util.converter.RecipeToRecipeDtoConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
