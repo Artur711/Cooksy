@@ -21,21 +21,19 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
-    UserType customer = new UserType(1L, "CUSTOMER");
-    UserType admin = new UserType(2L, "ADMINISTRATOR");
+    private UserType customer = new UserType(1L, "CUSTOMER");
+    private UserType admin = new UserType(2L, "ADMINISTRATOR");
 
-    User user1 = new User(1L, "Adam", "Adamowski", "", "", "", customer);
-    User user2 = new User(2L, "Artur", "Dobry", "", "", "", admin);
-    User user3 = new User(3L, "Adam", "Sławny", "", "", "", customer);
-    User user4 = new User(4L, "Bob", "Dylan", "", "", "", admin);
-    User user5 = new User(5L, "Barbara", "Fiszek", "", "", "", admin);
-    User user6 = new User(6L, "Alicja", "Kowniniak", "", "", "", customer);
-    User user7 = new User(7L, "Bartłomiej", "Fiszek", "", "", "", customer);
-    User user8 = new User(8L, "Anastazja", "Bakcyl", "", "", "", customer);
-    User user9 = new User(9L, "Antoni", "Donat", "", "", "", admin);
-    User user10 = new User(10L, "Beata", "Chorman", "", "", "", customer);
-
-    List<User> users = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10));
+    private User user1 = new User(1L, "Adam", "Adamowski", "", "", "", customer);
+    private User user2 = new User(2L, "Artur", "Dobry", "", "", "", admin);
+    private User user3 = new User(3L, "Adam", "Sławny", "", "", "", customer);
+    private User user4 = new User(4L, "Bob", "Dylan", "", "", "", admin);
+    private User user5 = new User(5L, "Barbara", "Fiszek", "", "", "", admin);
+    private User user6 = new User(6L, "Alicja", "Kowniniak", "", "", "", customer);
+    private User user7 = new User(7L, "Bartłomiej", "Fiszek", "", "", "", customer);
+    private User user8 = new User(8L, "Anastazja", "Bakcyl", "", "", "", customer);
+    private User user9 = new User(9L, "Antoni", "Donat", "", "", "", admin);
+    private User user10 = new User(10L, "Beata", "Chorman", "", "", "", customer);
 
     @Autowired
     private UserRepository userRepository;
@@ -130,6 +128,7 @@ public class UserRepositoryTest {
 
     @Before
     public void prepareDB () {
+        List<User> users = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10));
         userRepository.saveAll(users);
     }
 }
