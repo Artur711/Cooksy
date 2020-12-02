@@ -3,9 +3,9 @@ package com.cooksy.util.converter;
 import com.cooksy.dto.FavoriteDto;
 import com.cooksy.model.Favorite;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Component
 public class FavoriteToFavoriteDtoConverter {
 

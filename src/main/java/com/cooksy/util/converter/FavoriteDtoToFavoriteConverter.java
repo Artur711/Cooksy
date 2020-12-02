@@ -2,27 +2,22 @@ package com.cooksy.util.converter;
 
 import com.cooksy.dto.FavoriteDto;
 import com.cooksy.model.Favorite;
-import com.cooksy.service.RecipeService;
-import com.cooksy.service.UserService;
-import com.cooksy.util.converter.RecipeDtoToRecipeConverter;
-import lombok.AllArgsConstructor;
+import com.cooksy.model.Recipe;
+import com.cooksy.model.User;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
 public class FavoriteDtoToFavoriteConverter {
-    private final UserService userService;
-    private final RecipeService recipeService;
-    private final UserDtoToUserConverter userDtoToUserConverter;
-    private final RecipeDtoToRecipeConverter  recipeDtoToRecipeConverter;
 
     public Favorite convert(FavoriteDto favoriteDto){
-        return new Favorite(favoriteDto.getFavoriteId(),
-           userDtoToUserConverter.convert(userService.getUserById(favoriteDto.getUserId())),
-             recipeDtoToRecipeConverter.convert(recipeService.getRecipeById(favoriteDto.getRecipeId())));
+        User user = new User();
+        user.setUserId(favoriteDto.getUserId());
+        Recipe recipe = new Recipe();
+        recipe.setRecipeId(favoriteDto.getRecipeId());
+
+        return new Favorite(favoriteDto.getFavoriteId(), user, recipe);
     }
 
     public List<Favorite> convertAll(List<FavoriteDto> favoriteDtos){
