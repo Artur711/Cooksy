@@ -36,19 +36,19 @@ public class UserRepositoryTest {
     User user10 = new User(10L, "Beata", "Chorman", "", "", "", customer);
 
     List<User> users = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10));
-    List<User> usersSortedByFirstName = new ArrayList<>(Arrays.asList(user3, user1, user6, user8, user9, user2, user5, user7, user10, user4));
-    List<User> usersSortedByLastName = new ArrayList<>(Arrays.asList(user1, user8, user10, user2, user9, user4, user7, user5, user6, user3));
-    List<User> usersSortedByUserType = new ArrayList<>(Arrays.asList(user2, user9, user5, user4, user6, user7, user8, user1, user10, user3));
 
     @Autowired
     private UserRepository userRepository;
 
     @Test
-    public void getSortedUserByFirstName() {
+    public void should_get_sorted_user_by_first_name() {
         // given:
+        List<User> usersSortedByFirstName = new ArrayList<>(Arrays.asList(user3, user1, user6, user8, user9, user2, user5, user7, user10, user4));
+
+        // when:
         List<User> usersSorted = userRepository.getSortedUserByFirstName();
 
-        // when, then:
+        // then:
         assertAll(() -> assertEquals(usersSorted.get(0).getFirstName(), usersSortedByFirstName.get(0).getFirstName()),
                 () -> assertEquals(usersSorted.get(1).getFirstName(), usersSortedByFirstName.get(1).getFirstName()),
                 () -> assertEquals(usersSorted.get(2).getFirstName(), usersSortedByFirstName.get(2).getFirstName()),
@@ -62,11 +62,14 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getSortedUserByLastName() {
+    public void should_get_sorted_user_by_last_name() {
         // given:
+        List<User> usersSortedByLastName = new ArrayList<>(Arrays.asList(user1, user8, user10, user2, user9, user4, user7, user5, user6, user3));
+
+        // when:
         List<User> usersSorted = userRepository.getSortedUserByLastName();
 
-        // when, then:
+        // then:
         assertAll(() -> assertEquals(usersSorted.get(0).getLastName(), usersSortedByLastName.get(0).getLastName()),
                 () -> assertEquals(usersSorted.get(1).getLastName(), usersSortedByLastName.get(1).getLastName()),
                 () -> assertEquals(usersSorted.get(2).getLastName(), usersSortedByLastName.get(2).getLastName()),
@@ -80,11 +83,14 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getSortedUserByUserType() {
+    public void should_get_sorted_user_by_user_type() {
         // given:
+        List<User> usersSortedByUserType = new ArrayList<>(Arrays.asList(user2, user9, user5, user4, user6, user7, user8, user1, user10, user3));
+
+        // when:
         List<User> usersSorted = userRepository.getSortedUserByUserType();
 
-        // when, then:
+        // then:
         assertAll(() -> assertEquals(usersSorted.get(0).getUserType(), usersSortedByUserType.get(0).getUserType()),
                 () -> assertEquals(usersSorted.get(1).getUserType(), usersSortedByUserType.get(1).getUserType()),
                 () -> assertEquals(usersSorted.get(2).getUserType(), usersSortedByUserType.get(2).getUserType()),
@@ -96,6 +102,30 @@ public class UserRepositoryTest {
                 () -> assertEquals(usersSorted.get(8).getUserType(), usersSortedByUserType.get(8).getUserType()),
                 () -> assertEquals(usersSorted.get(9).getUserType(), usersSortedByUserType.get(9).getUserType()),
                 () -> assertEquals(10, usersSortedByUserType.size()));
+    }
+
+    @Test
+    public void should_find_by_user_type() {
+        // given:
+        List<User> usersByTypeFirst = new ArrayList<>(Arrays.asList(user1, user3, user6, user7, user8, user10));
+
+        //when:
+        List<User> usersFoundByType = userRepository.findByUserType(customer);
+
+        // then:
+        assertAll(() -> assertEquals(6, usersFoundByType.size()),
+                () -> assertEquals(usersByTypeFirst.get(0).getUserType().getUserTypeId(),
+                        usersFoundByType.get(0).getUserType().getUserTypeId()),
+                () -> assertEquals(usersByTypeFirst.get(1).getUserType().getUserTypeId(),
+                        usersFoundByType.get(1).getUserType().getUserTypeId()),
+                () -> assertEquals(usersByTypeFirst.get(2).getUserType().getUserTypeId(),
+                        usersFoundByType.get(2).getUserType().getUserTypeId()),
+                () -> assertEquals(usersByTypeFirst.get(3).getUserType().getUserTypeId(),
+                        usersFoundByType.get(3).getUserType().getUserTypeId()),
+                () -> assertEquals(usersByTypeFirst.get(4).getUserType().getUserTypeId(),
+                        usersFoundByType.get(4).getUserType().getUserTypeId()),
+                () -> assertEquals(usersByTypeFirst.get(5).getUserType().getUserTypeId(),
+                        usersFoundByType.get(5).getUserType().getUserTypeId()));
     }
 
     @Before

@@ -27,6 +27,11 @@ public class UserBackDoor {
         return userService.getUserById(Long.valueOf(id));
     }
 
+    @GetMapping("/type/{typeId}")
+    public List<UserDto> getUsersByType(@PathVariable String typeId) {
+        return userService.getUsersByTypeId(Long.valueOf(typeId));
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addUser(@RequestBody UserDto userDto) {

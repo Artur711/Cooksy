@@ -3,6 +3,7 @@ package com.cooksy.service;
 import com.cooksy.dto.UserDto;
 import com.cooksy.exception.UserNotFoundException;
 import com.cooksy.model.User;
+import com.cooksy.model.UserType;
 import com.cooksy.repository.UserRepository;
 
 import com.cooksy.util.converter.UserDtoToUserConverter;
@@ -42,6 +43,13 @@ public class UserService {
     public List<UserDto> getUsers() {
         log.info("Starts getting all users from database");
         return userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
+    }
+
+    public List<UserDto> getUsersByTypeId(Long typeId) {
+        UserType userType = new UserType();
+        userType.setUserTypeId(typeId);
+        log.info("Starts getting all users by type from database");
+        return userToUserDtoConverter.convertAll(userRepository.findByUserType(userType));
     }
 
     public void addUser(UserDto userDto) {
