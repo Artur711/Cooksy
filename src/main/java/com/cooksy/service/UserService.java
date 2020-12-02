@@ -48,7 +48,7 @@ public class UserService {
     public List<UserDto> getUsersByTypeId(Long typeId) {
         UserType userType = new UserType();
         userType.setUserTypeId(typeId);
-        log.info("Starts getting all users by type from database");
+        log.info(String.format("Starts getting all users by type: %d from database", typeId));
         return userToUserDtoConverter.convertAll(userRepository.findByUserType(userType));
     }
 
@@ -59,9 +59,7 @@ public class UserService {
     }
 
     public void updateUser(Long userId, UserDto userDto) {
-        log.info(String.format("Starts convert user DTO to user: %s", userDto.toString()));
         User user = userDtoToUserConverter.convert(userDto);
-        log.info(String.format("Starts set id to user: %d", userId));
         user.setUserId(userId);
         log.info(String.format("Starts save user: %s", user.toString()));
         userRepository.save(user);
