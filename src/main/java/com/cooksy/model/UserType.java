@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class UserType {
 
     @Id
@@ -18,3 +18,4 @@ public class UserType {
 
     private String userTypeName;
 }
+
