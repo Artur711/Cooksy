@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v2/product")
+@RequestMapping("/api/v2/products")
 public class ProductBackDoor {
 
     private final ProductService productService;
@@ -20,5 +20,20 @@ public class ProductBackDoor {
     @PostMapping
     public void saveProduct(@RequestBody ProductDto productDto){
         productService.saveProduct(productDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateProduct(@PathVariable String id, @RequestBody ProductDto productDto){
+        productService.updateTheProduct(id, productDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTheUser(@PathVariable String id){
+        productService.deleteProduct(id);
+    }
+
+    @GetMapping("/{id}")
+    public ProductDto getTheProduct(@PathVariable String id){
+        return productService.getProductByID(Long.parseLong(id));
     }
 }
