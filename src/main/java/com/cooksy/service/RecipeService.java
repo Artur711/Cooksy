@@ -36,4 +36,10 @@ public class RecipeService {
         }
         return null;
     }
+
+    public void updateRecipe(Long recipeId, RecipeDto recipeDto){
+        Recipe recipe = recipeDtoToRecipeConverter.convert(recipeDto);
+        recipe.setRecipeId(recipeId);
+        recipeRepository.save(recipe);
+    }
 }
