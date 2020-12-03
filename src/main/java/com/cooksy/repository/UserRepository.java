@@ -16,7 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query("SELECT u FROM User u order by u.lastName")
     List<User> getSortedUserByLastName();
 
-    @Query("SELECT u FROM User u order by u.userType.userTypeId DESC")
+    @Query("SELECT u FROM User u order by u.userType.userTypeId")
     List<User> getSortedUserByUserType();
 
     @Query("SELECT u FROM User u where u.userType = :user_type")
