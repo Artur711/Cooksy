@@ -20,10 +20,10 @@ public class RecipeBackDoor {
         return recipeService.getAll();
     }
 
- /*   @GetMapping("/{id}")
-    public RecipeDto getById(@PathVariable String recipeId){
-        return recipeService.getRecipeById((Long.parseLong(recipeId)));
-    }*/
+    @GetMapping("/{id}")
+    public RecipeDto getById(@PathVariable String id){
+        return recipeService.getRecipeById((Long.parseLong(id)));
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
