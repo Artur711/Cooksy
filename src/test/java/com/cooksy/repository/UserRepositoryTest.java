@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -22,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class UserRepositoryTest {
 
     private List<User> usersSorted;
-    private final UserType customer = new UserType(2L, "CUSTOMER");
     private final UserType admin = new UserType(1L, "ADMINISTRATOR");
+    private final UserType customer = new UserType(2L, "CUSTOMER");
 
     @Autowired
     private UserRepository userRepository;
@@ -91,12 +90,12 @@ public class UserRepositoryTest {
         List<User> usersFoundByType = userRepository.findByUserType(customer);
 
         // when, then:
-        assertAll(() -> assertEquals(6, usersFoundByType.size()),
-                () -> assertEquals(customer, usersFoundByType.get(0).getUserType()),
+        assertAll(() -> assertEquals(customer, usersFoundByType.get(0).getUserType()),
                 () -> assertEquals(customer, usersFoundByType.get(1).getUserType()),
                 () -> assertEquals(customer, usersFoundByType.get(2).getUserType()),
                 () -> assertEquals(customer, usersFoundByType.get(3).getUserType()),
                 () -> assertEquals(customer, usersFoundByType.get(4).getUserType()),
-                () -> assertEquals(customer, usersFoundByType.get(5).getUserType()));
+                () -> assertEquals(customer, usersFoundByType.get(5).getUserType()),
+                () -> assertEquals(6, usersFoundByType.size()));
     }
 }
