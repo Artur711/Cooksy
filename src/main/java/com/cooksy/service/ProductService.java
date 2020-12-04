@@ -33,7 +33,13 @@ public class ProductService {
         return null;  //??
     }
 
-    public void deleteProduct(ProductDto productDto) {
-        productRepository.delete(productDtoToProductConverter.convert(productDto));
+    public void deleteProduct(String productID) {
+        productRepository.deleteById(Long.parseLong(productID));
+    }
+
+    public void updateTheProduct(String id, ProductDto productDto) {
+        Product convertedProduct = productDtoToProductConverter.convert(productDto);
+        convertedProduct.setProductID(Long.parseLong(id));
+        productRepository.save(convertedProduct);
     }
 }
