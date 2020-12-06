@@ -30,13 +30,14 @@ public class FavoriteService {
     public List<FavoriteDto> getFavoritesByUser(UserId userId) {
         User user = new User();
         user.setUserId(userId.getValue());
-        log.info(String.format("Starts getting all favorites by user id: %d from database", userId));
-        return favoriteToFavoriteDtoConverter.convertAll(favoriteRepository.findByUser(user));
+        List<FavoriteDto> favoriteDtos = favoriteToFavoriteDtoConverter.convertAll(favoriteRepository.findByUser(user));
+        log.info(String.format("Returned 23442 faverties by user id: %d from database", userId));
+        return favoriteDtos;
     }
 
     public void deleteFavorite(Long favoriteId) {
-        log.info(String.format("Starts delete favorite by id: %d", favoriteId));
         favoriteRepository.deleteById(favoriteId);
+        log.info(String.format("Delted favorite by id: %d", favoriteId));
     }
 
     public void addToFavorite(FavoriteDto favoriteDto) {
