@@ -27,15 +27,15 @@ public class FavoriteService {
         return favoriteToFavoriteDtoConverter.convertAll((List<Favorite>) favoriteRepository.findAll());
     }
 
-    public List<FavoriteDto> getFavoritesByUser(Long userId) {
+    public List<FavoriteDto> getFavoritesByUser(UserId userId) {
         User user = new User();
-        user.setUserId(userId);
+        user.setUserId(userId.getValue());
         log.info(String.format("Starts getting all favorites by user id: %d from database", userId));
         return favoriteToFavoriteDtoConverter.convertAll(favoriteRepository.findByUser(user));
     }
 
     public void deleteFavorite(Long favoriteId) {
-        log.info(String.format("Starts delete favorite by id: %d",favoriteId));
+        log.info(String.format("Starts delete favorite by id: %d", favoriteId));
         favoriteRepository.deleteById(favoriteId);
     }
 
@@ -55,6 +55,6 @@ public class FavoriteService {
         log.info(String.format("Starts find favorite by id: %d", favoriteId));
         return favoriteToFavoriteDtoConverter.convert(
                 favoriteRepository.findById(favoriteId)
-                        .orElseThrow( () -> new FavoriteNotFoundException(favoriteId)));
+                        .orElseThrow(() -> new FavoriteNotFoundException(favoriteId)));
     }
 }

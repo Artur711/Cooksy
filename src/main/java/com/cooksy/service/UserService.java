@@ -36,7 +36,12 @@ public class UserService {
             log.info("Starts sort users by type from administrators");
             return userToUserDtoConverter.convertAll(userRepository.getSortedUserByUserType());
         }
+
+
+        userToUserDtoConverter.convertAll();
+
         log.info("Returns users not sorted");
+
         return getUsers();
     }
 

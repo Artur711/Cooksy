@@ -23,14 +23,14 @@ public class UserBackDoor {
                 userService.getUsers();
     }
 
+    @GetMapping("?typeId=.....")
+    public List<UserDto> getUsersByType(@PathVariable String typeId) {
+        return userService.getUsersByTypeId(Long.valueOf(typeId));
+    }
+
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable String id) {
         return userService.getUserById(Long.valueOf(id));
-    }
-
-    @GetMapping("/type/{typeId}")
-    public List<UserDto> getUsersByType(@PathVariable String typeId) {
-        return userService.getUsersByTypeId(Long.valueOf(typeId));
     }
 
     @PostMapping

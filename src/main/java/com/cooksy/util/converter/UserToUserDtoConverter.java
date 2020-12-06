@@ -21,6 +21,8 @@ public class UserToUserDtoConverter {
     }
 
     public List<UserDto> convertAll(List<User> users) {
-        return users.stream().map(this::convert).collect(Collectors.toList());
+        return users.stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
     }
 }
