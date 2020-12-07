@@ -21,6 +21,8 @@ public class FavoriteDtoToFavoriteConverter {
     }
 
     public List<Favorite> convertAll(List<FavoriteDto> favoriteDtos){
-        return favoriteDtos.stream().map(this::convert).collect(Collectors.toList());
+        return favoriteDtos.stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
     }
 }

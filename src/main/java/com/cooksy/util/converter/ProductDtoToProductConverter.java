@@ -21,6 +21,8 @@ public class ProductDtoToProductConverter {
     }
 
     public List<Product> convertAll(List<ProductDto> productsDto){
-        return  productsDto.stream().map(this::convert).collect(Collectors.toList());
+        return  productsDto.stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
     }
 }

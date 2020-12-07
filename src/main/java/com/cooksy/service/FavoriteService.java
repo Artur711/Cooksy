@@ -1,6 +1,7 @@
 package com.cooksy.service;
 
 import com.cooksy.dto.FavoriteDto;
+import com.cooksy.dto.Id;
 import com.cooksy.exception.FavoriteNotFoundException;
 import com.cooksy.model.Favorite;
 import com.cooksy.model.User;
@@ -23,39 +24,42 @@ public class FavoriteService {
     private final FavoriteToFavoriteDtoConverter favoriteToFavoriteDtoConverter;
 
     public List<FavoriteDto> getAll() {
-        log.info("Starts getting all favorites from database");
-        return favoriteToFavoriteDtoConverter.convertAll((List<Favorite>) favoriteRepository.findAll());
+        List<FavoriteDto> favoritesDto = favoriteToFavoriteDtoConverter.convertAll((List<Favorite>) favoriteRepository.findAll());
+        log.info(String.format("Returned %d favorites", favoritesDto.size()));
+        return favoritesDto;
     }
 
-    public List<FavoriteDto> getFavoritesByUser(UserId userId) {
+    public List<FavoriteDto> getFavoritesByUser(Id id) {
         User user = new User();
-        user.setUserId(userId.getValue());
-        List<FavoriteDto> favoriteDtos = favoriteToFavoriteDtoConverter.convertAll(favoriteRepository.findByUser(user));
-        log.info(String.format("Returned 23442 faverties by user id: %d from database", userId));
-        return favoriteDtos;
+        user.setUserId(id.getValue());
+        List<FavoriteDto> favoritesDto = favoriteToFavoriteDtoConverter.convertAll(favoriteRepository.findByUser(user));
+        log.info(String.format("Returned %d favorites by user id: %d from database", favoritesDto.size(), id.getValue()));
+        return favoritesDto;
     }
 
-    public void deleteFavorite(Long favoriteId) {
-        favoriteRepository.deleteById(favoriteId);
-        log.info(String.format("Delted favorite by id: %d", favoriteId));
+    public void deleteFavorite(Id id) {
+        favoriteRepository.deleteById(id.getValue());
+        log.info(String.format("Deleted favorite by id: %d", id.getValue()));
     }
 
     public void addToFavorite(FavoriteDto favoriteDto) {
-        log.info(String.format("Starts save favorite: %s", favoriteDto.toString()));
         favoriteRepository.save(favoriteDtoToFavoriteConverter.convert(favoriteDto));
+        log.info(String.format("Added favorite: %s", favoriteDto.toString()));
     }
 
-    public void updateFavorite(Long favoriteId, FavoriteDto favoriteDto) {
+    public void updateFavorite(Id id, FavoriteDto favoriteDto) {
         Favorite favorite = favoriteDtoToFavoriteConverter.convert(favoriteDto);
-        favorite.setFavoriteId(favoriteId);
-        log.info(String.format("Starts save favorite: %s", favorite.toString()));
+        favorite.setFavoriteId(id.getValue());
         favoriteRepository.save(favorite);
+        log.info(String.format("Updated favorite: %s", favorite.toString()));
     }
 
-    public FavoriteDto getFavoriteById(Long favoriteId) {
-        log.info(String.format("Starts find favorite by id: %d", favoriteId));
-        return favoriteToFavoriteDtoConverter.convert(
-                favoriteRepository.findById(favoriteId)
-                        .orElseThrow(() -> new FavoriteNotFoundException(favoriteId)));
+    public FavoriteDto getFavoriteById(Id id) {
+        FavoriteDto favoriteDto= favoriteToFavoriteDtoConverter.convert(
+                favoriteRepository.findById(id.getValue())
+                        .orElseThrow(() -> new FavoriteNotFoundException(id)));
+
+        log.info(String.format("Returned favorite by id: %d", id.getValue()));
+        return favoriteDto;
     }
 }

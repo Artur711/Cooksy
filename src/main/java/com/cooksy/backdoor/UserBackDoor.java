@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.cooksy.dto.Id.idFromString;
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @AllArgsConstructor
@@ -17,20 +19,20 @@ public class UserBackDoor {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<UserDto> getAllUsers(@RequestParam(required = false) String sortBy) {
-        return sortBy != null ? userService.getSortedUsers(UserSortedType.valueOf(sortBy)) :
-                userService.getUsers();
-    }
-
-    @GetMapping("?typeId=.....")
-    public List<UserDto> getUsersByType(@PathVariable String typeId) {
-        return userService.getUsersByTypeId(Long.valueOf(typeId));
+        if (sortBy == null) {
+            userService.getUsers();
+        }
+        else if (UserSortedType.isContains(sortBy)) {
+            return userService.getSortedUsers(UserSortedType.valueOf(sortBy));
+        }
+        return userService.getUsersByTypeId(idFromString(sortBy));
     }
 
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable String id) {
-        return userService.getUserById(Long.valueOf(id));
+        return userService.getUserById(idFromString(id));
     }
 
     @PostMapping
@@ -42,12 +44,12 @@ public class UserBackDoor {
     @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
-        userService.updateUser(Long.valueOf(id), userDto);
+        userService.updateUser(idFromString(id), userDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
     public void deleteUser(@PathVariable String id) {
-        userService.removeUser(Long.valueOf(id));
+        userService.removeUser(idFromString(id));
     }
 }

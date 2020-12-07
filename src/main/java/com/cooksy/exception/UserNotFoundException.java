@@ -1,6 +1,7 @@
 package com.cooksy.exception;
 
-import com.cooksy.service.UserId;
+
+import com.cooksy.dto.Id;
 
 public class UserNotFoundException extends NotFoundException {
 
