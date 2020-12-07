@@ -30,24 +30,24 @@ public class UserBackDoor {
         return userService.getUsersByTypeId(idFromString(sortBy));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
     public UserDto getUser(@PathVariable String id) {
         return userService.getUserById(idFromString(id));
     }
 
-    @PostMapping
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
     public void addUser(@RequestBody UserDto userDto) {
         userService.addUser(userDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(NO_CONTENT)
     public void updateUser(@PathVariable String id, @RequestBody UserDto userDto) {
         userService.updateUser(idFromString(id), userDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(NO_CONTENT)
     public void deleteUser(@PathVariable String id) {
         userService.removeUser(idFromString(id));
