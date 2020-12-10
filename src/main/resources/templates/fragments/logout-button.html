@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logout button</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
 </head>
 <body>
-
+<div th:fragment="logout">
+    <div class="col-sm-2 col-xl-1 text-center p-3 bg-style float-r">
+        <strong>LOGOUT</strong>
+    </div>
+</div>
 </body>
 </html>

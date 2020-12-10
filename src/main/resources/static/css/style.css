@@ -1,0 +1,26 @@
+.bg-style {
+    background-color: #CF240A;
+    color: white;
+}
+
+.float-r {
+    float: right;
+}
+
+.bg-nav {
+    background-color: #4E2F2F;
+    border: 3px solid #A20505;
+    color: white;
+}
+
+.bg-nav-item {
+    background-color: #CF240A;
+    border: none;
+}
+
+.bg-logo {
+    width: 90px;
+    background-color: #67DE2E;
+    border: 3px solid #328C07;
+    border-radius: 45px;
+}
