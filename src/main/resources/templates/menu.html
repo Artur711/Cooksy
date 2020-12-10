@@ -14,7 +14,17 @@
 <div class="container">
     <div class="row">
         <div th:insert="fragments/logout-button.html :: logout"></div>
-        <div th:replace="fragments/navbar.html :: navbar"></div>
+        <div class="d-inline-block">
+            <div th:replace="fragments/navbar.html :: navbar"></div>
+
+            <div class="col-8 d-inline-flex justify-content-center">
+                <h3 class="h4 col-3 bg-orange text-center p-2 m-3">Meat</h3>
+                <h3 class="h4 col-3 bg-green text-center p-2 m-3">Vegetables</h3>
+                <h3 class="h4 col-3 bg-orange text-center p-2 m-3">Additional</h3>
+                <h3 class="h4  col-3 bg-green text-center p-2 m-3">Promotion</h3>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>

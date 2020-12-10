@@ -13,9 +13,9 @@ public class TemporaryController {
         return "fragments/logout-button";
     }
 
-    @GetMapping("sidebar")
+    @GetMapping("navbar")
     public String getSidebar() {
-        return "navbar";
+        return "fragments/navbar";
     }
 
     @GetMapping("menu")
