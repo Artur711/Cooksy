@@ -16,18 +16,18 @@ public class RecipeBackDoor {
     private final RecipeService recipeService;
 
     @GetMapping
-    public List<RecipeDto> getAll(){
+    public List<RecipeDto> getAll() {
         return recipeService.getAll();
     }
 
     @GetMapping("/{id}")
-    public RecipeDto getById(@PathVariable String id){
+    public RecipeDto getById(@PathVariable String id) {
         return recipeService.getRecipeById((Long.parseLong(id)));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveRecipe(@RequestBody RecipeDto recipeDto){
+    public void saveRecipe(@RequestBody RecipeDto recipeDto) {
         recipeService.saveRecipe(recipeDto);
     }
 

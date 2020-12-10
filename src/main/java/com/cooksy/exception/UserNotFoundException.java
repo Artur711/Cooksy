@@ -1,8 +1,11 @@
 package com.cooksy.exception;
 
-public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(Long id) {
-        super("User not found for given id: " + id);
+import com.cooksy.dto.Id;
+
+public class UserNotFoundException extends NotFoundException {
+
+    public UserNotFoundException(Id id) {
+        super("User", id);
     }
 }

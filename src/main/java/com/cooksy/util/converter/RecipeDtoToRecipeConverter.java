@@ -19,6 +19,8 @@ public class RecipeDtoToRecipeConverter {
     }
 
     public List<Recipe> convertAll(List<RecipeDto> recipeDtos) {
-        return recipeDtos.stream().map(this::convert).collect(Collectors.toList());
+        return recipeDtos.stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
     }
 }

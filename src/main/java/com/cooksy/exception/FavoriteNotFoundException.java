@@ -1,8 +1,10 @@
 package com.cooksy.exception;
 
-public class FavoriteNotFoundException extends RuntimeException{
+import com.cooksy.dto.Id;
 
-    public FavoriteNotFoundException(Long id) {
-        super("Favorite not found for given id: " + id);
+public class FavoriteNotFoundException extends NotFoundException {
+
+    public FavoriteNotFoundException(Id id) {
+        super("Favorite", id);
     }
 }

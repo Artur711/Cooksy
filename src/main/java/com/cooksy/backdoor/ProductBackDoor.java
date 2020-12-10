@@ -13,27 +13,29 @@ import java.util.List;
 public class ProductBackDoor {
 
     private final ProductService productService;
+
     @GetMapping
-    public List<ProductDto> getAllProducts(){
+    public List<ProductDto> getAllProducts() {
         return productService.getAll();
     }
+
     @PostMapping
-    public void saveProduct(@RequestBody ProductDto productDto){
+    public void saveProduct(@RequestBody ProductDto productDto) {
         productService.saveProduct(productDto);
     }
 
     @PutMapping("/{id}")
-    public void updateProduct(@PathVariable String id, @RequestBody ProductDto productDto){
+    public void updateProduct(@PathVariable String id, @RequestBody ProductDto productDto) {
         productService.updateTheProduct(id, productDto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTheUser(@PathVariable String id){
+    public void deleteTheUser(@PathVariable String id) {
         productService.deleteProduct(id);
     }
 
     @GetMapping("/{id}")
-    public ProductDto getTheProduct(@PathVariable String id){
+    public ProductDto getTheProduct(@PathVariable String id) {
         return productService.getProductByID(Long.parseLong(id));
     }
 }
