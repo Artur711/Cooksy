@@ -84,7 +84,7 @@ public class UserService {
                 userRepository.findById(id.getValue())
                         .orElseThrow(() -> new UserNotFoundException(id)));
 
-        log.info(String.format("Returned user by id: %d", id));
+        log.info(String.format("Returned user by id: %d", id.getValue()));
         return userDto;
     }
 }
