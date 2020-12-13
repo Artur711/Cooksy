@@ -1,4 +1,6 @@
 delete from FAVORITES;
+delete from RECIPE_COMPOSITION;
+delete from RECIPE_PRODUCT;
 delete from USERS;
 delete from RECIPES;
 delete from PRODUCTS;
@@ -16,15 +18,15 @@ values
        (9, 'Antoni', 'Donat', 1),
        (10, 'Beata', 'Chorman', 2);
 
-insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GM_ID)
+insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
 values
        (1, 'Pepper', 5.82, 1, 1, 1),
        (2, 'Tomato', 3.25, 2, 1, 1);
 
-insert into RECIPES (RECIPE_ID, PRODUCT_ID, description, photo_Url, author)
+insert into RECIPES (recipe_id, name, description, photo_Url, author)
 values
-       (1, 1, 'Mexican chicken', 'dasdasdas', 'Atos'),
-       (2, 2, 'Tomato chicken', 'dasdasdas', 'Atos');
+       (1, 'Mexican chicken', 'dasdasdas', 'url', 'Atos'),
+       (2, 'Tomato chicken', 'dasdasdas', 'url', 'Atos');
 
 insert into FAVORITES (FAVORITE_ID, USER_ID, RECIPE_ID)
 values

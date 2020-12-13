@@ -1,6 +1,7 @@
 package com.cooksy.service;
 
 import com.cooksy.dto.ProductDto;
+import com.cooksy.model.Grammage;
 import com.cooksy.model.Product;
 import com.cooksy.repository.ProductRepository;
 import org.junit.Test;
@@ -35,10 +36,10 @@ public class ProductServiceTest {
         List<Product> expectedValue = prepareData();
         when(productRepository.findAll()).thenReturn(expectedValue);
 
-
-//        //when
+        //when
 //        List<ProductDto> allProducts = productService.getAll(); //nullPointer??
-//        //then
+
+        //then
 //        assertEquals(allProducts.size(), expectedValue.size());
     }
 
@@ -53,8 +54,11 @@ public class ProductServiceTest {
     }
 
     private List<Product> prepareData() {
-        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, 1L),
-                new Product(2L, "Tomato", 3.25, 2L, 1L, 1L)) ;
+        Grammage grammage = new Grammage();
+        grammage.setGmId(1L);
+
+        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, grammage),
+                new Product(2L, "Tomato", 3.25, 2L, 1L, grammage));
     }
 
 }
