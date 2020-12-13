@@ -8,19 +8,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/temp")
 public class TemporaryController {
 
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public String getLogout() {
         return "fragments/logout-button";
     }
 
-    @GetMapping("navbar")
+    @GetMapping("/navbar")
     public String getSidebar() {
         return "fragments/navbar";
     }
 
-    @GetMapping("menu")
+    @GetMapping("/menu")
     public String getMenu() {
         return "menu";
+    }
+
+    @GetMapping("/footer")
+    public String getFooter() {
+        return "fragments/footer";
+    }
+
+    @GetMapping("/logo")
+    public String getLogo() {
+        return "fragments/logo";
     }
 
 }

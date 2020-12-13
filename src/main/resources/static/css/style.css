@@ -1,20 +1,19 @@
+.bg-page {
+    background-image: url('../image/AdobeStock_200763146.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .bg-style {
     background-color: #CF240A;
     color: white;
-}
-
-.float-r {
-    float: right;
-}
-
-.float-l {
-    float: left;
 }
 
 .bg-nav {
     background-color: #4E2F2F;
     border: 3px solid #A20505;
     color: white;
+    width: auto;
 }
 
 .bg-nav-item {
@@ -30,7 +29,7 @@
 }
 
 .bg-orange {
-    background-color: #FFA500;
+    background-color: #ff5100;
     border: 2px solid #A10505;
     border-radius: 12px;
 }
@@ -39,4 +38,34 @@
     background-color: #2E9000;
     border: 2px solid #1F7A08;
     border-radius: 12px;
+}
+
+.m-top {
+    margin: 3.5vw;
+}
+
+.logo {
+    width: 75px;
+    height: 86px;
+}
+
+@media screen and (min-width: 1200px) {
+    .width-150 {
+        width: 13%;
+    }
+}
+
+@media screen and (max-width: 578px) {
+    .logo {
+        width: 38px;
+        height: 43px;
+    }
+
+    .bg-logo {
+        width: 48px;
+    }
+
+    h5, .h5, span {
+        font-size: 80%;
+    }
 }

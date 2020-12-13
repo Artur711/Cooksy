@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout button</title>
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
@@ -11,9 +11,12 @@
     <script th:src="@{/js/bootstrap.js}" defer></script>
 </head>
 <body>
-<div th:fragment="logout">
-    <div class="col-4 col-sm-2 col-xl-1 text-center p-1 p-sm-2 bg-style float-end">
-        <strong>LOGOUT</strong>
+<div class="col-2 float-start" th:fragment="logo">
+    <div class="float-end" >
+        <div class="bg-logo d-block m-auto">
+            <img class="img-fluid d-block m-auto logo" src="../static/image/logo2.png" th:src="@{/image/logo2.png}" alt="Application Logo">
+        </div>
+        <h5 class="text-center text-white">CookSy</h5>
     </div>
 </div>
 </body>
