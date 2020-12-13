@@ -5,7 +5,7 @@
 }
 
 .bg-style {
-    background-color: #CF240A;
+    background: #CF240A 55%;
     color: white;
 }
 
@@ -47,6 +47,20 @@
 .logo {
     width: 75px;
     height: 86px;
+}
+
+.page-link {
+    color: #A20505;
+}
+
+.page-item a:hover {
+    color: black;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #A20505;
+    border-color: #4E2F2F;
 }
 
 @media screen and (min-width: 1200px) {

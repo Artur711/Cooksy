@@ -33,4 +33,8 @@ public class TemporaryController {
         return "fragments/logo";
     }
 
+    @GetMapping("/pag")
+    public String getPagination() {
+        return "fragments/pagination";
+    }
 }

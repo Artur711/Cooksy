@@ -8,6 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.min.js}" defer></script>
+    <script th:src="@{/js/bootstrap.bundle.js}" defer></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
     <script th:src="@{/js/bootstrap.js}" defer></script>
 </head>
 <body class="bg-page">
@@ -27,11 +30,18 @@
                         <div  th:insert="fragments/navbar.html :: navbar"></div>
                     </div>
                     <div class="col-10 col-lg-9 text-white">
-                        <div class="row d-flex justify-content-around">
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange text-center p-1 p-md-2 m-1 m-md-3">Meat</h3>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green text-center p-1 p-md-2 m-1 m-md-3">Vegetables</h3>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange text-center p-1 p-md-2 m-1 m-md-3">Additional</h3>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green text-center p-1 p-md-2 m-1 m-md-3">Promotion</h3>
+                        <div class="row d-flex justify-content-around text-center">
+                            <div class="dropdown">
+
+                                <div class="dropdown-menu">
+                                    <p class="dropdown-item">All</p>
+                                </div>
+                            </div>
+                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle" data-bs-toggle="dropdown" role="button">Meat</h3>
+
+                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Vegetables</h3>
+                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Additional</h3>
+                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green  p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Promotion</h3>
                         </div>
                         <div class="row d-flex justify-content-around flex-wrap">
                             <div class="col-4 col-sm-3 col-lg-2 col-xxl-1 width-150 bg-style m-2">
@@ -81,6 +91,12 @@
                             <div class="col-4 col-sm-3 col-lg-2 col-xxl-1 width-150 bg-style m-2">
                                 <img class="img-thumbnail d-block m-auto" src="#" th:src="@{/image/logo2.png}" alt="Recipe">
                                 <span><strong>Vegetarian curry with swebolderet potatoes and cauliflower</strong></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="d-flex justify-content-center mt-3">
+
+                                <div th:insert="fragments/pagination.html :: paginagtion"></div>
                             </div>
                         </div>
                     </div>
