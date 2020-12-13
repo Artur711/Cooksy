@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Products")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,9 @@ public class Product {
     @Column(name = "market_id")
     private Long marketID;
 
-    @Column(name = "gm_id")
-    private Long gmID;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "grammage_id")
+    private Grammage grammage;
 }
+
+

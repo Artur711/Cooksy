@@ -1,6 +1,7 @@
 package com.cooksy.service;
 
 import com.cooksy.dto.ProductDto;
+import com.cooksy.model.Grammage;
 import com.cooksy.model.Product;
 import com.cooksy.repository.ProductRepository;
 import org.junit.Test;
@@ -53,8 +54,8 @@ public class ProductServiceTest {
     }
 
     private List<Product> prepareData() {
-        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, 1L),
-                new Product(2L, "Tomato", 3.25, 2L, 1L, 1L)) ;
+        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, new Grammage()),
+                new Product(2L, "Tomato", 3.25, 2L, 1L, new Grammage()));
     }
 
 }
