@@ -1,6 +1,7 @@
 package com.cooksy.dto;
 
 
+import com.cooksy.model.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FavoriteDto {
     private Long favoriteId;
-    private Long userId;
-    private Long recipeId;
+    private UserDto user;
+    private RecipeDto recipe;
 }

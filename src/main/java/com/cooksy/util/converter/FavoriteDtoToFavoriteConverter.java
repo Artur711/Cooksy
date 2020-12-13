@@ -13,15 +13,15 @@ public class FavoriteDtoToFavoriteConverter {
 
     public Favorite convert(FavoriteDto favoriteDto){
         User user = new User();
-        user.setUserId(favoriteDto.getUserId());
+        user.setUserId(favoriteDto.getUser().getUserId());
         Recipe recipe = new Recipe();
-        recipe.setRecipeId(favoriteDto.getRecipeId());
+        recipe.setRecipeId(favoriteDto.getRecipe().getRecipeId());
 
         return new Favorite(favoriteDto.getFavoriteId(), user, recipe);
     }
 
-    public List<Favorite> convertAll(List<FavoriteDto> favoriteDtos){
-        return favoriteDtos.stream()
+    public List<Favorite> convertAll(List<FavoriteDto> favoritesDto){
+        return favoritesDto.stream()
                 .map(this::convert)
                 .collect(Collectors.toList());
     }

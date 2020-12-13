@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Component
 public class RecipeProductDtoToRecipeProductConverter {
 
     public RecipeProduct convert(RecipeProductDto recipeProductDto) {
         Product product = new Product();
-        product.setProductID(recipeProductDto.getProductDto().getProductID());
+        product.setProductID(recipeProductDto.getProduct().getProductID());
+
         return new RecipeProduct(recipeProductDto.getRpId(),
                 product,
                 recipeProductDto.getQuantity());

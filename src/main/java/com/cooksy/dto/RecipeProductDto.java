@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class RecipeProductDto {
     private Long rpId;
-    private ProductDto productDto;
+    private ProductDto product;
     private Double quantity;
 }
