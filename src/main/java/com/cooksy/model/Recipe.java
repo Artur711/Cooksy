@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,7 +19,9 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recipeId;
 
-    private Long productId;
+    @ManyToMany(mappedBy = "recipes")
+    private List<Product> products;
+
     private String description;
     private String photoUrl;
     private String author;

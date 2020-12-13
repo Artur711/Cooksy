@@ -1,8 +1,11 @@
 package com.cooksy.dto;
 
+import com.cooksy.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -10,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class RecipeDto {
 
     private Long recipeId;
-    private Long productID;
+    private List<Product> products;
     private String description;
     private String photoUrl;
     private String author;

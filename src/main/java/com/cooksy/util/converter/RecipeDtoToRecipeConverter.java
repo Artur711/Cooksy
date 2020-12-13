@@ -12,7 +12,7 @@ public class RecipeDtoToRecipeConverter {
 
     public Recipe convert(RecipeDto recipeDto) {
         return new Recipe(recipeDto.getRecipeId(),
-                recipeDto.getProductID(),
+                recipeDto.getProducts(),
                 recipeDto.getDescription(),
                 recipeDto.getPhotoUrl(),
                 recipeDto.getAuthor());

@@ -16,7 +16,8 @@ public class ProductDtoToProductConverter {
                 productDto.getPrice(),
                 productDto.getProductTypeID(),
                 productDto.getMarketID(),
-                productDto.getGmID()
+                productDto.getGmID(),
+                productDto.getRecipes()
                 );
     }
 

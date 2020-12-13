@@ -11,6 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,8 +54,8 @@ public class ProductServiceTest {
     }
 
     private List<Product> prepareData() {
-        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, 1L),
-                new Product(2L, "Tomato", 3.25, 2L, 1L, 1L)) ;
+        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, 1L, new ArrayList<>()),
+                new Product(2L, "Tomato", 3.25, 2L, 1L, 1L, new ArrayList<>())) ;
     }
 
 }

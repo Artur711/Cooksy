@@ -1,6 +1,9 @@
 package com.cooksy.dto;
 
+import com.cooksy.model.Recipe;
 import lombok.*;
+
+import java.util.List;
 
 //@Setter
 //@Getter
@@ -14,5 +17,6 @@ public class ProductDto {
     private Long productTypeID;
     private Long marketID;
     private Long gmID;
+    private List<Recipe> recipes;
 
 }

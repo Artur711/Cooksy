@@ -1,5 +1,6 @@
 package com.cooksy.backdoor;
 
+import com.cooksy.dto.Id;
 import com.cooksy.dto.ProductDto;
 import com.cooksy.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,6 @@ public class ProductBackDoor {
 
     @GetMapping("/{id}")
     public ProductDto getTheProduct(@PathVariable String id) {
-        return productService.getProductByID(Long.parseLong(id));
+        return productService.getProductByID(Id.idFromString(id));
     }
 }

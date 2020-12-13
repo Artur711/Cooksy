@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -29,4 +30,8 @@ public class Product {
 
     @Column(name = "gm_id")
     private Long gmID;
+
+    @ManyToMany
+    @JoinTable(name = "products_of_recipes", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "RECIPE_ID"))
+    private List<Recipe> recipes;
 }
