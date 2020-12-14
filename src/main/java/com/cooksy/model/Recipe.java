@@ -24,6 +24,7 @@ public class Recipe {
     @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"), inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
     private List<RecipeProduct> recipeProducts;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String photoUrl;
     private String author;

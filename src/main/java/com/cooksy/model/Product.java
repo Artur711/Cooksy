@@ -30,6 +30,14 @@ public class Product {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "grammage_id")
     private Grammage grammage;
+
+    public Product(String name, Double price, Long productTypeID, Long marketID, Grammage grammage) {
+        this.name = name;
+        this.price = price;
+        this.productTypeID = productTypeID;
+        this.marketID = marketID;
+        this.grammage = grammage;
+    }
 }
 
 

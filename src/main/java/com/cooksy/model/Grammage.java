@@ -18,5 +18,10 @@ public class Grammage {
 
     private Double quantity;
     private String grammage;
+
+    public Grammage(Double quantity, String grammage) {
+        this.quantity = quantity;
+        this.grammage = grammage;
+    }
 }
 
