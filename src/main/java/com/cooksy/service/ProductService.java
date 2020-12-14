@@ -1,6 +1,8 @@
 package com.cooksy.service;
 
+import com.cooksy.dto.Id;
 import com.cooksy.dto.ProductDto;
+import com.cooksy.exception.UserNotFoundException;
 import com.cooksy.model.Product;
 import com.cooksy.repository.ProductRepository;
 import com.cooksy.util.converter.ProductDtoToProductConverter;
@@ -26,11 +28,9 @@ public class ProductService {
         productRepository.save(productDtoToProductConverter.convert(productDto));
     }
 
-    public ProductDto getProductByID(Long id) {
-        if (productRepository.findById(id).isPresent()) {
-            return productToProductDtoConverter.convert(productRepository.findById(id).get());
-        }
-        return null;  //??
+    public ProductDto getProductByID(Id id) {
+            return productToProductDtoConverter.convert(productRepository.findById(id.getValue())
+                    .orElseThrow(()-> new UserNotFoundException(id)));
     }
 
     public void deleteProduct(String productID) {
