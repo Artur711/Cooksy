@@ -17,7 +17,7 @@ public class RecipeDtoToRecipeConverter {
 
 
     public Recipe convert(RecipeDto recipeDto) {
-        List<RecipeProduct> recipeProducts = recipeProductDtoToRecipeProductConverter.convertAll(recipeDto.getRecipeProductDtos());
+        List<RecipeProduct> recipeProducts = recipeProductDtoToRecipeProductConverter.convertAll(recipeDto.getRecipeProducts());
         return new Recipe(recipeDto.getRecipeId(),
                 recipeDto.getName(),
                 recipeProducts,

@@ -14,7 +14,7 @@ public class RecipeDto {
 
     private Long recipeId;
     private String name;
-    private List<RecipeProductDto> recipeProductDtos;
+    private List<RecipeProductDto> recipeProducts;
     private String description;
     private String photoUrl;
     private String author;

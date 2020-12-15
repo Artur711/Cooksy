@@ -2,8 +2,6 @@ package com.cooksy.dto;
 
 import lombok.*;
 
-//@Setter
-//@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

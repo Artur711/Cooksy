@@ -18,8 +18,8 @@ values
 
 insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
 values
-       (1, 'Pepper', 5.82, 1, 1, 1),
-       (2, 'Tomato', 3.25, 2, 1, 1);
+       (1, 'Pepper', 0.45, 1, 1, 3),
+       (2, 'Tomato', 2.38, 2, 1, 1);
 
 -- add spaghetti ingredients
 insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
@@ -48,6 +48,20 @@ VALUES
        (20, 1, 'Pack fresh egg lasagne sheets', 4.80, 5, 1),
        (21, 1, 'Crème', 0.37, 5, 5),
        (22, 1, 'Ball mozzarella', 12, 5, 1);
+
+--add Thai fried prawn & pineapple rice
+insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
+VALUES
+       (23, 1, 'Sunflower oil', 1.10 , 1 , 1),
+       (24, 1, 'Spring onions', 3.7, 1, 1),
+       (25, 1, 'Pineapple', 5.20, 1, 1),
+       (26, 1, 'Thai green curry paste', 0.75, 5, 4),
+       (27, 1, 'Light soy sauce', 0.43, 5, 5),
+       (28, 1, 'Rice', 1.45, 5, 1),
+       (29, 1, 'Frozen peas', 2.5, 1, 1),
+       (30, 1, 'Bamboo shoots', 9.17, 1, 1),
+       (31, 1, 'Frozen prawns', 13.34, 6, 1),
+       (32, 1, 'Lime', 0.3, 1, 3);
 
 -- wrapper
 insert into recipe_product
@@ -80,6 +94,21 @@ values
        (23, 4, 21),
        (24, 0.125, 22),
        (25, 0.05, 11);
+
+-- wraper Thai fried prawn & pineapple rice
+insert into recipe_product
+values
+       (26, 0.02, 23),
+       (27, 0.1, 24),
+       (28, 1, 1),
+       (29, 0.14, 25),
+       (30, 0.1, 26),
+       (31, 0.2, 27),
+       (32, 0.3, 28),
+       (33, 0.14, 29),
+       (34, 0.225, 30),
+       (35, 0.25, 31),
+       (36, 3, 32);
 
 insert into recipes (recipe_id, author, description, name, photo_url)
 VALUES
@@ -121,7 +150,13 @@ Heat oven to 200C/180C fan/gas 6. To assemble the lasagne, ladle a little of the
 
 STEP 5
 Put the crème fraîche in a bowl and mix with 2 tbsp water to loosen it and make a smooth pourable sauce. Pour this over the top of the pasta, then top with the mozzarella. Sprinkle Parmesan over the top and bake for 25–30 mins until golden and bubbling. Serve scattered with basil, if you like.',
-     'Easy classic lasagne', '../static/image/Recipes img/Easy classic lasagne.webp');
+     'Easy classic lasagne', '../static/image/Recipes img/Easy classic lasagne.webp'),
+       (4, 'BBC good food- Good Food team', 'STEP 1
+Heat the oil in a wok or non-stick frying pan and fry the spring onion whites for 2 mins until softened. Stir in the pepper for 1 min, followed by the pineapple for 1 min more, then stir in the green curry paste and soy sauce.
+
+STEP 2
+Add the rice, stir-frying until piping hot, then push the rice to one side of the pan and scramble the eggs on the other side. Stir the peas, bamboo shoots and prawns into the rice and eggs, then heat through for 2 mins until the prawns are hot and the peas tender. Finally, stir in the spring onion greens, lime juice and coriander, if using. Spoon into bowls and serve with extra lime wedges and soy sauce.',
+        'Thai fried prawn & pineapple rice', '../static/image/Recipes img/Thai fried prawn & pineapple rice.webp');
 
 
 insert into recipe_composition
@@ -153,7 +188,19 @@ values
         (3, 20),
         (3, 21),
         (3, 22),
-        (3, 11);
+        (3, 11),
+        (4, 26),
+        (4, 27),
+        (4, 28),
+        (4, 29),
+        (4, 30),
+        (4, 31),
+        (4, 32),
+        (4, 14),
+        (4, 33),
+        (4, 34),
+        (4, 35),
+        (4, 36);
 
 insert into favorites (user_id, recipe_id)
 values
