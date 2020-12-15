@@ -37,4 +37,9 @@ public class TemporaryController {
     public String getPagination() {
         return "fragments/pagination";
     }
+
+    @GetMapping("/favorites")
+    public String getFavorites() {
+        return "favorites";
+    }
 }
