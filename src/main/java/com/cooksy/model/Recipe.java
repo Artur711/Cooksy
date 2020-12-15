@@ -20,7 +20,7 @@ public class Recipe {
     private Long recipeId;
     private String name;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"), inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
     private List<RecipeProduct> recipeProducts;
 

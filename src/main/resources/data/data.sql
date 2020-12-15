@@ -10,9 +10,11 @@ values
 
 insert into Grammage (grammage_id, quantity, grammage)
 values
-        (1, 1, 'KG'),
-        (2, 1, 'L'),
-        (3, 1, 'PCS');
+       (1, 1, 'KG'),
+       (2, 1, 'L'),
+       (3, 1, 'PCS'),
+       (4, 100, 'Gramme'),
+       (5, 100, 'ml');
 
 insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
 values
@@ -34,6 +36,19 @@ VALUES
     (12, 1, 'Egg', 0.75, 5, 3),
     (13, 1, 'Butter', 6, 5, 3);
 
+-- add classic lasagne
+insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
+VALUES
+       (14, 1, 'Smoked bacon', 2, 2 , 1),
+       (15, 1, 'Celery', 0.43, 1, 3),
+       (16, 1, 'Carrot', 0.04, 1, 3),
+       (17, 1, 'Tomato purée', 1.98, 5, 1),
+       (18, 1, 'Chopped tomatoes', 0.35, 6, 3),
+       (19, 1, 'Clear honey', 0.30, 5, 4),
+       (20, 1, 'Pack fresh egg lasagne sheets', 4.80, 5, 1),
+       (21, 1, 'Crème', 0.37, 5, 5),
+       (22, 1, 'Ball mozzarella', 12, 5, 1);
+
 -- wrapper
 insert into recipe_product
 values
@@ -42,15 +57,29 @@ values
         (4, 0.02, 4),
         (5, 0.05, 5),
         (6, 0.5, 6),
-        (7,0.09, 7),
-        (8,0.01,8),
-        (9,0.4,2),
-        (10,0.01,9),
-        (11,0.03,1),
-        (12,0.35,10),
-        (13,0.2,11),
-        (14,2,12),
-        (15,0.2,13);
+        (7, 0.09, 7),
+        (8, 0.01, 8),
+        (9, 0.4, 2),
+        (10, 0.01, 9),
+        (11, 0.03, 1),
+        (12, 0.35, 10),
+        (13, 0.2, 11),
+        (14, 2, 12),
+        (15, 0.2, 13);
+
+-- wraper classic lasange
+insert into recipe_product
+values
+       (16, 0.05, 14),
+       (17, 1, 15),
+       (18, 1, 16),
+       (19, 0.005, 17),
+       (20, 2, 18),
+       (21, 0.05, 19),
+       (22, 0.05, 20),
+       (23, 4, 21),
+       (24, 0.125, 22),
+       (25, 0.05, 11);
 
 insert into recipes (recipe_id, author, description, name, photo_url)
 VALUES
@@ -77,7 +106,22 @@ VALUES
     Repeat until the eggs are softly set and slightly runny in places. Remove from the heat and leave for a moment to finish cooking.
     STEP 6
 
-    Give a final stir and serve the velvety scramble without delay.','Perfect scrambled eggs recipe', 'photo.url');
+    Give a final stir and serve the velvety scramble without delay.','Perfect scrambled eggs recipe', 'photo.url'),
+    (3, 'BBC good food - Angela Boggiano', 'STEP 1
+Heat the oil in a large saucepan. Use kitchen scissors to snip the bacon into small pieces, or use a sharp knife to chop it on a chopping board. Add the bacon to the pan and cook for just a few mins until starting to turn golden. Add the onion, celery and carrot, and cook over a medium heat for 5 mins, stirring occasionally, until softened.
+
+STEP 2
+Add the garlic and cook for 1 min, then tip in the mince and cook, stirring and breaking it up with a wooden spoon, for about 6 mins until browned all over.
+
+STEP 3
+Stir in the tomato purée and cook for 1 min, mixing in well with the beef and vegetables. Tip in the chopped tomatoes. Fill each can half full with water to rinse out any tomatoes left in the can, and add to the pan. Add the honey and season to taste. Simmer for 20 mins.
+
+STEP 4
+Heat oven to 200C/180C fan/gas 6. To assemble the lasagne, ladle a little of the ragu sauce into the bottom of the roasting tin or casserole dish, spreading the sauce all over the base. Place 2 sheets of lasagne on top of the sauce overlapping to make it fit, then repeat with more sauce and another layer of pasta. Repeat with a further 2 layers of sauce and pasta, finishing with a layer of pasta.
+
+STEP 5
+Put the crème fraîche in a bowl and mix with 2 tbsp water to loosen it and make a smooth pourable sauce. Pour this over the top of the pasta, then top with the mozzarella. Sprinkle Parmesan over the top and bake for 25–30 mins until golden and bubbling. Serve scattered with basil, if you like.',
+     'Easy classic lasagne', '../static/image/Recipes img/Easy classic lasagne.webp');
 
 
 insert into recipe_composition
@@ -95,7 +139,21 @@ values
         (1,12),
         (1,13),
         (2,14),
-        (2,15);
+        (2,15),
+        (3, 4),
+        (3, 14),
+        (3, 3),
+        (3, 15),
+        (3, 16),
+        (3, 5),
+        (3, 6),
+        (3, 17),
+        (3, 18),
+        (3, 19),
+        (3, 20),
+        (3, 21),
+        (3, 22),
+        (3, 11);
 
 insert into favorites (user_id, recipe_id)
 values
