@@ -18,7 +18,7 @@ values
 
 insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
 values
-       (1, 'Pepper', 0.45, 1, 1, 3),
+       (1, 'Paprika', 0.45, 1, 1, 3),
        (2, 'Tomato', 2.38, 2, 1, 1);
 
 -- add spaghetti ingredients

@@ -8,9 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
-    <script th:src="@{/js/bootstrap.min.js}" defer></script>
-    <script th:src="@{/js/bootstrap.bundle.js}" defer></script>
-    <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script th:src="@{/js/bootstrap.js}" defer></script>
 </head>
 <body class="bg-page">
@@ -24,24 +22,151 @@
         <div class="row text-center">
             <h1 class="text-white">All recipes</h1>
 
+            </div>
             <div class="col-12">
                 <div class="row">
                     <div class="col-2 col-lg-3">
                         <div  th:insert="fragments/navbar.html :: navbar"></div>
                     </div>
-                    <div class="col-10 col-lg-9 text-white">
-                        <div class="row d-flex justify-content-around text-center">
-                            <div class="dropdown">
+                    <div class="col-10 col-lg-9 text-white text-center">
+                        <div class="row">
+                            <div class="d-flex justify-content-around flex-wrap">
+                                <div class="dropdown col-8 col-sm-5 col-lg-3">
+                                    <h3 class="h5 bg-orange dropdown-toggle p-1 p-md-2 m-1 m-md-3"
+                                        id="dropdownMeat" data-bs-toggle="dropdown" role="button" aria-expanded="false">Meat</h3>
 
-                                <div class="dropdown-menu">
-                                    <p class="dropdown-item">All</p>
+                                    <div class="dropdown-menu bg-style" aria-labelledby="dropdownMeat">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_all">
+                                            <label class="custom-control-label" for="meat_all">All</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_chicken">
+                                            <label class="custom-control-label" for="meat_chicken">Chicken</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_pork">
+                                            <label class="custom-control-label" for="meat_pork">Pork</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_beef">
+                                            <label class="custom-control-label" for="meat_beef">Beef</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_minced">
+                                            <label class="custom-control-label" for="meat_minced">Minced meat</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_fish">
+                                            <label class="custom-control-label" for="meat_fish">Fish</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_seafood">
+                                            <label class="custom-control-label" for="meat_seafood">Seafood</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_vegetarian">
+                                            <label class="custom-control-label" for="meat_vegetarian">Vegetarian</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown col-8 col-sm-5 col-lg-3">
+                                    <h3 class="h5 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
+                                        id="dropdownVegetables" data-bs-toggle="dropdown" role="button" aria-expanded="false">Vegetables</h3>
+
+                                    <div class="dropdown-menu bg-style" aria-labelledby="dropdownVegetables">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_all">
+                                            <label class="custom-control-label" for="vegetables_all">All</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_steam">
+                                            <label class="custom-control-label" for="vegetables_steam">Steam vegetables</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_baked">
+                                            <label class="custom-control-label" for="vegetables_baked">Baked vegetables</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_tomato">
+                                            <label class="custom-control-label" for="vegetables_tomato">Tomato</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_paprika">
+                                            <label class="custom-control-label" for="vegetables_paprika">Paprika</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_cabbage">
+                                            <label class="custom-control-label" for="vegetables_cabbage">Cabbage</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetables_courgette">
+                                            <label class="custom-control-label" for="vegetables_courgette">Courgette</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown col-8 col-sm-5 col-lg-3">
+                                    <h3 class="h5 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
+                                        id="dropdownAdditional" data-bs-toggle="dropdown" role="button" aria-expanded="false">Additional</h3>
+
+                                    <div class="dropdown-menu bg-style" aria-labelledby="dropdownAdditional">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_all">
+                                            <label class="custom-control-label" for="additional_all">All</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_rice">
+                                            <label class="custom-control-label" for="additional_rice">Rice</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_groat">
+                                            <label class="custom-control-label" for="additional_groat">Groat</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_pasta">
+                                            <label class="custom-control-label" for="additional_pasta">Pasta</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_potatoes">
+                                            <label class="custom-control-label" for="additional_potatoes">Potatoes</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_baked_potatoes">
+                                            <label class="custom-control-label" for="additional_baked_potatoes">Baked potatoes</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_mushrooms">
+                                            <label class="custom-control-label" for="additional_mushrooms">Mushrooms</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown col-8 col-sm-5 col-lg-3">
+                                    <h3 class="h5 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
+                                        id="dropdownPromotion" data-bs-toggle="dropdown" role="button" aria-expanded="false">Promotion</h3>
+
+                                    <div class="dropdown-menu bg-style" aria-labelledby="dropdownPromotion">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="promotion_all">
+                                            <label class="custom-control-label" for="promotion_all">All</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="meat_promotion">
+                                            <label class="custom-control-label" for="meat_promotion">Meat promotion</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="vegetable_promotion">
+                                            <label class="custom-control-label" for="vegetable_promotion">Vegetable promotion</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input mx-1" id="additional_promotion">
+                                            <label class="custom-control-label" for="additional_promotion">Additional promotion</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle" data-bs-toggle="dropdown" role="button">Meat</h3>
-
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Vegetables</h3>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Additional</h3>
-                            <h3 class="h5 col-6 col-sm-4 col-lg-2 bg-green  p-1 p-md-2 m-1 m-md-3 dropdown-toggle">Promotion</h3>
                         </div>
                         <div class="row">
                             <div th:insert="fragments/recipes.html :: recipes"></div>
