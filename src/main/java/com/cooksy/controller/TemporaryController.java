@@ -42,4 +42,9 @@ public class TemporaryController {
     public String getFavorites() {
         return "favorites";
     }
+
+    @GetMapping("/login")
+    public String getLogin() {
+        return "login";
+    }
 }
