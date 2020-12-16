@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login">
+        <div class="wrap-login pt-0">
+            <form class="login-form">
+                <img class="img-fluid d-block mx-auto" src="../image/logo2.png" alt="logo">
+                <span class="login-form-title mb-2 text-white">
+                            Cooksy
+                    </span>
+
+                <div class="wrap-input">
+                    <input class="input" type="text" name="Name and Surname">
+                    <span class="focus-input" data-placeholder="Email"></span>
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" type="password" name="Email">
+                    <span class="focus-input" data-placeholder="Email"></span>
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" type="password" name="Phone">
+                    <span class="focus-input" data-placeholder="Phone"></span>
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" type="password" name="Pass">
+                    <span class="focus-input" data-placeholder="Password"></span>
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" type="password" name="CPass">
+                    <span class="focus-input" data-placeholder="Confirm Password"></span>
+                </div>
+
+                <div class="container-login-form-btn">
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button class="login-form-btn">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

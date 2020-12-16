@@ -47,4 +47,9 @@ public class TemporaryController {
     public String getLogin() {
         return "login";
     }
+
+    @GetMapping("/register")
+    public String getRegister() {
+        return "register";
+    }
 }
