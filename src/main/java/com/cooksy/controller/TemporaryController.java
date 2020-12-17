@@ -42,4 +42,11 @@ public class TemporaryController {
     public String getFavorites() {
         return "favorites";
     }
+
+    @GetMapping("/shopping-list")
+    public String getShoppingList(){return "shopping-list";}
+
+    @GetMapping("/list-edition")
+    public String getListEdition(){return "shopping-list-edition";}
+
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Edition</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/shopping-list.css}" href="../static/css/shopping-list.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
+</head>
+<body>
+<div class="container reply">
+    <div class="row">
+        <div class="col-11"></div>
+        <div class="col-1">
+            <div th:insert="fragments/reply :: back-arrow"></div>
+        </div>
+    </div>
+
+</div>
+<div class="container text-center list-edition">
+
+    <p>Shopping-list</p>
+    <div class="row">
+        <div class="col-3">
+            <p>Product....................</p>
+        </div>
+        <div class="col-2">
+            Price $$
+        </div>
+        <div class="col-3">
+            Grammage
+        </div>
+        <div class="col-4 d-block container-fluid d-flex">
+            <div class="d-block container-fluid">
+                <div th:insert="fragments/add-circle :: add-button"></div>
+            </div>
+            <div class="d-block container-fluid">
+                <div th:insert="fragments/remove-circle :: remove-button"></div>
+            </div>
+            <div class="d-block container-fluid">
+                <div th:insert="fragments/disabled-from-list :: disabled-button"></div>
+            </div>
+
+        </div>
+        <div class="col-6 mail-icon d-block container-fluid">
+            <div th:insert="fragments/check :: chcek-button"></div>
+        </div>
+        <div class="col-6 pdf-icon d-block container-fluid">
+            <div th:insert="fragments/clear-list :: clear-button"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-block container-fluid">
+    <div th:insert="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>
