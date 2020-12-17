@@ -18,11 +18,6 @@ public class TemporaryController {
         return "fragments/navbar";
     }
 
-    @GetMapping("/menu")
-    public String getMenu() {
-        return "menu";
-    }
-
     @GetMapping("/footer")
     public String getFooter() {
         return "fragments/footer";
@@ -44,9 +39,11 @@ public class TemporaryController {
     }
 
     @GetMapping("/shopping-list")
-    public String getShoppingList(){return "shopping-list";}
+    public String getShoppingList() {
+        return "shopping-list";}
 
     @GetMapping("/list-edition")
-    public String getListEdition(){return "shopping-list-edition";}
+    public String getListEdition() {
+        return "shopping-list-edition";}
 
 }

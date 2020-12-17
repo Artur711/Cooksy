@@ -72,7 +72,7 @@
 }
 
 .sum {
-    border-top: white 2px;
+    border-top: white solid 2px;
 }
 
 @media screen and (min-width: 1200px) {
