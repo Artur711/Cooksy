@@ -63,6 +63,29 @@ VALUES
        (31, 1, 'Frozen prawns', 13.34, 6, 1),
        (32, 1, 'Lime', 0.3, 1, 3);
 
+--add Polish dumplings
+insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
+VALUES
+       (33,1,' floury potatoes', 5, 4, 1),
+       (34,1,'olive oil', 4, 3, 2),
+       (35,1,'half-fat cottage cheese', 2, 2, 1),
+       (36,1,'self-raising flour', 1, 4, 1),
+       (37,1,'vegetable oil', 4, 4, 2),
+       (38,1,'onion',1,1,3);
+
+--wrapper polish dumplings
+insert into recipe_product
+values
+       (37,0.25,33),
+       (38,0.06,34),
+       (39,1,38),
+       (40,0.25,35),
+       (41,0.25,36),
+       (42,0.015,9),
+       (43,0.015,37);
+
+
+
 -- wrapper
 insert into recipe_product
 values
@@ -156,7 +179,24 @@ Heat the oil in a wok or non-stick frying pan and fry the spring onion whites fo
 
 STEP 2
 Add the rice, stir-frying until piping hot, then push the rice to one side of the pan and scramble the eggs on the other side. Stir the peas, bamboo shoots and prawns into the rice and eggs, then heat through for 2 mins until the prawns are hot and the peas tender. Finally, stir in the spring onion greens, lime juice and coriander, if using. Spoon into bowls and serve with extra lime wedges and soy sauce.',
-        'Thai fried prawn & pineapple rice', '/image/Recipes img/Thai fried prawn & pineapple rice.webp');
+        'Thai fried prawn & pineapple rice', '/image/Recipes img/Thai fried prawn & pineapple rice.webp'),
+       (5,'Rafael Paszenda','For the cottage cheese and potato filling, boil the potatoes in a pan of salted water until soft enough to mash (about 20 minutes). Drain well and set aside to cool.
+
+Heat the oil in a frying pan over a medium heat and fry the onions for 4-5 minutes, or until crisp and browned. Reserve a tablespoonful of the onions for the garnish.
+
+        For the dumpling dough, sift the flour into a large mixing bowl and make a well in the centre. Fill the well with the salt, oil and water. Using your fingers, gradually stir the flour into the wet ingredients, until the mixture comes together as a soft dough.
+
+Turn the dough out onto a lightly floured work surface and knead for 5-8 minutes, or until it is smooth and glossy. Wrap the dough in a clean tea towel and set aside to rest in a cool room for at least 20 minutes.
+
+        When the potatoes have cooled, transfer them to a large bowl and crumble over the cottage cheese. Mash until smooth, then stir in the fried onions until well combined. Set aside.
+
+        To shape the pierogi, roll out the dough onto a lightly floured surface to a thickness of 3mm. Cut 10cm/4in rounds from it using a pastry cutter.
+
+Place one teaspoonful of the cottage cheese and potato filling into half of the pastry rounds, and one teaspoonsful of the mushroom and sauerkraut filling into the remaining pastry rounds. Brush a little water around the edge of each pastry round, then fold the edges together to create a bulging semi-circular dumpling, pressing the edges together to seal.
+
+Poach the pierogi, in batches if necessary, in a deep-sided pan of boiling water for 3-4 minutes, or until they float to the surface.
+
+        To serve, pile the pierogi onto serving plates and serve the soured cream in small bowls alongside. Sprinkle with the reserved fried onions and the dill.','Pierogi','photo.url');
 
 
 insert into recipe_composition
@@ -200,7 +240,14 @@ values
         (4, 33),
         (4, 34),
         (4, 35),
-        (4, 36);
+        (4, 36),
+        (5, 37),
+        (5, 38),
+        (5, 39),
+        (5, 40),
+        (5, 41),
+        (5, 42);
+
 
 insert into favorites (user_id, recipe_id)
 values
