@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
+</head>
+<body class="bg-page">
+<div class="container">
+    <div class="row">
+        <div class="m-top"></div>
+        <div th:insert="fragments/logo.html :: logo"></div>
+    </div>
+    <div class="row" th:object="${recipe}">
+        <div class="co-12 col-lg-6">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center mb-3">
+                    <img class="img-fluid img-border" th:src="${recipe.photoUrl}">
+                </div>
+            </div>
+            <div class="bg-style p-3">
+                <div class="row" th:each="prod: ${recipe.recipeProducts}">
+                    <div class="col-8 float-start">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input mx-1" th:id="${prod.product.name}" checked>
+                            <label class="custom-control-label" th:for="${prod.product.name}">
+                                <span th:text="${prod.product.name + ' - ' + prod.quantity + ' ' + prod.product.grammage.grammage}"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4 float-end">
+                        <span th:text="${prod.product.price}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-5">
+            <div class="bg-style p-5">
+                <span th:text="${recipe.description}"></span>
+                <div class="mt-5">
+                    <img class="col-3 col-sm-2 col-xl-1 bg-green p-1 img-fluid d-block m-auto" src="../static/image/Icon/shopping_cart.png"
+                         th:src="@{/image/Icon/shopping_cart.png}" alt="Shopping cart">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-block container-fluid mt-3">
+    <div th:insert="fragments/footer.html :: footer"></div>
+</div>
+</body>
+</html>

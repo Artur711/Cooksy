@@ -5,7 +5,7 @@
 }
 
 .bg-style {
-    background: #CF240A 55%;
+    background: #CF240A 50%;
     color: white;
 }
 
@@ -65,6 +65,14 @@
 
 .custom-control:hover {
     background-color: #4E2F2F;
+}
+
+.img-border {
+    border: 3px solid #790707;
+}
+
+.sum {
+    border-top: white 2px;
 }
 
 @media screen and (min-width: 1200px) {

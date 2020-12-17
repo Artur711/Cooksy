@@ -150,13 +150,13 @@ Heat oven to 200C/180C fan/gas 6. To assemble the lasagne, ladle a little of the
 
 STEP 5
 Put the crème fraîche in a bowl and mix with 2 tbsp water to loosen it and make a smooth pourable sauce. Pour this over the top of the pasta, then top with the mozzarella. Sprinkle Parmesan over the top and bake for 25–30 mins until golden and bubbling. Serve scattered with basil, if you like.',
-     'Easy classic lasagne', '../static/image/Recipes img/Easy classic lasagne.webp'),
+     'Easy classic lasagne', '/image/Recipes img/Easy classic lasagne.webp'),
        (4, 'BBC good food- Good Food team', 'STEP 1
 Heat the oil in a wok or non-stick frying pan and fry the spring onion whites for 2 mins until softened. Stir in the pepper for 1 min, followed by the pineapple for 1 min more, then stir in the green curry paste and soy sauce.
 
 STEP 2
 Add the rice, stir-frying until piping hot, then push the rice to one side of the pan and scramble the eggs on the other side. Stir the peas, bamboo shoots and prawns into the rice and eggs, then heat through for 2 mins until the prawns are hot and the peas tender. Finally, stir in the spring onion greens, lime juice and coriander, if using. Spoon into bowls and serve with extra lime wedges and soy sauce.',
-        'Thai fried prawn & pineapple rice', '../static/image/Recipes img/Thai fried prawn & pineapple rice.webp');
+        'Thai fried prawn & pineapple rice', '/image/Recipes img/Thai fried prawn & pineapple rice.webp');
 
 
 insert into recipe_composition

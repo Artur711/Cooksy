@@ -11,6 +11,6 @@ public class ProductDto {
     private Double price;
     private Long productTypeID;
     private Long marketID;
-    private Long gmID;
+    private GrammageDto grammage;
 
 }

@@ -1,6 +1,5 @@
 package com.cooksy.dto;
 
-import com.cooksy.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
