@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
+</head>
+<body class="bg-page">
+<div class="container">
+
+<div class="row">
+    <div class="m-top"></div>
+    <div th:insert="fragments/logo.html :: logo"></div>
+    <div th:insert="fragments/logout-button.html :: logout"></div>
+
+    <div class="row text-center">
+        <h1 class="text-white">Account Settings</h1>
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-2 col-lg-3">
+                    <div  th:insert="fragments/navbar.html :: navbar"></div>
+                </div>
+                <div class="col-3 col-lg-4 text-white">
+                    <div class="row">
+                        <img class="img-thumbnail d-block m-auto " src="#" th:src="@{/image/logo2.png}" alt="Recipe">
+                    </div>
+                    <div class="row">
+                        <div th:insert="fragments/add-button.html :: add"></div>
+                    </div>
+                    <div class="row">
+                        <div th:insert="fragments/delete-button.html :: delete"></div>
+                    </div>
+                </div>
+                <div class="col-7  col-lg-4 text-center  text-white  ">
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>ID#</p>
+                            </div>
+                            <div class="col-6">
+                                <p>######</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information" >
+                            <div class="col-6">
+                                <p>Name</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Michał</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>Surname</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Wiśniewski</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>E-mail</p>
+                            </div>
+                            <div class="col-6">
+                                <p>m.wisnia@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>Password</p>
+                            </div>
+                            <div class="col-6">
+                                <p>######</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>Shopping list Q</p>
+                            </div>
+                            <div class="col-6">
+                                <p>7</p>
+                            </div>
+                        </div>
+                        <div class="row bg-information">
+                            <div class="col-6">
+                                <p>Favourite list Q</p>
+                            </div>
+                            <div class="col-6">
+                                <p>3</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+</div>
+<div class="d-block container-fluid">
+    <div th:insert="fragments/footer :: footer"></div>
+</div>
+</div>
+</body>

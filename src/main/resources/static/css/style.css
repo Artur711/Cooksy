@@ -15,6 +15,13 @@
     color: white;
     width: auto;
 }
+.bg-information {
+
+    background-color:#e50d0d;
+
+    color: white;
+
+}
 
 .bg-nav-item {
     background-color: #CF240A;
@@ -37,6 +44,11 @@
 .bg-green {
     background-color: #2E9000;
     border: 2px solid #1F7A08;
+    border-radius: 12px;
+}
+.bg-red {
+    background-color: #e50d0d;
+    border: 2px solid #a10505;
     border-radius: 12px;
 }
 

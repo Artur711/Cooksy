@@ -66,12 +66,21 @@ VALUES
 --add Polish dumplings
 insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
 VALUES
-       (33,1,' floury potatoes', 5, 4, 1),
-       (34,1,'olive oil', 4, 3, 2),
-       (35,1,'half-fat cottage cheese', 2, 2, 1),
-       (36,1,'self-raising flour', 1, 4, 1),
-       (37,1,'vegetable oil', 4, 4, 2),
+       (33,1,' floury potatoes', 5, 5, 1),
+       (34,1,'olive oil', 4, 5, 2),
+       (35,1,'half-fat cottage cheese', 2, 5, 1),
+       (36,1,'self-raising flour', 1, 5, 1),
+       (37,1,'vegetable oil', 4, 5, 2),
        (38,1,'onion',1,1,3);
+
+--add Vegetable stock
+insert into products (product_id, market_id, name, price, product_type_id, grammage_id)
+VALUES
+       (39,1,'celery stalks',2,1,3),
+       (40,1,'sprig fresh thyme',1,1,3),
+       (41,1,'bay leaf',0.5,4,3),
+       (42,1,'bunch fresh parsley',1,1,3),
+       (43,1,'black peppercorns',2,4,1);
 
 --wrapper polish dumplings
 insert into recipe_product
@@ -84,6 +93,16 @@ values
        (42,0.015,9),
        (43,0.015,37);
 
+--wrapper vegetable stock
+insert into recipe_product
+values
+       (44,2,38),
+       (45,3,16),
+       (46,4,39),
+       (47,5,40),
+       (48,1,41),
+       (49,1,42),
+       (50,0.015,43);
 
 
 -- wrapper
@@ -132,6 +151,7 @@ values
        (34, 0.225, 30),
        (35, 0.25, 31),
        (36, 3, 32);
+
 
 insert into recipes (recipe_id, author, description, name, photo_url)
 VALUES
@@ -196,7 +216,12 @@ Place one teaspoonful of the cottage cheese and potato filling into half of the 
 
 Poach the pierogi, in batches if necessary, in a deep-sided pan of boiling water for 3-4 minutes, or until they float to the surface.
 
-        To serve, pile the pierogi onto serving plates and serve the soured cream in small bowls alongside. Sprinkle with the reserved fried onions and the dill.','Pierogi','photo.url');
+        To serve, pile the pierogi onto serving plates and serve the soured cream in small bowls alongside. Sprinkle with the reserved fried onions and the dill.','Pierogi','photo.url'),
+       (6,'Emma Christensen','Gather some vegetables and herbs. Onions, carrots, and celery give stock a great base flavor, and you can round these out with any of the other vegetables listed above. You can also make stock using any amount of vegetables that you happen to have on-hand, but it''s good to have a roughly equal portion of each so the resulting stock will have a balanced flavor.
+Coarsely chop all the vegetables. Wash any visible dirt off the vegetables and give them a rough chop. You don''t even need to peel them first unless you really want to. (Some people even advocate leaving on the onion skins!) Throw all the vegetables in a pot big enough to hold them plus a few extra inches of water.
+Cover with water and bring to a simmer. Cover the vegetables with enough water that you can easily stir them in the pot. Less water means that your stock will be more concentrated; more water makes a lighter-flavored stock. Set the pot over medium-high heat and bring it to just under a boil. Once you start to see some bubbling around the edges of the pot and a few wisps of steam on the surface, turn the heat down to medium-low.
+Simmer for about 1 hour. This isn''t an exact science, but one hour is generally enough time to infuse the water with vegetable goodness. If you need to take it off the heat a little early or don''t get to it until a little later, it will be fine. Give it a stir every now and again to circulate the vegetables.
+Strain and store. Take the pot off the stove and remove all the vegetables with a slotted spoon. Set a colander or strainer over a big bowl and line it with cheesecloth or coffee filters. Pour the stock through. If not using immediately, divide the stock into storage containers, cool completely, and then freeze.','Vegetable stock','photo.url');
 
 
 insert into recipe_composition
@@ -246,7 +271,15 @@ values
         (5, 39),
         (5, 40),
         (5, 41),
-        (5, 42);
+        (5, 42),
+        (5, 43),
+        (6, 44),
+        (6, 45),
+        (6, 46),
+        (6, 47),
+        (6, 48),
+        (6, 49),
+        (6, 50);
 
 
 insert into favorites (user_id, recipe_id)
