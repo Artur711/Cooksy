@@ -8,46 +8,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/temp")
 public class TemporaryController {
 
-    @GetMapping("/logout")
-    public String getLogout() {
-        return "fragments/logout-button";
-    }
+        @GetMapping("/logout")
+        public String getLogout() {
+            return "fragments/logout-button";
+        }
 
-    @GetMapping("/navbar")
-    public String getSidebar() {
-        return "fragments/navbar";
-    }
+        @GetMapping("/add")
+        public String getAdd() {
+            return "fragments/add-button";
+        }
 
-    @GetMapping("/menu")
-    public String getMenu() {
-        return "menu";
-    }
+        @GetMapping("/delete")
+        public String getDelete() {
+            return "fragments/delete-button";
+        }
 
-    @GetMapping("/footer")
-    public String getFooter() {
-        return "fragments/footer";
-    }
+        @GetMapping("/navbar")
+        public String getSidebar() {
+            return "fragments/navbar";
+        }
 
-    @GetMapping("/logo")
-    public String getLogo() {
-        return "fragments/logo";
-    }
+        @GetMapping("/footer")
+        public String getFooter() {
+            return "fragments/footer";
+        }
 
-    @GetMapping("/pag")
-    public String getPagination() {
-        return "fragments/pagination";
-    }
+        @GetMapping("/logo")
+        public String getLogo() {
+            return "fragments/logo";
+        }
 
-    @GetMapping("/favorites")
-    public String getFavorites() {
-        return "favorites";
-    }
+        @GetMapping("/pag")
+        public String getPagination() {
+            return "fragments/pagination";
+        }
 
-    @GetMapping("/shopping-list")
-    public String getShoppingList(){return "shopping-list";}
+        @GetMapping("/favorites")
+        public String getFavorites() {
+            return "favorites";
+        }
 
-    @GetMapping("/list-edition")
-    public String getListEdition(){return "shopping-list-edition";}
+        @GetMapping("/shopping-list")
+        public String getShoppingList() {
+            return "shopping-list";}
+
+        @GetMapping("/account-settings")
+        public String getAccountSettings(){
+        return "account-settings";
+        }
+
+
+        @GetMapping("/list-edition")
+        public String getListEdition() {
+            return "shopping-list-edition";}
 
     @GetMapping("/list")
     public String getListOfShoppingLists(){return "shopping-lists";}
