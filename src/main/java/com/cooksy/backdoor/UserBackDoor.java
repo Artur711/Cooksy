@@ -22,7 +22,7 @@ public class UserBackDoor {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<UserDto> getAllUsers(@RequestParam(required = false) String sortBy) {
         if (sortBy == null) {
-            userService.getUsers();
+            return userService.getUsers();
         }
         else if (UserSortedType.isContains(sortBy)) {
             return userService.getSortedUsers(UserSortedType.valueOf(sortBy));
