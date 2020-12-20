@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping-Lists</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/shopping-list.css}" href="../static/css/shopping-list.css" type="text/css"/>
+    <script th:src="@{/js/bootstrap.js}" defer></script>
+</head>
+<body>
+<div class="container shopping-container">
+    <div class="row">
+        <div class="m-top">
+            <div th:insert="fragments/logo.html :: logo"></div>
+            <div th:insert="fragments/logout-button.html :: logout"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="container text-center shopping-container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-8 shopping-container">
+            <p>shopping-list - DD/MM/YYYY</p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="d-block container-fluid col-2">
+            <div th:insert="fragments/navbar :: navbar"></div>
+        </div>
+        <div class="container shopping-lists col-10">
+            <div class="row">
+                <div class="col-5">
+                    <p>Product....................</p>
+                </div>
+                <div class="col-3">
+                    Price $$
+                </div>
+                <div class="col-4">
+                    Grammage
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mail-icon d-block container-fluid">
+            <div th:insert="fragments/mail :: mail-button"></div>
+        </div>
+        <div class="col-6 pdf-icon d-block container-fluid">
+            <div th:insert="fragments/toPDF :: pdf-button"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-block container-fluid">
+    <div th:insert="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

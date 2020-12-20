@@ -49,4 +49,7 @@ public class TemporaryController {
     @GetMapping("/list-edition")
     public String getListEdition(){return "shopping-list-edition";}
 
+    @GetMapping("/list")
+    public String getListOfShoppingLists(){return "shopping-lists";}
+
 }
