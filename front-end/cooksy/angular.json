@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "cooksy"
+  "defaultProject": "cooksy",
+  "cli": {
+    "analytics": false
+  }
 }

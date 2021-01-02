@@ -1,1 +1,6 @@
-<p>recipe works!!!!</p>
+<div class="d-flex justify-content-around flex-wrap" *ngFor="let recipe of recipes">
+  <div class="col-9 col-sm-6 col-md-4 col-lg-3 col-xxl-2 width-150 bg-style m-2">
+    <img class="img-thumbnail d-block m-auto" src="assets/image/logo2.png" alt="Recipe">
+    <span><strong>{{ recipe.name}}</strong></span>
+  </div>
+</div>

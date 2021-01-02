@@ -1,0 +1,22 @@
+.bg-logo {
+  width: 90px;
+  background-color: #67DE2E;
+  border: 3px solid #328C07;
+  border-radius: 45px;
+}
+
+.logo {
+  width: 75px;
+  height: 86px;
+}
+
+@media screen and (max-width: 578px) {
+  .logo {
+    width: 38px;
+    height: 43px;
+  }
+
+  .bg-logo {
+    width: 48px;
+  }
+}
