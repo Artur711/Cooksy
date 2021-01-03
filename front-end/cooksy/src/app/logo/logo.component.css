@@ -10,6 +10,10 @@
   height: 86px;
 }
 
+h5 {
+  font-size: 180%;
+}
+
 @media screen and (max-width: 578px) {
   .logo {
     width: 38px;
@@ -18,5 +22,9 @@
 
   .bg-logo {
     width: 48px;
+  }
+
+  h5 {
+    font-size: 100%;
   }
 }

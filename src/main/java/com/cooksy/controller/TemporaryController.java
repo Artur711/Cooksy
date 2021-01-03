@@ -65,4 +65,9 @@ public class TemporaryController {
     @GetMapping("/list")
     public String getListOfShoppingLists(){return "shopping-lists";}
 
+    @GetMapping("/menu")
+    public String getMenu() {
+            return "menu";
+    }
+
 }

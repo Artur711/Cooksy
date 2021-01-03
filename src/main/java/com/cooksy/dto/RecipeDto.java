@@ -15,7 +15,7 @@ public class RecipeDto {
     private String description;
     private String photoUrl;
     private String author;
-    private String strSumPrices;
+    private Double sumPrices;
 
     public RecipeDto(Long recipeId, String name, List<RecipeProductDto> recipeProducts, String description, String photoUrl, String author) {
         this.recipeId = recipeId;
@@ -24,14 +24,12 @@ public class RecipeDto {
         this.description = description;
         this.photoUrl = photoUrl;
         this.author = author;
-        this.strSumPrices = getSumProductsPrices(recipeProducts);
+        this.sumPrices = getSumProductsPrices(recipeProducts);
     }
 
-    private String getSumProductsPrices(List<RecipeProductDto> recipeProducts) {
-        double sum = recipeProducts.stream()
+    private Double getSumProductsPrices(List<RecipeProductDto> recipeProducts) {
+        return recipeProducts.stream()
                 .mapToDouble(recipeProduct -> recipeProduct.getQuantity() * recipeProduct.getProduct().getPrice())
                 .sum();
-
-        return String.format("%.2f", sum);
     }
 }

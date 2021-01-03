@@ -8,16 +8,13 @@ import {environment} from "../environments/environment";
   providedIn: 'root'
 })
 export class ProductService {
-  private productUrl = `${environment.apiUrl}/api/v2/products`
+  private productUrl = `${environment.apiUrl}/products`
 
   constructor(private http: HttpClient) {
   }
-
 
   getProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(this.productUrl);
   }
-
-
 }

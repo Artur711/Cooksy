@@ -7,5 +7,5 @@ export interface Recipe {
   description: string;
   photoUrl: string;
   author: string;
-  strSumPrices: string;
+  sumPrices: number;
 }

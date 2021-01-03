@@ -1,0 +1,13 @@
+.page-item a:hover {
+  color: black;
+}
+
+.page-link {
+  color: #A20505;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #A20505;
+  border-color: #4E2F2F;
+}

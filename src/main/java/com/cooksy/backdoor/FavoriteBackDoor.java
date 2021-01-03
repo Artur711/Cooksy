@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/api/v4/favorites")
+@RequestMapping("/api/v1/favorites")
 @AllArgsConstructor
 public class FavoriteBackDoor {
     private final FavoriteService favoriteService;

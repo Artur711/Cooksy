@@ -3,29 +3,43 @@ package com.cooksy.controller;
 import com.cooksy.dto.RecipeDto;
 import com.cooksy.service.RecipeService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@CrossOrigin("http://localhost:4200")
+@RestController
 @AllArgsConstructor
-@RequestMapping("/recipes")
+@RequestMapping("/api/v1/recipes")
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
     @GetMapping
-    public String getRecipes(Model model) {
-        model.addAttribute("recipes", recipeService.getAll());
-        return "menu";
+    public List<RecipeDto> getAll() {
+        return recipeService.getAll();
     }
 
     @GetMapping("/{id}")
-    public String getRecipeById(@PathVariable("id") Long id, Model model) {
-        RecipeDto recipe = recipeService.getRecipeById(id);
-        model.addAttribute("recipe", recipe);
-        return "recipe";
+    public RecipeDto getById(@PathVariable String id) {
+        return recipeService.getRecipeById((Long.parseLong(id)));
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveRecipe(@RequestBody RecipeDto recipeDto) {
+        recipeService.saveRecipe(recipeDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateRecipe(@PathVariable String recipeId, @RequestBody RecipeDto recipeDto) {
+        recipeService.updateRecipe((Long.valueOf(recipeId)), recipeDto);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRecipe(@RequestBody RecipeDto recipeDto) {
+        recipeService.deleteRecipe(recipeDto);
     }
 }

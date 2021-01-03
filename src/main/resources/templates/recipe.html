@@ -12,52 +12,52 @@
 </head>
 <body class="bg-page">
 <div class="container">
-    <div class="row">
-        <div class="m-top"></div>
-        <div th:insert="fragments/logo.html :: logo"></div>
-    </div>
-    <div class="row">
-        <div class="d-flex justify-content-end mb-3">
-            <div class="mx-2" th:insert="fragments/star.html :: star"></div>
-            <div th:insert="fragments/reply :: back-arrow"></div>
-        </div>
-    </div>
-    <div class="row" th:object="${recipe}">
-        <div class="co-12 col-lg-6">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center mb-3">
-                    <img class="img-fluid img-border" th:src="${recipe.photoUrl}">
-                </div>
-            </div>
-            <div class="bg-style p-3">
-                <div class="row" th:each="prod: ${recipe.recipeProducts}">
-                    <div class="col-8 float-start">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input mx-1" th:id="${prod.product.name}" checked>
-                            <label class="custom-control-label" th:for="${prod.product.name}">
-                                <span th:text="${prod.product.name + ' - ' + prod.quantity + ' ' + prod.product.grammage.grammage}"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-4 float-end text-end">
-                        <span th:text="${prod.strPriceByQuantity} + ' $'"></span>
-                    </div>
-                </div>
-                <div class="row text-end mt-3">
-                    <span class="sum" th:text="${recipe.strSumPrices} + ' $'"></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6 mt-5">
-            <div class="bg-style p-5">
-                <span th:text="${recipe.description}"></span>
-                <div class="mt-5">
-                    <img class="col-2 col-sm-1 img-fluid d-block m-auto" src="../static/image/Icon/shopping_cart.png"
-                         th:src="@{/image/Icon/add_shopping_cart.png}" alt="Shopping cart">
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="row">-->
+<!--        <div class="m-top"></div>-->
+<!--        <div th:insert="fragments/logo.html :: logo"></div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="d-flex justify-content-end mb-3">-->
+<!--            <div class="mx-2" th:insert="fragments/star.html :: star"></div>-->
+<!--            <div th:insert="fragments/reply :: back-arrow"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row" th:object="${recipe}">-->
+<!--        <div class="co-12 col-lg-6">-->
+<!--            <div class="row">-->
+<!--                <div class="col-12 d-flex justify-content-center mb-3">-->
+<!--                    <img class="img-fluid img-border" th:src="${recipe.photoUrl}">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="bg-style p-3">-->
+<!--                <div class="row" th:each="prod: ${recipe.recipeProducts}">-->
+<!--                    <div class="col-8 float-start">-->
+<!--                        <div class="custom-control custom-checkbox">-->
+<!--                            <input type="checkbox" class="custom-control-input mx-1" th:id="${prod.product.name}" checked>-->
+<!--                            <label class="custom-control-label" th:for="${prod.product.name}">-->
+<!--                                <span th:text="${prod.product.name + ' - ' + prod.quantity + ' ' + prod.product.grammage.grammage}"></span>-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-4 float-end text-end">-->
+<!--                        <span th:text="${prod.strPriceByQuantity} + ' $'"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row text-end mt-3">-->
+<!--                    <span class="sum" th:text="${recipe.getSumPrices} + ' $'"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-12 col-lg-6 mt-5">-->
+<!--            <div class="bg-style p-5">-->
+<!--                <span th:text="${recipe.description}"></span>-->
+<!--                <div class="mt-5">-->
+<!--                    <img class="col-2 col-sm-1 img-fluid d-block m-auto" src="../static/image/Icon/shopping_cart.png"-->
+<!--                         th:src="@{/image/Icon/add_shopping_cart.png}" alt="Shopping cart">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <div class="d-block container-fluid mt-3">
     <div th:insert="fragments/footer.html :: footer"></div>
