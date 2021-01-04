@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -8,14 +8,14 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class MeasuresDto {
+public class Measures {
 
     @JsonSetter("metric")
-    private MetricDto metricDto;
+    private Metric metric;
 
     @Getter
     @Setter
-    public static class MetricDto {
+    public static class Metric {
 
         @JsonSetter("amount")
         private String amount;

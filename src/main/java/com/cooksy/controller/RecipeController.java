@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/recipes")
+@RequestMapping("/recipes")
 public class RecipeController {
 
     private final RecipeService recipeService;

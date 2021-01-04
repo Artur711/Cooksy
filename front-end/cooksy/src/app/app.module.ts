@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     PaginationComponent,
     SelectComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -10,7 +10,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class Recipes {
+public class SpCuRecipes {
 
     @JsonSetter("number")
     private Integer limit;
@@ -22,5 +22,5 @@ public class Recipes {
     private Integer offset;
 
     @JsonSetter("results")
-    private List<Recipe> recipes;
+    private List<SpCuRecipe> spCuRecipes;
 }

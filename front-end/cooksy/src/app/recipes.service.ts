@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../environments/environment";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, observable} from "rxjs";
-import {Recipe} from "./recipe";
+import {Recipes} from "./recipes";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class RecipesService {
 
   constructor(private http: HttpClient) { }
 
-  getRecipes(): Observable<Recipe[]> {
+  getRecipes(): Observable<Recipes> {
     return this.http
-      .get<Recipe[]>(this.recipeUrl);
+      .get<Recipes>(this.recipeUrl);
   }
 }
