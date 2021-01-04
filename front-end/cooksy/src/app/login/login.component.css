@@ -211,41 +211,12 @@ box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 /*--------------------------------------------*/
-.btn-show-pass {
-  font-size: 15px;
-  color: #999999;
 
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
-  padding-right: 5px;
-  cursor: pointer;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-}
 
 
 /*------------------------------------------------------------------
 [ Button ]*/
-.container-login-form-btn {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 13px;
-}
+
 
 .wrap-login-form-btn {
   width: 100%;
@@ -272,11 +243,6 @@ box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -285,10 +251,16 @@ box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   height: 50px;
 }
 
-.wrap-login-form-btn:hover .login-form-bgbtn {
-  left: 0;
+
+.login-form-bgbtn:hover {
+  background: #f54f4d;
+
 }
 
+.login-form-btn:hover, .login-form-btn:focus{
+  color: #fff;
+  background-color: #2E9000;
+}
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
