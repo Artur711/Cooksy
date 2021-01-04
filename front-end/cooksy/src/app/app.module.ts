@@ -17,6 +17,7 @@ import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
+import { FrontPageComponent } from './front-page/front-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {FormsModule} from "@angular/forms";
     NavbarComponent,
     PaginationComponent,
     SelectComponent,
-    LoginComponent
+    LoginComponent,
+    FrontPageComponent
   ],
   imports: [
     BrowserModule,
