@@ -1,1 +1,37 @@
-<p>register works!</p>
+<form class="login-form">
+
+  <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
+  <span class="login-form-title mb-2 text-white">Cooksy</span>
+
+  <div class="wrap-input">
+    <input class="input" type="text" [(ngModel)]="nameValue" placeholder="{{placeholderName}}" name="Name" required>
+  </div>
+
+  <div class="wrap-input">
+    <input class="input" type="text" [(ngModel)]="emailValue" placeholder="{{placeholderEmail}}" name="Email" required>
+  </div>
+
+  <div class="wrap-input">
+    <input class="input" type="text" [(ngModel)]="phoneValue" placeholder="{{placeholderPhone}}" name="Phone" required>
+  </div>
+
+  <div class="wrap-input">
+    <input class="input" type="text" [(ngModel)]="passwordValue" placeholder="{{placeholderPassword}}" name="Password" required>
+  </div>
+
+  <div class="wrap-input">
+    <input class="input" type="text" [(ngModel)]="confirmPasswordValue" placeholder="{{placeholderConfirmPassword}}" name="Confirm Password" required>
+  </div>
+
+
+
+
+  <div class="wrap-login-form-btn">
+    <div class="login-form-bgbtn"></div>
+    <button class="login-form-btn">
+      Login
+    </button>
+  </div>
+</form>
+
+
