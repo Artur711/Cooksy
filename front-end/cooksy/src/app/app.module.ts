@@ -5,7 +5,7 @@ import { NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
 import { LogoComponent } from "./logo/logo.component";
 import { LogoutComponent } from "./logout/logout.component";
