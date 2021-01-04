@@ -3,42 +3,36 @@ package com.cooksy.controller;
 import com.cooksy.client.SpoonacularClient;
 import com.cooksy.dto.api.RecipeDetails;
 import com.cooksy.dto.api.Recipes;
+import com.cooksy.service.SpoonacularService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
+@RequestMapping("/recipes")
 @AllArgsConstructor
 public class SpoonacularController {
 
-
+    private final SpoonacularService service;
     private final SpoonacularClient spoonacularClient;
 
-    @GetMapping("/json")
+    @GetMapping
+    private Recipes getRecipesRandom() {
+        return spoonacularClient.getObject(Recipes.class, service.getRecipes());
+    }
+
+    @GetMapping("/vegetarian")
     public Recipes getJson() {
-            return spoonacularClient.getObject(Recipes.class, getRecipesVegetarian());
+        return spoonacularClient.getObject(Recipes.class, service.getRecipesVegetarian());
     }
 
     @GetMapping("/recipe-details/{id}")
     public RecipeDetails getRecipe(@PathVariable("id") String id) {
-        return spoonacularClient.getObject(RecipeDetails.class, getRecipeDetails(id));
+        return spoonacularClient.getObject(RecipeDetails.class, service.getRecipeDetails(id));
     }
 
-    @GetMapping("/recipes/{ingredient}")
+    @GetMapping("/{ingredient}")
     public Recipes getRecipes(@PathVariable("ingredient") String ingredient) {
-        return spoonacularClient.getObject(Recipes.class, getRecipes2(ingredient));
-    }
-
-    private String getRecipes2(String ingredient) {
-        return String.format("https://api.spoonacular.com/recipes/complexSearch?%s&includeIngredients=%s.", "%s", ingredient);
-    }
-
-    private String getRecipesVegetarian() {
-        return "https://api.spoonacular.com/recipes/complexSearch?%s&diet=vegetarian";
-    }
-
-    private String getRecipeDetails(String id) {
-        return String.format("https://api.spoonacular.com/recipes/%s/information?%s&includeNutrition=true.", id, "%s");
+        return spoonacularClient.getObject(Recipes.class, service.getRecipesIngredient(ingredient));
     }
 }

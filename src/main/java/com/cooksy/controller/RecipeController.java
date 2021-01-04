@@ -33,8 +33,8 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
-    public void updateRecipe(@PathVariable String recipeId, @RequestBody RecipeDto recipeDto) {
-        recipeService.updateRecipe((Long.valueOf(recipeId)), recipeDto);
+    public void updateRecipe(@PathVariable String id, @RequestBody RecipeDto recipeDto) {
+        recipeService.updateRecipe((Long.valueOf(id)), recipeDto);
     }
 
     @DeleteMapping

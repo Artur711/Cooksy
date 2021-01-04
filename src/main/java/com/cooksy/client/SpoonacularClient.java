@@ -1,5 +1,6 @@
 package com.cooksy.client;
 
+import com.cooksy.service.ApiKeyReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -14,19 +15,21 @@ import java.net.http.HttpResponse;
 @Service
 public class SpoonacularClient {
 
-    private static final String API_KEY = "apiKey=b8ed5d01de5a4b1991459f7bf8010258";
+    private final ApiKeyReader apiKeyReader;
     private final HttpClient httpClient;
 
-    public SpoonacularClient() {
+    public SpoonacularClient(ApiKeyReader apiKeyReader) {
+        this.apiKeyReader = apiKeyReader;
         this.httpClient =  HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .build();
     }
 
     public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) {
+
         try {
             HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI(String.format(spoonacularApiUrl, API_KEY)))
+                    .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKeys().get(0))))
                     .GET()
                     .build();
             HttpResponse<String> httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());

@@ -2,7 +2,7 @@ package com.cooksy.backdoor;
 
 import com.cooksy.dto.UserDto;
 import com.cooksy.service.UserService;
-import com.cooksy.util.type.UserSortedType;
+import com.cooksy.util.enums.UserSortedType;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

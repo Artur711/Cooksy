@@ -1,4 +1,4 @@
-package com.cooksy.util.type;
+package com.cooksy.util.enums;
 
 import java.util.Arrays;
 
