@@ -9,14 +9,14 @@ import com.cooksy.repository.UserRepository;
 
 import com.cooksy.util.converter.UserDtoToUserConverter;
 import com.cooksy.util.converter.UserToUserDtoConverter;
-import com.cooksy.util.type.UserSortedType;
+import com.cooksy.util.enums.UserSortedType;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.cooksy.util.type.UserSortedType.*;
+import static com.cooksy.util.enums.UserSortedType.*;
 
 @Service
 @Slf4j

@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@RequestMapping("/temp")
+//@Controller
+//@RequestMapping("/temp")
 public class TemporaryController {
 
         @GetMapping("/logout")
@@ -64,5 +64,10 @@ public class TemporaryController {
 
     @GetMapping("/list")
     public String getListOfShoppingLists(){return "shopping-lists";}
+
+    @GetMapping("/menu")
+    public String getMenu() {
+            return "menu";
+    }
 
 }

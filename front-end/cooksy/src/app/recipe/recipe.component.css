@@ -1,0 +1,10 @@
+.bg-style {
+  background: rgba(207, 36, 10, 0.55);
+  color: white;
+}
+
+@media screen and (max-width: 578px) {
+  h5, .h5, span {
+    font-size: 80%;
+  }
+}
