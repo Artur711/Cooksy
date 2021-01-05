@@ -15,6 +15,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { BackArrowComponent } from './back-arrow/back-arrow.component';
+import { ToPdfComponent } from './to-pdf/to-pdf.component';
+import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 
@@ -31,6 +35,10 @@ import {FormsModule} from "@angular/forms";
     PaginationComponent,
     SelectComponent,
     LoginComponent
+    ShoppingListComponent,
+    BackArrowComponent,
+    ToPdfComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,
