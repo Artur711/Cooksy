@@ -16,6 +16,10 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { BackArrowComponent } from './back-arrow/back-arrow.component';
+import { ToPdfComponent } from './to-pdf/to-pdf.component';
+import { EmailComponent } from './email/email.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     PaginationComponent,
     SelectComponent,
     RecipeDetailsComponent,
+    ShoppingListComponent,
+    BackArrowComponent,
+    ToPdfComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,

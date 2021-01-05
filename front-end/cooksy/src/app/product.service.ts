@@ -17,4 +17,10 @@ export class ProductService {
     return this.http
       .get<Product[]>(this.productUrl);
   }
+
+  getSumOfProducts(products: Product[]): number {
+    let sum = 0;
+    products.forEach(product => sum = sum + product.price)
+    return sum;
+  }
 }
