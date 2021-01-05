@@ -2,7 +2,6 @@ package com.cooksy.controller;
 
 import com.cooksy.client.SpoonacularClient;
 import com.cooksy.dto.api.SpCuRecipeDetailsDto;
-import com.cooksy.dto.api.SpCuRecipeDto;
 import com.cooksy.dto.api.SpCuRecipesDto;
 import com.cooksy.model.api.SpCuRecipeDetails;
 import com.cooksy.model.api.SpCuRecipes;
@@ -11,8 +10,6 @@ import com.cooksy.util.converter.api.SpCuRecipeDetailsToSpCuRecipeDetailsConvert
 import com.cooksy.util.converter.api.SpCuRecipesToSpCuRecipesDtoConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -41,7 +38,7 @@ public class SpoonacularController {
         return recipesConverter.convert(recipes);
     }
 
-    @GetMapping(value = "/recipe-details/{id}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/recipe-detail/{id}", produces = APPLICATION_JSON_VALUE)
     public SpCuRecipeDetailsDto getRecipe(@PathVariable("id") String id) {
         SpCuRecipeDetails recipeDetails = spoonacularClient.getObject(SpCuRecipeDetails.class, service.getRecipeDetails(id));
         return recipeDetailsConverter.convert(recipeDetails);

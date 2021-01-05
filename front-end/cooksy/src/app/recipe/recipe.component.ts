@@ -9,6 +9,7 @@ import {RecipesService} from "../recipes.service";
 })
 export class RecipeComponent implements OnInit {
   recipes: Recipe[] = [];
+  title = 'Dom'
 
   constructor(private recipeService: RecipesService) { }
 
