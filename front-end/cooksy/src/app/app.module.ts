@@ -21,6 +21,8 @@ import { ToPdfComponent } from './to-pdf/to-pdf.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
+import { FrontPageComponent } from './front-page/front-page.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,14 @@ import {FormsModule} from "@angular/forms";
     NavbarComponent,
     PaginationComponent,
     SelectComponent,
-    LoginComponent
+    LoginComponent,
     ShoppingListComponent,
     BackArrowComponent,
     ToPdfComponent,
     EmailComponent,
+    LoginComponent,
+    FrontPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

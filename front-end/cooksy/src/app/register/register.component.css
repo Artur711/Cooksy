@@ -272,10 +272,10 @@ box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 
 }
 
-.login-form-btn:active {
-  background: #f54f4d;
+.login-form-btn:hover, .login-form-btn:focus{
+  color: #fff;
+  background-color: #2E9000;
 }
-
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
