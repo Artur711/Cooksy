@@ -26,6 +26,11 @@ public class RecipeController {
         return recipeService.getRecipeById((Long.parseLong(id)));
     }
 
+    @GetMapping("/{recipeID}/{userID}")
+    public void addRecipeToShoppingList(@PathVariable String recipeID, @PathVariable String userID){
+        System.out.println("test");
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void saveRecipe(@RequestBody RecipeDto recipeDto) {
