@@ -3,5 +3,5 @@ export interface Recipe {
 
   name: string;
 
-  imagerUrl: string;
+  imageUrl: string;
 }

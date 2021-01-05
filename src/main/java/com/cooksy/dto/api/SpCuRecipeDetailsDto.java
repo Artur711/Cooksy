@@ -15,6 +15,8 @@ public class SpCuRecipeDetailsDto {
 
     private String tittle;
 
+    private String image;
+
     private String description;
 
     private Double pricePerServing;

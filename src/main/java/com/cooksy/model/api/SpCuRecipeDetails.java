@@ -18,6 +18,9 @@ public class SpCuRecipeDetails {
     @JsonSetter("title")
     private String title;
 
+    @JsonSetter("image")
+    private String image;
+
     @JsonSetter("instructions")
     private String description;
 

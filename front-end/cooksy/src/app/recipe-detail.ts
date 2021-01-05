@@ -5,6 +5,8 @@ export interface RecipeDetail {
 
   tittle: string;
 
+  image: string;
+
   description: string;
 
   pricePerServing: number;

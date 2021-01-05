@@ -18,6 +18,7 @@ public class SpCuRecipeDetailsToSpCuRecipeDetailsConverter {
         List<SpCuProductDto> spCuProductDtos = spCuProductToSpCuProductDtoConverter.convertAll(recipeDetails.getProductList());
         return new SpCuRecipeDetailsDto(recipeDetails.getId(),
                 recipeDetails.getTitle(),
+                recipeDetails.getImage(),
                 recipeDetails.getDescription(),
                 recipeDetails.getPrice()/100,
                 recipeDetails.getSourceUrl(),
