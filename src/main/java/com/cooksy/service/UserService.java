@@ -1,5 +1,6 @@
 package com.cooksy.service;
 
+import com.cooksy.dto.CredentialsDto;
 import com.cooksy.dto.Id;
 import com.cooksy.dto.UserDto;
 import com.cooksy.exception.UserNotFoundException;
@@ -10,22 +11,54 @@ import com.cooksy.repository.UserRepository;
 import com.cooksy.util.converter.UserDtoToUserConverter;
 import com.cooksy.util.converter.UserToUserDtoConverter;
 import com.cooksy.util.enums.UserSortedType;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ValidationException;
 import java.util.List;
+import java.util.Optional;
 
 import static com.cooksy.util.enums.UserSortedType.*;
 
 @Service
 @Slf4j
-@AllArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     private final UserRepository userRepository;
     private final UserToUserDtoConverter userToUserDtoConverter;
     private final UserDtoToUserConverter userDtoToUserConverter;
+
+    public UserService(UserRepository userRepository, UserToUserDtoConverter userToUserDtoConverter, UserDtoToUserConverter userDtoToUserConverter) {
+        this.userRepository = userRepository;
+        this.userToUserDtoConverter = userToUserDtoConverter;
+        this.userDtoToUserConverter = userDtoToUserConverter;
+    }
+
+    public void register(UserDto userDto) {
+        User user = userDtoToUserConverter.convert(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        failIfUserAlreadyRegistered(user.getFirstName());
+        userRepository.save(user);
+    }
+
+    public Authentication login(CredentialsDto credentialsDto) {
+        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentialsDto.getUserName(),
+                credentialsDto.getPassword()));
+    }
 
     public List<UserDto> getSortedUsers(UserSortedType sortedType) {
         List<User> users;
@@ -86,5 +119,18 @@ public class UserService {
 
         log.info(String.format("Returned user by id: %d", id.getValue()));
         return userDto;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        return userRepository.findByFirstName(userName)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username %s cannot be found.", userName)));
+    }
+
+    private void failIfUserAlreadyRegistered(String userName) {
+        Optional<User> maybeUser = userRepository.findByFirstName(userName);
+        if (maybeUser.isPresent()) {
+            throw new ValidationException("User already exist: " + maybeUser.get().getFirstName());
+        }
     }
 }

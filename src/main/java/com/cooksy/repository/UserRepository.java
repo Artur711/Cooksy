@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
@@ -21,4 +22,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT u FROM User u where u.userType = :user_type")
     List<User> findByUserType(@Param("user_type") UserType userType);
+
+    Optional<User> findByFirstName(String name);
 }
