@@ -2,6 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {RecipesService} from "../recipes.service";
 import {ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import {ActivatedRoute} from "@angular/router";
+import {RecipesService} from "../recipes.service";
+import {Details} from "../details";
+
 
 @Component({
   selector: 'app-recipe-details',
@@ -11,7 +17,13 @@ import {ActivatedRoute} from "@angular/router";
 export class RecipeDetailsComponent implements OnInit {
   recipeId: string | null = '';
 
+  details: Details | undefined;
+
   constructor(
+    private route: ActivatedRoute,
+    private recipesService: RecipesService,
+    private location: Location
+  ) { }
     private location: Location,
     private recipeService: RecipesService,
     private activatedRoute: ActivatedRoute
@@ -20,6 +32,15 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRecipe();
+  }
+
+  getRecipe(): void {
+    //const id = +this.route.snapshot.paramMap.get('id');
+
+    const id = 716426;
+    this.recipesService.getRecipeDetail(id)
+      .subscribe(details => this.details = details);
   }
 
   goBack(): void {
