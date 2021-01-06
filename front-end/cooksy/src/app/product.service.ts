@@ -23,4 +23,5 @@ export class ProductService {
     products.forEach(product => sum = sum + product.price)
     return sum;
   }
+
 }

@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -10,26 +10,29 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class RecipeDetails {
+public class SpCuRecipeDetails {
 
     @JsonSetter("id")
     private Long id;
 
     @JsonSetter("title")
-    private String name;
+    private String title;
+
+    @JsonSetter("image")
+    private String image;
 
     @JsonSetter("instructions")
     private String description;
 
     @JsonSetter("pricePerServing")
-    private Long price;
+    private Double price;
 
     @JsonSetter("sourceUrl")
     private String sourceUrl;
 
     @JsonSetter("extendedIngredients")
-    private List<Product> productList;
+    private List<SpCuProduct> productList;
 
-    @JsonSetter("dishTypes")
-    private List<String> dish;
+//    @JsonSetter("dishTypes")
+//    private List<String> dish;
 }

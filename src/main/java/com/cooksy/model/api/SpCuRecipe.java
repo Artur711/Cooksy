@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -8,13 +8,13 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class Recipe {
+public class SpCuRecipe {
 
     @JsonSetter("id")
     private Long id;
 
     @JsonSetter("title")
-    private String name;
+    private String title;
 
     @JsonSetter("image")
     private String imageUrl;

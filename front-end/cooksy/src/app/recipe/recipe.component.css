@@ -3,8 +3,40 @@
   color: white;
 }
 
-@media screen and (max-width: 578px) {
+.item {
+  width: 8vw;
+}
+
+@media screen and (max-width: 1581px) {
+  .item {
+    width: 9vw;
+  }
+}
+
+@media screen and (max-width: 1485px) {
+  .item {
+    width: 10vw;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .item {
+    width: 13vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .item {
+    width: 16vw;
+  }
+}
+
+@media screen and (max-width: 575px) {
   h5, .h5, span {
     font-size: 80%;
+  }
+
+  .item {
+    width: 50vw;
   }
 }

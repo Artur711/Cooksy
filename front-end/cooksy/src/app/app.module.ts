@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
-import { LogoComponent } from "./logo/logo.component";
-import { LogoutComponent } from "./logout/logout.component";
-import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { BackArrowComponent } from './back-arrow/back-arrow.component';
 import { ToPdfComponent } from './to-pdf/to-pdf.component';
@@ -29,13 +27,11 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     ProductComponent,
     RecipeComponent,
-    LogoComponent,
-    LogoutComponent,
-    FooterComponent,
     MenuComponent,
     NavbarComponent,
     PaginationComponent,
     SelectComponent,
+    RecipeDetailsComponent,
     LoginComponent,
     ShoppingListComponent,
     BackArrowComponent,

@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class Product {
+public class SpCuProduct {
 
     @JsonSetter("id")
     private Long id;
@@ -26,5 +26,5 @@ public class Product {
     private String unit;
 
     @JsonSetter("measures")
-    private MeasuresDto measures;
+    private Measures measures;
 }

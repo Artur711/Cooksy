@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row d-flex justify-content-end mb-3">
+    <img src="assets/image/Icon/star.png" alt="Star">
+    <button class="reply" (click)="goBack()"><img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow"></button>
+  </div>
+  <div class="row" >
+    <div class="co-12 col-lg-6">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-3">
+          <img class="img-fluid img-border" src="{{ details.image }}" alt="Recipe picture">
+        </div>
+      </div>
+      <div class="bg-style p-3">
+        <div class="row">
+          <div class="col-8 float-start">
+            {{ details.tittle}}
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input mx-1" id="recipe-details works!" checked>
+                <span>recipe-details works!</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="row text-end mt-3">
+          <span class="sum">1.13</span>
+        </div>
+        <div class="mt-5">
+          <img class="col-2 col-sm-1 img-fluid d-block m-auto"
+               src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="bg-style py-2">
+        <span>
+          {{ details.description }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <span>{{ details.sourceUrl }}</span>
+</div>
