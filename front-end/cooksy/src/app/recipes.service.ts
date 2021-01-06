@@ -10,6 +10,8 @@ import {RecipeDetail} from "./recipe-detail";
 })
 export class RecipesService {
   private recipesUrl = `${environment.apiUrl}/recipes`
+  private apiRecipeUrl = `${environment.apiUrl}/recipes`
+
 
   constructor(private http: HttpClient) {
   }
@@ -25,7 +27,7 @@ export class RecipesService {
   }
 
   addRecipe(recipeID: string, userID: string) {
-    const url = `${this.recipesUrl}/${recipeID}/${userID}`;
+    const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
     this.http.get(url);
   }
 }
