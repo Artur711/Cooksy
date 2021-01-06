@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Recipes} from "./recipes";
-import {RecipeDetail} from "./recipe-detail";
+import {Details} from "./details";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,22 @@ export class RecipesService {
 
   getRecipes(): Observable<Recipes> {
     return this.http
-      .get<Recipes>(this.recipesUrl);
+      .get<Recipes>(this.recipesUrl).pipe(
+        catchError(this.handleError<Recipes>('getRecipes'))
+      );
   }
 
-  getRecipe(id: string): Observable<RecipeDetail> {
+  getRecipeDetail(id: number): Observable<Details> {
     const url = `${this.recipesUrl}/recipe-detail/${id}`;
-    return this.http.get<RecipeDetail>(url);
+    return this.http.get<Details>(url).pipe(
+      catchError(this.handleError<Details>(`getRecipeDetail id=${id}`))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }

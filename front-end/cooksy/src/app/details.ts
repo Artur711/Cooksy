@@ -1,6 +1,6 @@
 import {RecipeProduct} from "./recipe-product";
 
-export interface RecipeDetail {
+export interface Details {
   recipeId: number;
 
   tittle: string;
