@@ -3,10 +3,10 @@ values
        ('ADMINISTRATOR'),
        ('CUSTOMER');
 
-insert into USERS (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHOTO_URL, USER_TYPE_ID)
+insert into USERS (NICK, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHOTO_URL, USER_TYPE_ID, ENABLED, LOCKED)
 values
-       ('Patrick', 'Swayze', 'p.swayze@gmail.com', 'swayze52!', '', 1),
-       ('Bob', 'Dylan', 'bob.dylan@gmail.com', 'dylan41', '', 2);
+       ('patrick52', 'Patrick', 'Swayze', 'p.swayze@gmail.com', 'swayze52!', '', 1, true, false),
+       ('bob41', 'Bob', 'Dylan', 'bob.dylan@gmail.com', 'dylan41', '', 2, true, false);
 
 insert into Grammage (grammage_id, quantity, grammage)
 values

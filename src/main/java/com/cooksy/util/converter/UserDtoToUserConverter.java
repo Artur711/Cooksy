@@ -16,6 +16,7 @@ public class UserDtoToUserConverter {
         userType.setUserTypeId(userDto.getUserTypeId());
 
         return new User(userDto.getUserId(),
+                userDto.getNick(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getEmail(),

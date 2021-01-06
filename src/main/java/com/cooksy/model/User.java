@@ -18,14 +18,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    private String nick;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String photoUrl;
 
-    public User(Long userId, String firstName, String lastName, String email, String password, String photoUrl, UserType userType) {
+    public User(Long userId, String nick, String firstName, String lastName, String email, String password, String photoUrl, UserType userType) {
         this.userId = userId;
+        this.nick = nick;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -128,5 +130,13 @@ public class User implements UserDetails {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 }

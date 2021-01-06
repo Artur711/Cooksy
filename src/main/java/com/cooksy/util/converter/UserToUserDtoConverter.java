@@ -12,6 +12,7 @@ public class UserToUserDtoConverter {
 
     public UserDto convert(User user) {
         return new UserDto(user.getUserId(),
+                user.getNick(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),

@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 public class CredentialsDto {
 
-    private String userName;
+    private String nick;
 
     private String password;
 }

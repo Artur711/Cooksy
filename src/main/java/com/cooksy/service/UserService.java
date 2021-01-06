@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
     }
 
     public Authentication login(CredentialsDto credentialsDto) {
-        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentialsDto.getUserName(),
+        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentialsDto.getNick(),
                 credentialsDto.getPassword()));
     }
 
@@ -123,12 +123,12 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByFirstName(userName)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username %s cannot be found.", userName)));
+        return userRepository.findByNick(userName)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with nick %s cannot be found.", userName)));
     }
 
     private void failIfUserAlreadyRegistered(String userName) {
-        Optional<User> maybeUser = userRepository.findByFirstName(userName);
+        Optional<User> maybeUser = userRepository.findByNick(userName);
         if (maybeUser.isPresent()) {
             throw new ValidationException("User already exist: " + maybeUser.get().getFirstName());
         }
