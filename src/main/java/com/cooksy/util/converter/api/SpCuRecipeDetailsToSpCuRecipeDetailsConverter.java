@@ -19,9 +19,19 @@ public class SpCuRecipeDetailsToSpCuRecipeDetailsConverter {
         return new SpCuRecipeDetailsDto(recipeDetails.getId(),
                 recipeDetails.getTitle(),
                 recipeDetails.getImage(),
-                recipeDetails.getDescription(),
+                clearString(recipeDetails.getDescription()),
                 recipeDetails.getPrice()/100,
                 recipeDetails.getSourceUrl(),
                 spCuProductDtos);
+    }
+
+    private String clearString(String str){
+        str = str.replace("<ol>", "");
+        str = str.replace("</ol>", "");
+        str = str.replace("<li>", "");
+        str = str.replace("</li>", "");
+        str = str.replace("<span>", "");
+        str = str.replace("</span>", "");
+        return str;
     }
 }

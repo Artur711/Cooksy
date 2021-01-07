@@ -18,7 +18,7 @@ import { BackArrowComponent } from './back-arrow/back-arrow.component';
 import { ToPdfComponent } from './to-pdf/to-pdf.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule} from "@angular/forms";
 import { FrontPageComponent } from './front-page/front-page.component';
 import { RegisterComponent } from './register/register.component';
 

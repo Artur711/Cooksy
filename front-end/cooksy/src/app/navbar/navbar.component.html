@@ -1,11 +1,10 @@
 <div class="navbar navbar-expand-lg col= z-1">
   <div class="container-fluid">
-    <button class="navbar-toggler navbar-dark bg-style p-2 mr-auto" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbar" aria-controls="navbar"
-            aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-dark bg-style p-2 mr-auto" type="button" aria-label="Toggle navigation"
+            (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse bg-nav" id="navbar">
+    <div class="collapse navbar-collapse bg-nav" id="navbar" [ngbCollapse]="isCollapsed" >
       <div class="navbar-nav">
         <nav class="text-lg-start col d-block">
           <br>
