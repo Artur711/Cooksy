@@ -18,9 +18,12 @@ import { BackArrowComponent } from './back-arrow/back-arrow.component';
 import { ToPdfComponent } from './to-pdf/to-pdf.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FrontPageComponent } from './front-page/front-page.component';
 import { RegisterComponent } from './register/register.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -48,6 +51,10 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     BrowserAnimationsModule,
     NgbModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
