@@ -19,7 +19,7 @@ import java.util.List;
 public class SpCuProduct {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonSetter("id")
     private Long id;
 
@@ -42,7 +42,7 @@ public class SpCuProduct {
     @JsonSetter("measures")
     private Measures measures;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "spCuProducts", cascade = CascadeType.ALL)
     private List<ShpList> shpList;
 
     public SpCuProduct(Long id, String name, String original, Integer amount, String unit, Measures measures) {

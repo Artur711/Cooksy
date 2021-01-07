@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,10 +20,15 @@ public class ShpList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shpListId;
 
-    @ManyToMany(mappedBy = "shpList")
+    @ManyToMany
     private List<SpCuProduct> spCuProducts;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public ShpList(List<SpCuProduct> spCuProducts, User user) {
+        this.spCuProducts = spCuProducts;
+        this.user = user;
+    }
 }

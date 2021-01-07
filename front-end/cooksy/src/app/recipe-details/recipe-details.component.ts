@@ -2,10 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {RecipesService} from "../recipes.service";
 import {ActivatedRoute} from "@angular/router";
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import {ActivatedRoute} from "@angular/router";
-import {RecipesService} from "../recipes.service";
 import {Details} from "../details";
 
 
@@ -24,15 +20,13 @@ export class RecipeDetailsComponent implements OnInit {
     private recipesService: RecipesService,
     private location: Location
   ) { }
-    private location: Location,
-    private recipeService: RecipesService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.recipeId = this.activatedRoute.snapshot.paramMap.get('id')
-  }
+
 
   ngOnInit(): void {
     this.getRecipe();
+
+    this.recipeId = this.route.snapshot.paramMap.get('id')
+
   }
 
   getRecipe(): void {
@@ -48,6 +42,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
   // we need to change parameter to global variable at the end
   addRecipeToList(recipeID: string, userID: string) {
-    this.recipeService.addRecipe(recipeID, userID);
+    this.recipesService.addRecipe(recipeID, userID);
   }
 }
