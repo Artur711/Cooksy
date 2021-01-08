@@ -100,6 +100,10 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void addShpListToUser(Id id){
+    userRepository.addUserToShpList(id.getValue());
+    }
+
     public void updateUser(Id id, UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         user.setUserId(id.getValue());

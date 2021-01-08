@@ -62,5 +62,7 @@ public class SpoonacularController {
         recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesIngredient(ingredient));
         return recipesConverter.convert(recipes);
     }
+
+
 }
 

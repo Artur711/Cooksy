@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
@@ -11,8 +11,11 @@ import {catchError} from "rxjs/operators";
 })
 export class RecipesService {
   private recipesUrl = `${environment.apiUrl}/recipes`
+  private apiRecipeUrl = `${environment.apiUrl}/recipes`
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+  }
 
   getRecipes(): Observable<Recipes> {
     return this.http
@@ -41,5 +44,10 @@ export class RecipesService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  addRecipe(recipeID: string, userID: string) {
+    const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
+    this.http.get(url);
   }
 }

@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
@@ -24,4 +23,10 @@ public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findByUserType(@Param("user_type") UserType userType);
 
     Optional<User> findByNick(String name);
+
+    @Transactional
+    @Modifying
+    @Query(value = "insert into shopping_list (shp_list_id, user_id) values (DEFAULT,:user_id)",
+            nativeQuery = true)
+    void addUserToShpList(@Param("user_id") Long id);
 }

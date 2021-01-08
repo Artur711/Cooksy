@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {RecipesService} from "../recipes.service";
+import {ActivatedRoute} from "@angular/router";
 import {Details} from "../details";
 
 
@@ -11,6 +11,7 @@ import {Details} from "../details";
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
+  recipeId: string | null = '';
 
   details: Details | undefined;
 
@@ -20,8 +21,12 @@ export class RecipeDetailsComponent implements OnInit {
     private location: Location
   ) { }
 
+
   ngOnInit(): void {
     this.getRecipe();
+
+    this.recipeId = this.route.snapshot.paramMap.get('id')
+
   }
 
   getRecipe(): void {
@@ -34,5 +39,9 @@ export class RecipeDetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+  // we need to change parameter to global variable at the end
+  addRecipeToList(recipeID: string, userID: string) {
+    this.recipesService.addRecipe(recipeID, userID);
   }
 }
