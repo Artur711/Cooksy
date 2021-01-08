@@ -1,5 +1,6 @@
 .bg-page {
-  height: 100%;
+  min-height: 100vh;
+  height: auto;
   background-image: url('src/assets/image/manu_background.jpeg');
   background-size: cover;
   background-repeat: no-repeat;

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  public title = "All recipes";
+  public title = "Home";
 
   constructor() { }
 

@@ -16,10 +16,12 @@ public class SpCuRecipeDetailsToSpCuRecipeDetailsConverter {
 
     public SpCuRecipeDetailsDto convert(SpCuRecipeDetails recipeDetails) {
         List<SpCuProductDto> spCuProductDtos = spCuProductToSpCuProductDtoConverter.convertAll(recipeDetails.getProductList());
+        String description = (recipeDetails.getDescription() != null) ? recipeDetails.getDescription() : recipeDetails.getSummary();
+
         return new SpCuRecipeDetailsDto(recipeDetails.getId(),
                 recipeDetails.getTitle(),
                 recipeDetails.getImage(),
-                clearString(recipeDetails.getDescription()),
+                clearString(description),
                 recipeDetails.getPrice()/100,
                 recipeDetails.getSourceUrl(),
                 spCuProductDtos);
@@ -32,6 +34,11 @@ public class SpCuRecipeDetailsToSpCuRecipeDetailsConverter {
         str = str.replace("</li>", "");
         str = str.replace("<span>", "");
         str = str.replace("</span>", "");
+        str = str.replace("<b>", "");
+        str = str.replace("</b>", "");
+        str = str.replace("<a href=", " ");
+        str = str.replace("</a>", "");
+        str = str.replace(">", " ");
         return str;
     }
 }

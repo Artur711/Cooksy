@@ -44,7 +44,6 @@ public class SpoonacularController {
         return recipesConverter.convert(recipes);
     }
 
-
     @GetMapping(value = "/vegetarian", produces = APPLICATION_JSON_VALUE)
     public SpCuRecipesDto getRecipesVegetarian() {
         recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesVegetarian());
@@ -62,7 +61,5 @@ public class SpoonacularController {
         recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesIngredient(ingredient));
         return recipesConverter.convert(recipes);
     }
-
-
 }
 

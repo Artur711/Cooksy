@@ -24,6 +24,9 @@ public class SpCuRecipeDetails {
     @JsonSetter("instructions")
     private String description;
 
+    @JsonSetter("summary")
+    private String summary;
+
     @JsonSetter("pricePerServing")
     private Double price;
 

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from "../recipe";
-import {RecipesService} from "../recipes.service";
-
-import {
-  debounceTime, distinctUntilChanged
-} from 'rxjs/operators';
+import {RecipesService} from "../service/recipes.service";
+import {Recipe} from "../model/recipe";
+import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe',
@@ -24,7 +21,6 @@ export class RecipeComponent implements OnInit {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        // switchMap(page => this.recipeService.getRecipesPage(this.page))
       )
       .subscribe(recipes => {this.recipes = recipes.recipes
       this.pages = recipes.numberOfPages
