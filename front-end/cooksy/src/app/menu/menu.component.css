@@ -1,7 +1,9 @@
 .bg-page {
+  height: 100%;
   background-image: url('src/assets/image/manu_background.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 h1 {

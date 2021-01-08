@@ -18,8 +18,12 @@ public class SpCuRecipesToSpCuRecipesDtoConverter {
         List<SpCuRecipeDto> spCuRecipeDtos = spCuRecipeToSpCuRecipeDtoConverter.convertAll(recipes.getSpCuRecipes());
 
         return new SpCuRecipesDto(recipes.getLimit(),
-                recipes.getTotalResults(),
-                recipes.getOffset(),
+                round(recipes.getTotalResults(), recipes.getLimit()),
+                round(recipes.getOffset() + 1, recipes.getLimit()),
                 spCuRecipeDtos);
+    }
+
+    private Integer round(Integer divisor, Integer dividend) {
+        return (divisor % dividend == 0) ? (divisor / dividend) : (divisor / dividend + 1);
     }
 }

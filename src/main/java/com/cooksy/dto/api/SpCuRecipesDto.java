@@ -13,9 +13,9 @@ public class SpCuRecipesDto {
 
     private Integer limit;
 
-    private Integer totalResults;
+    private Integer numberOfPages;
 
-    private Integer offset;
+    private Integer page;
 
     private List<SpCuRecipeDto> recipes;
 }

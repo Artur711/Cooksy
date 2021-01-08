@@ -4,9 +4,9 @@ export interface Recipes {
 
   limit: number;
 
-  totalResults: number;
+  numberOfPages: number;
 
-  offset: number;
+  page: number;
 
   recipes: Recipe[];
 }

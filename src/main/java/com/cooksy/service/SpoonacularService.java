@@ -10,6 +10,11 @@ public class SpoonacularService {
         return ApiURL.RECIPES.getUrl();
     }
 
+    public String getRecipesPage(String page) {
+        int valuePage = Integer.parseInt(page) - 1;
+        return getRecipes() + String.format(ApiURL.PAGE.getUrl(), valuePage * 10);
+    }
+
     public String getRecipesVegetarian() {
         return ApiURL.VEGETARIAN.getUrl();
     }

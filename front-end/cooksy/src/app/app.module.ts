@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule} from "ngx-pagination";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PaginationComponent } from './pagination/pagination.component';
 import { SelectComponent } from './select/select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
@@ -29,7 +29,6 @@ import { RegisterComponent } from './register/register.component';
     RecipeComponent,
     MenuComponent,
     NavbarComponent,
-    PaginationComponent,
     SelectComponent,
     RecipeDetailsComponent,
     LoginComponent,
@@ -39,7 +38,7 @@ import { RegisterComponent } from './register/register.component';
     EmailComponent,
     LoginComponent,
     FrontPageComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +47,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

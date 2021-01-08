@@ -21,12 +21,20 @@ export class RecipesService {
       );
   }
 
+  getRecipesPage(page: number): Observable<Recipes> {
+    const url = `${this.recipesUrl}?page=${page}`;
+    return this.http.get<Recipes>(url).pipe(
+      catchError(this.handleError<Recipes>('getRecipesPage'))
+    );
+}
+
   getRecipeDetail(id: number): Observable<Details> {
     const url = `${this.recipesUrl}/recipe-detail/${id}`;
     return this.http.get<Details>(url).pipe(
       catchError(this.handleError<Details>(`getRecipeDetail id=${id}`))
     );
   }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -8,14 +8,12 @@ import com.cooksy.model.api.SpCuRecipes;
 import com.cooksy.service.SpoonacularService;
 import com.cooksy.util.converter.api.SpCuRecipeDetailsToSpCuRecipeDetailsConverter;
 import com.cooksy.util.converter.api.SpCuRecipesToSpCuRecipesDtoConverter;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/v1/recipes")
 public class SpoonacularController {
 
@@ -25,16 +23,31 @@ public class SpoonacularController {
     private final SpoonacularService service;
     private final SpoonacularClient spoonacularClient;
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
-    private SpCuRecipesDto getRecipesRandom() {
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipes());
-        SpCuRecipesDto recipesDto = recipesConverter.convert(recipes);
-        return recipesDto;
+    private SpCuRecipes recipes;
+
+    public SpoonacularController(SpCuRecipeDetailsToSpCuRecipeDetailsConverter recipeDetailsConverter,
+                                 SpCuRecipesToSpCuRecipesDtoConverter recipesConverter,
+                                 SpoonacularService service,
+                                 SpoonacularClient spoonacularClient) {
+        this.recipeDetailsConverter = recipeDetailsConverter;
+        this.recipesConverter = recipesConverter;
+        this.service = service;
+        this.spoonacularClient = spoonacularClient;
     }
+
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    private SpCuRecipesDto getRecipesRandom(@RequestParam(required = false) String page) {
+        recipes = (page == null) ?
+                spoonacularClient.getObject(SpCuRecipes.class, service.getRecipes()) :
+                spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesPage(page));
+
+        return recipesConverter.convert(recipes);
+    }
+
 
     @GetMapping(value = "/vegetarian", produces = APPLICATION_JSON_VALUE)
     public SpCuRecipesDto getRecipesVegetarian() {
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesVegetarian());
+        recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesVegetarian());
         return recipesConverter.convert(recipes);
     }
 
@@ -46,7 +59,7 @@ public class SpoonacularController {
 
     @GetMapping(value = "/{ingredient}", produces = APPLICATION_JSON_VALUE)
     public SpCuRecipesDto getRecipes(@PathVariable("ingredient") String ingredient) {
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesIngredient(ingredient));
+        recipes = spoonacularClient.getObject(SpCuRecipes.class, service.getRecipesIngredient(ingredient));
         return recipesConverter.convert(recipes);
     }
 }
