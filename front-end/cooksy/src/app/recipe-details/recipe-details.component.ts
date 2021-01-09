@@ -42,6 +42,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
   // we need to change parameter to global variable at the end
   addRecipeToList(recipeID: string, userID: string) {
-    this.recipesService.addRecipe(recipeID, userID);
+    this.recipesService.addRecipe(this.recipeId, userID);
   }
 }

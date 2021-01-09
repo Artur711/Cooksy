@@ -11,7 +11,7 @@ import {catchError} from "rxjs/operators";
 })
 export class RecipesService {
   private recipesUrl = `${environment.apiUrl}/recipes`
-  private apiRecipeUrl = `${environment.apiUrl}/recipes`
+  private apiRecipeUrl = `${environment.apiRecipeUrl}/recipes`
 
 
   constructor(private http: HttpClient) {
@@ -46,8 +46,10 @@ export class RecipesService {
     };
   }
 
-  addRecipe(recipeID: string, userID: string) {
+  addRecipe(recipeID: string | null, userID: string) {
+    console.log(recipeID);
     const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
+    console.log(url);
     this.http.get(url);
   }
 }
