@@ -1,5 +1,6 @@
 package com.cooksy.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,6 +8,7 @@ import lombok.*;
 @Data
 public class CredentialsDto {
 
+    @JsonProperty("username")
     private String nick;
 
     private String password;
