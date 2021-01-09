@@ -41,7 +41,7 @@ public class RecipeController {
         return recipeService.getRecipeById((Long.parseLong(id)));
     }
 
-    @GetMapping("/{recipeID}/{userID}")
+    @PostMapping("/{recipeID}/{userID}")
     public void addRecipeToShoppingList(@PathVariable String recipeID, @PathVariable String userID) {
         SpCuRecipeDetailsDto theSpoonRecipe = spoonacularController.getRecipe(recipeID);
         User user = new User();

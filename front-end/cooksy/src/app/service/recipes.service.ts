@@ -50,6 +50,6 @@ export class RecipesService {
     console.log(recipeID);
     const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
     console.log(url);
-    this.http.get(url);
+    return this.http.post(url, {});
   }
 }
