@@ -5,10 +5,11 @@ import {MenuComponent} from "./menu/menu.component";
 import {RecipeComponent} from "./recipe/recipe.component";
 import {RecipeDetailsComponent} from "./recipe-details/recipe-details.component";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: ProductComponent},
+  {path: 'home', component: HomeComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'recipes', component: RecipeComponent},
   { path: 'recipes/:page', component:RecipeComponent},

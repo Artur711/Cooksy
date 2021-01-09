@@ -7,5 +7,4 @@ export interface Product {
   productTypeId: number;
   marketId: number;
   grammage: Grammage;
-
 }

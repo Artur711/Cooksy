@@ -11,7 +11,15 @@ import java.util.Scanner;
 @Component
 public class ApiKeyReader {
 
-    public List<String> getKeys() {
+    private List<String> apiKeys;
+    private int numberOfKey = 0;
+
+    public ApiKeyReader() {
+        this.apiKeys = getKeys();
+
+    }
+
+    private List<String> getKeys() {
         List<String> apiKeys = new ArrayList<>();
 
         try {
@@ -23,6 +31,18 @@ public class ApiKeyReader {
             System.out.println("CSV file not found");
         }
 
+        return apiKeys;
+    }
+
+    public String getKey() {
+        return this.apiKeys.get(numberOfKey);
+    }
+
+    public void getNext() {
+        numberOfKey = (numberOfKey + 1 != apiKeys.size()) ? numberOfKey++ : 0;
+    }
+
+    public List<String> getApiKeys() {
         return apiKeys;
     }
 }
