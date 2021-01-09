@@ -3,6 +3,10 @@
   color: white;
 }
 
+#listing_pagination /deep/ .ngx-pagination .current {
+  background: rgba(207, 36, 10, 0.75);
+}
+
 .item {
   width: 8vw;
 }
