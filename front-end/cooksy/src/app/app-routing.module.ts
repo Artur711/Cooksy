@@ -8,6 +8,7 @@ import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {CustomersGuard} from "./guards/customers.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -27,12 +28,12 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'customers',
-    loadChildren: './customers/customers.module#CustomersModule',
-    canActivate: [CustomersGuard],
-    canLoad: [CustomersGuard]
-  }
+  // {
+  //   path: 'recipe',
+    // loadChildren: './customers/customers.module#CustomersModule',
+  //   canActivate: [CustomersGuard],
+  //   canLoad: [CustomersGuard]
+  // }
 ];
 
 @NgModule({

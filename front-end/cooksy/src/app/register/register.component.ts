@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register', // tu może być problem na filmiku było 'app-login'
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -12,16 +12,6 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  // emailValue = '';
-  // nameValue = '';
-  // passwordValue = '';
-  // confirmPasswordValue = '';
-  // phoneValue = '';
-  // placeholderEmail = 'Email';
-  // placeholderName = 'Name';
-  // placeholderPassword = 'Password';
-  // placeholderConfirmPassword = 'Confirm Password';
-  // placeholderPhone = 'Phone';
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
   }
@@ -33,7 +23,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get form() {return this.registerForm.contains;}
+  get form() {return this.registerForm.controls;}
 
   register() {
     this.authService.register(
