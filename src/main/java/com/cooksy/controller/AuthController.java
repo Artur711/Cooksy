@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200",allowCredentials="true")
 @RestController
 @AllArgsConstructor
 public class AuthController {
@@ -31,5 +31,11 @@ public class AuthController {
     public void login (@RequestBody CredentialsDto credentialsDto) {
         Authentication authentication = userService.login(credentialsDto);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        System.out.println("Post działa");
+        System.out.println(authentication.getDetails());
+        System.out.println(authentication.isAuthenticated());
+
+
     }
 }

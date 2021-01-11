@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
-@Entity
+@Entity()
 @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
@@ -40,7 +40,7 @@ public class User implements UserDetails {
 
     private boolean locked = false;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_TYPE_ID")
     private UserType userType;
 
