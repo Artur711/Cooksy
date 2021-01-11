@@ -43,7 +43,8 @@ public class FavoriteService {
     }
 
     public void addToFavorite(FavoriteDto favoriteDto) {
-        favoriteRepository.save(favoriteDtoToFavoriteConverter.convert(favoriteDto));
+        Favorite convert = favoriteDtoToFavoriteConverter.convert(favoriteDto);
+        favoriteRepository.save(convert);
         log.info(String.format("Added favorite: %s", favoriteDto.toString()));
     }
 

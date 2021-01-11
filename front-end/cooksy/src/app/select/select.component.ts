@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectComponent implements OnInit {
 
+  collapsed = true;
   meatIsCollapsed = true;
   vegetablesIsCollapsed = true;
   additionalIsCollapsed = true;
@@ -14,34 +15,33 @@ export class SelectComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   meatCollapsed(): void {
-    this.meatIsCollapsed = !this.meatIsCollapsed;
-    this.vegetablesIsCollapsed = true;
-    this.additionalIsCollapsed = true;
-    this.promotionIsCollapsed = true;
+    this.collapsedAll(this.meatIsCollapsed);
+    this.meatIsCollapsed = !this.collapsed;
   }
 
   vegetablesCollapsed(): void {
-    this.meatIsCollapsed = true;
-    this.vegetablesIsCollapsed = !this.vegetablesIsCollapsed;
-    this.additionalIsCollapsed = true;
-    this.promotionIsCollapsed = true;
+    this.collapsedAll(this.vegetablesIsCollapsed);
+    this.vegetablesIsCollapsed = !this.collapsed;
   }
 
   additionalCollapsed(): void {
-    this.meatIsCollapsed = true;
-    this.vegetablesIsCollapsed = true;
-    this.additionalIsCollapsed = !this.additionalIsCollapsed;
-    this.promotionIsCollapsed = true;
+    this.collapsedAll(this.additionalIsCollapsed);
+    this.additionalIsCollapsed = !this.collapsed;
   }
 
   promotionCollapsed(): void {
+    this.collapsedAll(this.promotionIsCollapsed);
+    this.promotionIsCollapsed = !this.collapsed;
+  }
+
+  private collapsedAll(collapsed: boolean): void {
+    this.collapsed = collapsed;
     this.meatIsCollapsed = true;
     this.vegetablesIsCollapsed = true;
     this.additionalIsCollapsed = true;
-    this.promotionIsCollapsed = !this.promotionIsCollapsed;
+    this.promotionIsCollapsed = true;
   }
 }

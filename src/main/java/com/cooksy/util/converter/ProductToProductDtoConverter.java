@@ -1,6 +1,5 @@
 package com.cooksy.util.converter;
 
-import com.cooksy.dto.GrammageDto;
 import com.cooksy.dto.ProductDto;
 import com.cooksy.model.Product;
 import lombok.AllArgsConstructor;
@@ -13,16 +12,15 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ProductToProductDtoConverter {
 
-    private GrammageToGrammageDtoConverter grammageToGrammageDtoConverter;
 
     public ProductDto convert(Product product){
-        GrammageDto grammageDto = grammageToGrammageDtoConverter.convert(product.getGrammage());
         return new ProductDto(product.getProductID(),
                 product.getName(),
-                product.getPrice(),
-                product.getProductTypeID(),
-                product.getMarketID(),
-                grammageDto);
+                product.getOriginal(),
+                product.getAmount(),
+                product.getUnit(),
+                product.getMeasuresAmount(),
+                product.getMeasuresUnitShort());
     }
 
     public List<ProductDto> convertAll(List<Product> products){

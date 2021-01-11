@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {RecipesService} from "../service/recipes.service";
 import {ActivatedRoute} from "@angular/router";
 import {Details} from "../model/details";
+import {FavoritesService} from "../service/favorites.service";
 
 @Component({
   selector: 'app-recipe-details',
@@ -10,13 +11,14 @@ import {Details} from "../model/details";
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
-  recipeId: string | null = '';
+  recipeId: string = '';
 
-  details!: Details;
+  details$!: Details;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private recipesService: RecipesService,
+    private favoritesService: FavoritesService,
     private location: Location
   ) { }
 
@@ -26,15 +28,24 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   getRecipe(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.recipesService.getRecipeDetail(id)
-      .subscribe(details => this.details = details);
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.recipesService.getRecipeDetail$(id)
+      .subscribe(details => this.details$ = details);
   }
 
   goBack(): void {
     this.location.back();
   }
+
+  addRecipeToFavorite(): void {
+    this.favoritesService.addRecipeToFavorite(this.details$)
+      .subscribe(success => {
+        if (success) {
+          console.log('Success');
+        }
+      });
+  }
+
   // we need to change parameter to global variable at the end
   addRecipeToList(recipeID: string, userID: string) {
     this.recipesService.addRecipe(recipeID, userID);

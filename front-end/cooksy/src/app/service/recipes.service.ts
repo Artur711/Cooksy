@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {catchError, mapTo} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
 import {Details} from "../model/details";
@@ -29,15 +29,14 @@ export class RecipesService {
     return this.http.get<Recipes>(url).pipe(
       catchError(this.handleError<Recipes>('getRecipesPage'))
     );
-}
+  }
 
-  getRecipeDetail(id: string | null): Observable<Details> {
+  getRecipeDetail$(id: string | null): Observable<Details> {
     const url = `${this.recipesUrl}/recipe-detail/${id}`;
     return this.http.get<Details>(url).pipe(
       catchError(this.handleError<Details>(`getRecipeDetail id=${id}`))
     );
   }
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

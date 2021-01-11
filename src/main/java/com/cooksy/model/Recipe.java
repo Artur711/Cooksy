@@ -18,15 +18,18 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recipeId;
-    private String name;
+    private String tittle;
+    private String image;
+    private String description;
+    private Double pricePerServing;
+    private String sourceUrl;
 
     @ManyToMany
-    @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"), inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
-    private List<RecipeProduct> recipeProducts;
+    private List<Product> products;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
-    private String photoUrl;
-    private String author;
+//    @ManyToMany
+//    @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"), inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
+//    private List<RecipeProduct> recipeProducts;
+
 
 }

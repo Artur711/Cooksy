@@ -1,4 +1,4 @@
-package com.cooksy.dto.api;
+package com.cooksy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,19 +9,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SpCuRecipeDetailsDto {
+public class RecipeDetailsDto {
 
     private Long recipeId;
-
     private String tittle;
-
     private String image;
-
     private String description;
-
     private Double pricePerServing;
-
     private String sourceUrl;
-
-    private List<SpCuProductDto> products;
+    private List<ProductDto> products;
 }
