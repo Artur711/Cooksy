@@ -28,12 +28,11 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'recipe',
-    // loadChildren: './customers/customers.module#CustomersModule',
-  //   canActivate: [CustomersGuard],
-  //   canLoad: [CustomersGuard]
-  // }
+  {
+    path: 'recipe',
+    component: RecipeComponent,
+    canActivate: [CustomersGuard],
+  }
 ];
 
 @NgModule({

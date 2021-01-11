@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
 @Component({
-  selector: 'app-register', // tu może być problem na filmiku było 'app-login'
+  selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -18,8 +18,14 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+      id: [''],
+      type: [''],
       username: [''],
-      password: ['']
+      password: [''],
+      firstName: [''],
+      lastName: [''],
+      email: [''],
+      photoUrl: ['']
     });
   }
 
@@ -28,13 +34,19 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(
       {
+        id: this.form.id.value,
+        type: this.form.type.value,
         username: this.form.username.value,
-        password: this.form.password.value
+        password: this.form.password.value,
+        firstName: this.form.firstName.value,
+        lastName: this.form.lastName.value,
+        email: this.form.email.value,
+        photoUrl: this.form.photoUrl.value
       }
     )
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/register']);
         }
       })
   }

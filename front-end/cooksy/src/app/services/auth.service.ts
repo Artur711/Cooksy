@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: {username: string, password: string}): Observable<boolean> {
+  register(user: {id: number, type: number, username: string, password: string, firstName: string, lastName: string, email: string, photoUrl: string}): Observable<boolean> {
     return this.http.post<any>(`${environment.apiUrl}/register`, user)
       .pipe(
       mapTo(true),
@@ -27,9 +27,10 @@ export class AuthService {
 
   login(user: {username: string, password: string}): Observable<boolean> {
 
+    console.log(user.username);
     console.log(user.password);
 
-    return this.http.post<any>(`${environment.apiUrl}/login`, user)
+    return this.http.post<any>(`${environment.apiUrl}/login`, user, {withCredentials: true})
       .pipe(
         tap( (data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
         mapTo(true),
@@ -63,7 +64,7 @@ export class AuthService {
   }
 
   private doLogoutUser(){
-    this.loggedUser = null;
+    this.loggedUser = "";
     this.removeToken();
   }
 
