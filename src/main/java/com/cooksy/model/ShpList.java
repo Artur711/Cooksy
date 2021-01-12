@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,10 @@ public class ShpList {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    private String isConfirmed;
+    private String name;
+    private Date date;
 
     public ShpList(List<Product> products, User user) {
         this.products = products;

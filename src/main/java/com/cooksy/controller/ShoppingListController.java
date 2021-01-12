@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/recipes")
-public class RecipeController {
+public class ShoppingListController {
 
     private final RecipeService recipeService;
     private final UserService userService;
@@ -30,15 +30,15 @@ public class RecipeController {
     private final SpoonacularController spoonacularController;
     private final ShoppingListService shoppingListService;
 
-    @GetMapping
-    public List<RecipeDetailsDto> getAll() {
-        return recipeService.getAll();
-    }
+//    @GetMapping
+//    public List<RecipeDetailsDto> getAll() {
+//        return recipeService.getAll();
+//    }
 
-    @GetMapping("/{id}")
-    public RecipeDetailsDto getById(@PathVariable String id) {
-        return recipeService.getRecipeById((Long.parseLong(id)));
-    }
+//    @GetMapping("/{id}")
+//    public RecipeDetailsDto getById(@PathVariable String id) {
+//        return recipeService.getRecipeById((Long.parseLong(id)));
+//    }
 
     @PostMapping("/{recipeID}/{userID}")
     public void addRecipeToShoppingList(@PathVariable String recipeID, @PathVariable String userID) {
@@ -50,20 +50,20 @@ public class RecipeController {
         shoppingListService.saveUsersShoppingList(new ShpList(productsFromRecipe,user));
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
-        recipeService.saveRecipe(recipeDetailsDto);
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public void saveRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
+//        recipeService.saveRecipe(recipeDetailsDto);
+//    }
 
-    @PutMapping("/{id}")
-    public void updateRecipe(@PathVariable String id, @RequestBody RecipeDetailsDto recipeDetailsDto) {
-        recipeService.updateRecipe((Long.valueOf(id)), recipeDetailsDto);
-    }
+//    @PutMapping("/{id}")
+//    public void updateRecipe(@PathVariable String id, @RequestBody RecipeDetailsDto recipeDetailsDto) {
+//        recipeService.updateRecipe((Long.valueOf(id)), recipeDetailsDto);
+//    }
 
-    @DeleteMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
-        recipeService.deleteRecipe(recipeDetailsDto);
-    }
+//    @DeleteMapping
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void deleteRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
+//        recipeService.deleteRecipe(recipeDetailsDto);
+//    }
 }
