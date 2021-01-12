@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
 
   favorite(): void {
     this.menu.title = 'Favorite recipes';
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['/favorites']);
   }
 
   setting(): void {

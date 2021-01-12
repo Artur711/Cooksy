@@ -16,20 +16,27 @@ import java.util.List;
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recipeId;
     private String tittle;
     private String image;
+
+    @Column(columnDefinition="TEXT")
     private String description;
+
     private Double pricePerServing;
     private String sourceUrl;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
     private List<Product> products;
 
-//    @ManyToMany
-//    @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"), inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
-//    private List<RecipeProduct> recipeProducts;
-
-
+    public Recipe(Long recipeId, String tittle, String image, String description, Double pricePerServing, String sourceUrl) {
+        this.recipeId = recipeId;
+        this.tittle = tittle;
+        this.image = image;
+        this.description = description;
+        this.pricePerServing = pricePerServing;
+        this.sourceUrl = sourceUrl;
+    }
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {RecipesService} from "../service/recipes.service";
 import {ActivatedRoute} from "@angular/router";
-import {Details} from "../model/details";
+import {RecipeDetails} from "../model/recipeDetails";
 import {FavoritesService} from "../service/favorites.service";
 
 @Component({
@@ -12,8 +12,8 @@ import {FavoritesService} from "../service/favorites.service";
 })
 export class RecipeDetailsComponent implements OnInit {
   recipeId: string = '';
-
-  details$!: Details;
+  isFavorite = false;
+  details$!: RecipeDetails;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,8 +42,19 @@ export class RecipeDetailsComponent implements OnInit {
       .subscribe(success => {
         if (success) {
           console.log('Success');
+          this.isFavorite = true;
         }
       });
+  }
+
+  removeRecipeFromFavorite():void {
+    this.favoritesService.removeRecipeFromFavorite()
+      .subscribe(success => {
+      if (success) {
+        console.log('Success');
+      }
+      })
+    this.isFavorite = false;
   }
 
   // we need to change parameter to global variable at the end

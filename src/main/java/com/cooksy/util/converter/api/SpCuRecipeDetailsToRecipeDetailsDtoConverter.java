@@ -38,7 +38,10 @@ public class SpCuRecipeDetailsToRecipeDetailsDtoConverter {
         str = str.replace("</b>", "");
         str = str.replace("<a href=", " ");
         str = str.replace("</a>", "");
+        str = str.replace("<p", "");
+        str = str.replace("</p>", "");
         str = str.replace(">", " ");
+        str = str.replace("\"", "");
         return str;
     }
 }

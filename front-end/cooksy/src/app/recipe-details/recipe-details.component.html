@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row d-flex justify-content-end mb-3">
-    <button class="button" (click)="addRecipeToFavorite()">
+    <button *ngIf="!isFavorite" class="button" (click)="addRecipeToFavorite()">
       <img src="assets/image/Icon/star.png" alt="Star">
+    </button>
+    <button *ngIf="isFavorite" class="button" (click)="removeRecipeFromFavorite()">
+      <img src="assets/image/Icon/fill_star.png" alt="Fill Star">
     </button>
     <button class="button" (click)="goBack()">
       <img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow">

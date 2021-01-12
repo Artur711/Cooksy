@@ -6,6 +6,8 @@ import com.cooksy.exception.FavoriteNotFoundException;
 import com.cooksy.model.Favorite;
 import com.cooksy.model.User;
 import com.cooksy.repository.FavoriteRepository;
+import com.cooksy.repository.ProductRepository;
+import com.cooksy.repository.RecipeRepository;
 import com.cooksy.util.converter.FavoriteDtoToFavoriteConverter;
 import com.cooksy.util.converter.FavoriteToFavoriteDtoConverter;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,22 +40,20 @@ public class FavoriteService {
         return favoritesDto;
     }
 
-    public void deleteFavorite(Id id) {
-        favoriteRepository.deleteById(id.getValue());
-        log.info(String.format("Deleted favorite by id: %d", id.getValue()));
-    }
-
     public void addToFavorite(FavoriteDto favoriteDto) {
-        Favorite convert = favoriteDtoToFavoriteConverter.convert(favoriteDto);
-        favoriteRepository.save(convert);
-        log.info(String.format("Added favorite: %s", favoriteDto.toString()));
+        Favorite favorite = favoriteDtoToFavoriteConverter.convert(favoriteDto);
+        Optional<Favorite> maybeFavorite = favoriteRepository.findByUserAndAndRecipe(favorite.getUser(), favorite.getRecipe());
+
+        if (maybeFavorite.isEmpty()) {
+            favoriteRepository.save(favorite);
+            log.info(String.format("Added favorite [id: %d, userId: %d, recipeId: %d]", favoriteDto.getFavoriteId(),
+                    favoriteDto.getUser().getUserId(), favoriteDto.getRecipe().getRecipeId()));
+        }
     }
 
-    public void updateFavorite(Id id, FavoriteDto favoriteDto) {
-        Favorite favorite = favoriteDtoToFavoriteConverter.convert(favoriteDto);
-        favorite.setFavoriteId(id.getValue());
-        favoriteRepository.save(favorite);
-        log.info(String.format("Updated favorite: %s", favorite.toString()));
+    public void deleteFavorite(Long id) {
+       favoriteRepository.deleteById(id);
+        log.info(String.format("Deleted favorite [id: %d]", id));
     }
 
     public FavoriteDto getFavoriteById(Id id) {

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
-import {catchError, mapTo} from "rxjs/operators";
+import {catchError} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
-import {Details} from "../model/details";
+import {RecipeDetails} from "../model/recipeDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +31,10 @@ export class RecipesService {
     );
   }
 
-  getRecipeDetail$(id: string | null): Observable<Details> {
+  getRecipeDetail$(id: string | null): Observable<RecipeDetails> {
     const url = `${this.recipesUrl}/recipe-detail/${id}`;
-    return this.http.get<Details>(url).pipe(
-      catchError(this.handleError<Details>(`getRecipeDetail id=${id}`))
+    return this.http.get<RecipeDetails>(url).pipe(
+      catchError(this.handleError<RecipeDetails>(`getRecipeDetail id=${id}`))
     );
   }
 
