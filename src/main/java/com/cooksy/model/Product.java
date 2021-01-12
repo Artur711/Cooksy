@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -12,31 +13,32 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long productID;
 
     private String name;
+    private String original;
+    private Integer amount;
+    private String unit;
+    private String measuresAmount;
+    private String measuresUnitShort;
 
-    private Double price;
+    @ManyToMany
+//            (mappedBy = "spCuProducts", cascade = CascadeType.ALL)
+    private List<ShpList> shpList;
 
-    @Column(name = "product_type_id")
-    private Long productTypeID;
-
-    @Column(name = "market_id")
-    private Long marketID;
-
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "grammage_id")
-    private Grammage grammage;
-
-    public Product(String name, Double price, Long productTypeID, Long marketID, Grammage grammage) {
+    public Product(Long productID, String name, String original, Integer amount,
+                   String unit, String measuresAmount, String measuresUnitShort) {
+        this.productID = productID;
         this.name = name;
-        this.price = price;
-        this.productTypeID = productTypeID;
-        this.marketID = marketID;
-        this.grammage = grammage;
+        this.original = original;
+        this.amount = amount;
+        this.unit = unit;
+        this.measuresAmount = measuresAmount;
+        this.measuresUnitShort = measuresUnitShort;
     }
 }
 

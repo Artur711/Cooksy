@@ -1,6 +1,5 @@
 package com.cooksy.model;
 
-import com.cooksy.model.api.SpCuProduct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,14 +20,14 @@ public class ShpList {
     private Long shpListId;
 
     @ManyToMany
-    private List<SpCuProduct> spCuProducts;
+    private List<Product> products;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public ShpList(List<SpCuProduct> spCuProducts, User user) {
-        this.spCuProducts = spCuProducts;
+    public ShpList(List<Product> products, User user) {
+        this.products = products;
         this.user = user;
     }
 }

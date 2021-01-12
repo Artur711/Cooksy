@@ -3,17 +3,17 @@
     <img src="assets/image/Icon/star.png" alt="Star">
     <button class="reply" (click)="goBack()"><img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow"></button>
   </div>
-  <div *ngIf="details" class="row" >
+  <div *ngIf="details$" class="row" >
     <div class="co-12 col-lg-6">
       <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-8 mb-3">
-          <img class="img-fluid img-border" src="{{ details.image }}" alt="Recipe picture">
+          <img class="img-fluid img-border" src="{{ details$.image }}" alt="Recipe picture">
         </div>
       </div>
       <div class="bg-style p-3">
         <div class="row">
           <div class="col-8 float-start">
-            <div class="custom-control custom-checkbox" *ngFor="let product of details.products">
+            <div class="custom-control custom-checkbox" *ngFor="let product of details$.products">
               <input type="checkbox" class="custom-control-input mx-1" id="{{product.name}}" checked>
               <label class="custom-control-label" for="{{product.name}}">
                   <span>{{product.name}}  </span>
@@ -23,27 +23,21 @@
           </div>
         </div>
         <div class="row text-end mt-3">
-          <span class="sum">Price per serving: {{details.pricePerServing}} $</span>
-          <span class="sum">1.13</span>
+          <span class="sum">Price per serving: {{details$.pricePerServing}} $</span>
         </div>
-
-        <div class="mt-5">
-          <button class="" (click)="addRecipeToList( '1')">
-            <img src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
-          </button>
-        </div>
-
       </div>
     </div>
     <div class="col-12 col-lg-6">
       <div class="bg-style py-2">
-        <p>{{ details.tittle }}</p>
-        <p>{{ details.description }}</p>
-        <p>Source: {{ details.sourceUrl }}</p>
+        <p>{{ details$.tittle }}</p>
+        <p>{{ details$.description }}</p>
+        <p>Source: {{ details$.sourceUrl }}</p>
         <div class="mt-5">
           <img class="col-2 col-sm-1 img-fluid d-block m-auto"
                src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
-          <button class="col-2 col-sm-1 img-fluid d-block m-auto reply" (click)="addRecipeToList( 'user_id')"><img src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
+          <button class="col-2 col-sm-1 img-fluid d-block m-auto button"
+                  (click)="addRecipeToList('recipe_id', 'user_id')">
+            <img src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
           </button>
         </div>
       </div>

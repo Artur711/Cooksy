@@ -1,7 +1,7 @@
 package com.cooksy.util.converter.api;
 
-import com.cooksy.dto.api.SpCuRecipeDto;
-import com.cooksy.dto.api.SpCuRecipesDto;
+import com.cooksy.dto.RecipeDto;
+import com.cooksy.dto.RecipesDto;
 import com.cooksy.model.api.SpCuRecipes;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,14 +10,14 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class SpCuRecipesToSpCuRecipesDtoConverter {
+public class SpCuRecipesToRecipesDtoConverter {
 
-    private SpCuRecipeToSpCuRecipeDtoConverter spCuRecipeToSpCuRecipeDtoConverter;
+    private final SpCuRecipeToRecipeDtoConverter spCuRecipeToRecipeDtoConverter;
 
-    public SpCuRecipesDto convert(SpCuRecipes recipes) {
-        List<SpCuRecipeDto> spCuRecipeDtos = spCuRecipeToSpCuRecipeDtoConverter.convertAll(recipes.getSpCuRecipes());
+    public RecipesDto convert(SpCuRecipes recipes) {
+        List<RecipeDto> spCuRecipeDtos = spCuRecipeToRecipeDtoConverter.convertAll(recipes.getSpCuRecipes());
 
-        return new SpCuRecipesDto(recipes.getLimit(),
+        return new RecipesDto(recipes.getLimit(),
                 round(recipes.getTotalResults(), recipes.getLimit()),
                 round(recipes.getOffset() + 1, recipes.getLimit()),
                 spCuRecipeDtos);

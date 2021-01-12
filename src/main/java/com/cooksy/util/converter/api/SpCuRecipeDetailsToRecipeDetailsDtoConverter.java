@@ -1,7 +1,7 @@
 package com.cooksy.util.converter.api;
 
-import com.cooksy.dto.api.SpCuProductDto;
-import com.cooksy.dto.api.SpCuRecipeDetailsDto;
+import com.cooksy.dto.ProductDto;
+import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.model.api.SpCuRecipeDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,21 +10,21 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class SpCuRecipeDetailsToSpCuRecipeDetailsConverter {
+public class SpCuRecipeDetailsToRecipeDetailsDtoConverter {
 
-    private SpCuProductToSpCuProductDtoConverter spCuProductToSpCuProductDtoConverter;
+    private final SpCuProductToProductDtoConverter spCuProductToProductDtoConverter;
 
-    public SpCuRecipeDetailsDto convert(SpCuRecipeDetails recipeDetails) {
-        List<SpCuProductDto> spCuProductDtos = spCuProductToSpCuProductDtoConverter.convertAll(recipeDetails.getProductList());
+    public RecipeDetailsDto convert(SpCuRecipeDetails recipeDetails) {
+        List<ProductDto> productsDto = spCuProductToProductDtoConverter.convertAll(recipeDetails.getProductList());
         String description = (recipeDetails.getDescription() != null) ? recipeDetails.getDescription() : recipeDetails.getSummary();
 
-        return new SpCuRecipeDetailsDto(recipeDetails.getId(),
+        return new RecipeDetailsDto(recipeDetails.getId(),
                 recipeDetails.getTitle(),
                 recipeDetails.getImage(),
                 clearString(description),
                 recipeDetails.getPrice()/100,
                 recipeDetails.getSourceUrl(),
-                spCuProductDtos);
+                productsDto);
     }
 
     private String clearString(String str){
