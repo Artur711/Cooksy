@@ -27,8 +27,11 @@ public class ShpList {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Transient
     private String isConfirmed;
+    @Transient
     private String name;
+    @Transient
     private Date date;
 
     public ShpList(List<Product> products, User user) {

@@ -4,7 +4,6 @@ package com.cooksy.service;
 import com.cooksy.dto.Id;
 import com.cooksy.dto.ShoppingListDto;
 import com.cooksy.exception.NotFoundException;
-import com.cooksy.exception.UserNotFoundException;
 import com.cooksy.model.ShpList;
 import com.cooksy.repository.ShoppingListRepository;
 

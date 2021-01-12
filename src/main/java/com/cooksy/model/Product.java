@@ -15,7 +15,7 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long productID;
 
@@ -27,7 +27,7 @@ public class Product {
     private String measuresUnitShort;
 
     @ManyToMany
-//            (mappedBy = "spCuProducts", cascade = CascadeType.ALL)
+            (mappedBy = "products", cascade = CascadeType.ALL)
     private List<ShpList> shpList;
 
     public Product(Long productID, String name, String original, Integer amount,
