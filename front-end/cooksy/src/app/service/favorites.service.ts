@@ -15,8 +15,9 @@ export class FavoritesService {
   constructor(private http: HttpClient) { }
 
   getFavorites$(): Observable<FavoriteDto[]> {
-    return this.http.get<FavoriteDto[]>(this.favoriteUrl);
+    return this.http.get<FavoriteDto[]>(this.favoriteUrl)
   }
+
 
   isFavorite$(recipeId: string | null): Observable<FavoriteDto> {
     return this.http.get<FavoriteDto>(`${this.favoriteUrl}/${recipeId}`);

@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row d-flex justify-content-end mb-3">
-    <button *ngIf="!isFavorite" class="button" (click)="addRecipeToFavorite()">
-      <img src="assets/image/Icon/star.png" alt="Star">
-    </button>
-    <button *ngIf="isFavorite" class="button" (click)="removeRecipeFromFavorite()">
-      <img src="assets/image/Icon/fill_star.png" alt="Fill Star">
+    <button class="button" (click)="mark()">
+      <img *ngIf="!isFavorite" src="assets/image/Icon/star.png" alt="Star">
+      <img *ngIf="isFavorite" src="assets/image/Icon/fill_star.png" alt="Fill Star">
     </button>
     <button class="button" (click)="goBack()">
       <img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow">
@@ -14,7 +12,7 @@
     <div class="co-12 col-lg-6">
       <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-8 mb-3">
-          <img class="img-fluid img-border" src="{{ details$.image }}" alt="Recipe picture">
+          <img class="img-fluid img-border" src="{{details$.image}}" alt="Recipe picture">
         </div>
       </div>
       <div class="bg-style p-3">
@@ -36,9 +34,9 @@
     </div>
     <div class="col-12 col-lg-6">
       <div class="bg-style py-2">
-        <p>{{ details$.tittle }}</p>
-        <p>{{ details$.description }}</p>
-        <p>Source: {{ details$.sourceUrl }}</p>
+        <p>{{details$.tittle}}</p>
+        <p>{{details$.description}}</p>
+        <p>Source: {{details$.sourceUrl}}</p>
         <div class="mt-5">
           <img class="col-2 col-sm-1 img-fluid d-block m-auto"
                src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">

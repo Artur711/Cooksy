@@ -46,9 +46,16 @@ export class RecipeDetailsComponent implements OnInit {
       });
   }
 
+  mark(): void {
+    if (this.isFavorite) {
+      this.removeRecipeFromFavorite();
+    }
+    else {
+      this.addRecipeToFavorite();
+    }
+  }
 
-
-  addRecipeToFavorite(): void {
+  private addRecipeToFavorite(): void {
     this.favoritesService.addRecipeToFavorite(this.details$)
       .subscribe(success => {
         if (success) {
@@ -58,7 +65,7 @@ export class RecipeDetailsComponent implements OnInit {
       });
   }
 
-  removeRecipeFromFavorite():void {
+  private removeRecipeFromFavorite():void {
     this.favoritesService.removeRecipeFromFavorite(this.details$.recipeId)
       .subscribe(success => {
       if (success) {

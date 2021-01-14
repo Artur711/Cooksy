@@ -57,6 +57,8 @@ public class FavoriteService {
             favoriteRepository.save(favorite);
             log.info(String.format("Added favorite [id: %d, userId: %d, recipeId: %d]", favoriteDto.getFavoriteId(),
                     favoriteDto.getUser().getUserId(), favoriteDto.getRecipe().getRecipeId()));
+
+            favoriteRepository.delete(favorite);
         }
     }
 
@@ -64,14 +66,14 @@ public class FavoriteService {
 //        FavoriteDto favoriteDto = getFavoriteById(id);
 //        productRepository.deleteAll(productDtoToProductConverter.convertAll(favoriteDto.getRecipe().getProducts()));
 
-       favoriteRepository.deleteById(id.getValue());
+//        Favorite convert = favoriteDtoToFavoriteConverter.convert(getFavoriteByRecipeId(id));
+        favoriteRepository.deleteById(id.getValue());
         log.info(String.format("Deleted favorite [id: %d]", id.getValue()));
     }
 
     public FavoriteDto getFavoriteBuUserAndRecipe(UserDto userDto, RecipeDetailsDto recipeDto) {
         Favorite favorite = favoriteDtoToFavoriteConverter.convert(new FavoriteDto(0L, userDto, recipeDto));
         Optional<Favorite> maybeFavorite = favoriteRepository.findByUserAndAndRecipe(favorite.getUser(), favorite.getRecipe());
-        FavoriteDto favoriteDto = new FavoriteDto();
         return (maybeFavorite.isPresent()) ? favoriteToFavoriteDtoConverter.convert(maybeFavorite.get()) : new FavoriteDto();
     }
 

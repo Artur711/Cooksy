@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.cooksy.dto.Id.idFromString;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -57,8 +56,7 @@ public class FavoriteController {
 
     @DeleteMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(NO_CONTENT)
-    public void deleteFavorite(@PathVariable("id") String id) {
-        UserDto userDto = userService.getUserById(idFromString("1"));
+    public void deleteFavorite(@PathVariable String id) {
         favoriteService.deleteFavorite(idFromString(id));
     }
 }
