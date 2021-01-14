@@ -25,6 +25,7 @@ export class RecipeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRecipe();
+    this.checkIfFavorite();
   }
 
   getRecipe(): void {
@@ -37,6 +38,16 @@ export class RecipeDetailsComponent implements OnInit {
     this.location.back();
   }
 
+  checkIfFavorite(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.favoritesService.isFavorite$(id)
+      .subscribe(favorite => {
+        this.isFavorite = !!favorite.favoriteId;
+      });
+  }
+
+
+
   addRecipeToFavorite(): void {
     this.favoritesService.addRecipeToFavorite(this.details$)
       .subscribe(success => {
@@ -48,7 +59,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   removeRecipeFromFavorite():void {
-    this.favoritesService.removeRecipeFromFavorite()
+    this.favoritesService.removeRecipeFromFavorite(this.details$.recipeId)
       .subscribe(success => {
       if (success) {
         console.log('Success');

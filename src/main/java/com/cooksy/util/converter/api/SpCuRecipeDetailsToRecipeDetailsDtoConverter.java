@@ -6,7 +6,7 @@ import com.cooksy.model.api.SpCuRecipeDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 @Component
 @AllArgsConstructor
@@ -17,6 +17,7 @@ public class SpCuRecipeDetailsToRecipeDetailsDtoConverter {
     public RecipeDetailsDto convert(SpCuRecipeDetails recipeDetails) {
         List<ProductDto> productsDto = spCuProductToProductDtoConverter.convertAll(recipeDetails.getProductList());
         String description = (recipeDetails.getDescription() != null) ? recipeDetails.getDescription() : recipeDetails.getSummary();
+        productsDto = removeRepeats(productsDto);
 
         return new RecipeDetailsDto(recipeDetails.getId(),
                 recipeDetails.getTitle(),
@@ -28,20 +29,38 @@ public class SpCuRecipeDetailsToRecipeDetailsDtoConverter {
     }
 
     private String clearString(String str){
-        str = str.replace("<ol>", "");
-        str = str.replace("</ol>", "");
-        str = str.replace("<li>", "");
-        str = str.replace("</li>", "");
-        str = str.replace("<span>", "");
-        str = str.replace("</span>", "");
-        str = str.replace("<b>", "");
-        str = str.replace("</b>", "");
-        str = str.replace("<a href=", " ");
-        str = str.replace("</a>", "");
-        str = str.replace("<p", "");
-        str = str.replace("</p>", "");
-        str = str.replace(">", " ");
-        str = str.replace("\"", "");
-        return str;
+        String tempStr = str;
+        List<String> replaces = List.of("<ol>", "</ol>", "<li>", "</li>", "<span>", "</span>",
+                "<b>", "</b>", "<a href=", "</a>", "<p", "</p>", ">", "\"", "'");
+
+        for (String replace : replaces) {
+            tempStr = tempStr.replace(replace, "");
+        }
+        return tempStr;
+    }
+
+    private List<ProductDto> removeRepeats(List<ProductDto> productsDto) {
+        List<ProductDto> tempList = new LinkedList<>();
+
+        for (ProductDto product : productsDto) {
+            int index = getIndexProductFromList(tempList, product);
+            if (index == -1) {
+                tempList.add(product);
+            }
+            else {
+                ProductDto productDto = tempList.get(index);
+                productDto.setMeasuresAmount(productDto.getMeasuresAmount() + product.getMeasuresAmount());
+            }
+        }
+        return tempList;
+    }
+
+    private int getIndexProductFromList(List<ProductDto> tempList, ProductDto productDto) {
+        for (int i = 0; i < tempList.size(); i++) {
+            if (productDto.getProductId().equals(tempList.get(i).getProductId())) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

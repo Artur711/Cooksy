@@ -30,13 +30,4 @@ public class Recipe {
     @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"),
             inverseJoinColumns = @JoinColumn(name = "recipe_product_ID"))
     private List<Product> products;
-
-    public Recipe(Long recipeId, String tittle, String image, String description, Double pricePerServing, String sourceUrl) {
-        this.recipeId = recipeId;
-        this.tittle = tittle;
-        this.image = image;
-        this.description = description;
-        this.pricePerServing = pricePerServing;
-        this.sourceUrl = sourceUrl;
-    }
 }

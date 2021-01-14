@@ -4,6 +4,6 @@ export interface RecipeProduct {
   original: string;
   amount: number;
   unit: string;
-  measuresAmount: string;
+  measuresAmount: number;
   measuresUnitShort: string;
 }

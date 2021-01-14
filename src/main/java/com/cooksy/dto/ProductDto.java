@@ -2,7 +2,8 @@ package com.cooksy.dto;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
@@ -12,6 +13,6 @@ public class ProductDto {
     private String original;
     private Integer amount;
     private String unit;
-    private String measuresAmount;
+    private Double measuresAmount;
     private String measuresUnitShort;
 }

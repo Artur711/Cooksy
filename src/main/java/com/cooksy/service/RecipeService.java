@@ -37,7 +37,7 @@ public class RecipeService {
         if (recipeRepository.findById(recipeId).isPresent()) {
             return recipeToRecipeDetailsDtoConverter.convert(recipeRepository.findById(recipeId).get());
         }
-        return null;
+        return new RecipeDetailsDto();
     }
 
     public void updateRecipe(Long recipeId, RecipeDetailsDto recipeDetailsDto){

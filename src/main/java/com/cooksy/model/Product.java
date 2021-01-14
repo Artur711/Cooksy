@@ -21,7 +21,7 @@ public class Product {
     private String original;
     private Integer amount;
     private String unit;
-    private String measuresAmount;
+    private Double measuresAmount;
     private String measuresUnitShort;
 
 //    @ManyToMany(mappedBy = "products", cascade = CascadeType.PERSIST)

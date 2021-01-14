@@ -16,13 +16,10 @@ export class FavoritesService {
 
   getFavorites$(): Observable<FavoriteDto[]> {
     return this.http.get<FavoriteDto[]>(this.favoriteUrl);
-    // return this.http.get<any>(this.favoriteUrl).pipe(
-    //   map( (data: FavoriteDto[]) => ({
-    //     favoriteId: data.favoriteId,
-    //     userId: data.user.userId,
-    //     recipe: data.recipe
-    //   }))
-    // );
+  }
+
+  isFavorite$(recipeId: string | null): Observable<FavoriteDto> {
+    return this.http.get<FavoriteDto>(`${this.favoriteUrl}/${recipeId}`);
   }
 
   addRecipeToFavorite(recipe: RecipeDetails) {
@@ -34,8 +31,8 @@ export class FavoritesService {
       }));
   }
 
-  removeRecipeFromFavorite() {
-    return this.http.delete(`${this.favoriteUrl}`).pipe(
+  removeRecipeFromFavorite(id: number) {
+    return this.http.delete(`${this.favoriteUrl}/${id}`).pipe(
       mapTo(true),
       catchError(error => {
         console.log(error.error);

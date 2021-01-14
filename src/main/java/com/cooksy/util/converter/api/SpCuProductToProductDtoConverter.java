@@ -16,7 +16,7 @@ public class SpCuProductToProductDtoConverter {
                 product.getOriginal(),
                 product.getAmount(),
                 product.getUnit(),
-                product.getMeasures().getMetric().getAmount(),
+                Double.valueOf(product.getMeasures().getMetric().getAmount()),
                 product.getMeasures().getMetric().getUnitShort());
     }
 

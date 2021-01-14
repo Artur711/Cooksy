@@ -26,7 +26,6 @@ public class SpoonacularClient {
     }
 
     public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) {
-
         try {
             HttpRequest getRequest = HttpRequest.newBuilder()
                     .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
