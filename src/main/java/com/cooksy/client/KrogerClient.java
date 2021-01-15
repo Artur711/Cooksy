@@ -34,7 +34,7 @@ public class KrogerClient {
     }
 
     public <T> T getKrogerProducts(String product, String page, Class<T> tClass) {
-        String krogerApiUrl = "https://api.kroger.com/v1/products?filter.term=%s&filter.fulfillment=sth&filter.start=%s&filter.limit=5";
+        String krogerApiUrl = "https://api.kroger.com/v1/products?filter.term=%s&filter.fulfillment=sth&filter.start=%d&filter.limit=5";
 
         try {
             getRequest = HttpRequest.newBuilder()
@@ -92,7 +92,7 @@ public class KrogerClient {
         }
     }
 
-    private String getProductPage(String page) {
-        return String.format("%d", (Integer.parseInt(page) - 1) * 5 + 1);
+    private Integer getProductPage(String page) {
+        return  (Integer.parseInt(page) - 1) * 5 + 1;
     }
 }

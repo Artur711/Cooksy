@@ -8,13 +8,24 @@ import {ProductDto} from "../model/dto";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private product = 'beef';
+  showModal = false;
+  url = '';
   products: ProductDto[] = [];
   page = 1;
   total = 1;
   limit = 1;
-  private product = 'beef';
 
   constructor(private productService: ProductService) { }
+
+  show(url: string) {
+    this.showModal = true;
+    this.url = url;
+  }
+
+  hide() {
+    this.showModal = false;
+  }
 
   search(product: string): void {
     this.product = product.replace(' ', '-');

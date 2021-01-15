@@ -14,7 +14,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @media screen and (max-width: 1581px) {
   .item {
     width: 9vw;
-
   }
 
   .image {
@@ -50,7 +49,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .image {
     max-height: 16vw;
   }
-
 }
 
 @media screen and (max-width: 575px) {
