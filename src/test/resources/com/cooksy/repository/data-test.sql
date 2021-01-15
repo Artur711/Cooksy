@@ -18,25 +18,25 @@ values
        (9, 'Antoni', 'Donat', 1),
        (10, 'Beata', 'Chorman', 2);
 
-insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
-values
-       (1, 'Pepper', 5.82, 1, 1, 1),
-       (2, 'Tomato', 3.25, 2, 1, 1);
-
-insert into RECIPES (recipe_id, name, description, photo_Url, author)
-values
-       (1, 'Mexican chicken', 'dasdasdas', 'url', 'Atos'),
-       (2, 'Tomato chicken', 'dasdasdas', 'url', 'Atos');
-
-insert into FAVORITES (FAVORITE_ID, USER_ID, RECIPE_ID)
-values
-       (1, 1, 1),
-       (2, 1, 2),
-       (3, 2, 1),
-       (4, 2, 2),
-       (5, 3, 1),
-       (6, 3, 2),
-       (7, 4, 1),
-       (8, 4, 2),
-       (9, 5, 1),
-       (10, 5, 2);
+-- insert into PRODUCTS (PRODUCT_ID, NAME, PRICE, PRODUCT_TYPE_ID, MARKET_ID, GRAMMAGE_ID)
+-- values
+--        (1, 'Pepper', 5.82, 1, 1, 1),
+--        (2, 'Tomato', 3.25, 2, 1, 1);
+--
+-- insert into RECIPES (recipe_id, name, description, photo_Url, author)
+-- values
+--        (1, 'Mexican chicken', 'dasdasdas', 'url', 'Atos'),
+--        (2, 'Tomato chicken', 'dasdasdas', 'url', 'Atos');
+--
+-- insert into FAVORITES (FAVORITE_ID, USER_ID, RECIPE_ID)
+-- values
+--        (1, 1, 1),
+--        (2, 1, 2),
+--        (3, 2, 1),
+--        (4, 2, 2),
+--        (5, 3, 1),
+--        (6, 3, 2),
+--        (7, 4, 1),
+--        (8, 4, 2),
+--        (9, 5, 1),
+--        (10, 5, 2);

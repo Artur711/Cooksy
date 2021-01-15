@@ -22,9 +22,8 @@ public class ShoppingList {
     @OneToOne (cascade = CascadeType.MERGE)
     private User user;
 
-    @OneToMany
+    @ManyToMany
     private List<Product> product;
-
 
     private String isConfirmed;
     private String name;

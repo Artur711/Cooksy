@@ -95,25 +95,21 @@ public class UserService implements UserDetailsService {
     }
 
     public void addUser(UserDto userDto) {
-        log.info(String.format("Starts save user: %s", userDto.toString()));
         User user = userDtoToUserConverter.convert(userDto);
-        userRepository.save(user);
-    }
-
-    public void addShpListToUser(Id id){
-    userRepository.addUserToShpList(id.getValue());
+        User savedUser = userRepository.save(user);
+        log.info(String.format("Saved user [id: %s]", savedUser.getUserId()));
     }
 
     public void updateUser(Id id, UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         user.setUserId(id.getValue());
-        log.info(String.format("Starts save user: %s", user.toString()));
-        userRepository.save(user);
+        User updatedUser = userRepository.save(user);
+        log.info(String.format("Updated user [id: %s]", updatedUser.getUserId()));
     }
 
     public void removeUser(Id id) {
-        log.info(String.format("Starts delete user by id: %d", id.getValue()));
         userRepository.deleteById(id.getValue());
+        log.info(String.format("Deleted user [id: %d]", id.getValue()));
     }
 
     public UserDto getUserById(Id id) {
@@ -121,7 +117,7 @@ public class UserService implements UserDetailsService {
                 userRepository.findById(id.getValue())
                         .orElseThrow(() -> new UserNotFoundException(id)));
 
-        log.info(String.format("Returned user by id: %d", id.getValue()));
+        log.info(String.format("Returned user [id: %d]", id.getValue()));
         return userDto;
     }
 

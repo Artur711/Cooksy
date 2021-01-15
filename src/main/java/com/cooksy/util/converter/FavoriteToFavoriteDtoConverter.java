@@ -1,6 +1,7 @@
 package com.cooksy.util.converter;
 
 import com.cooksy.dto.FavoriteDto;
+import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.RecipeDto;
 import com.cooksy.dto.UserDto;
 import com.cooksy.model.Favorite;
@@ -13,16 +14,16 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class FavoriteToFavoriteDtoConverter {
 
-    private UserToUserDtoConverter userToUserDtoConverter;
-    private RecipeToRecipeDtoConverter recipeToRecipeDtoConverter;
+    private final UserToUserDtoConverter userToUserDtoConverter;
+    private final RecipeToRecipeDetailsDtoConverter recipeToRecipeDetailsDtoConverter;
 
     public FavoriteDto convert(Favorite favorite){
         UserDto userDto = userToUserDtoConverter.convert(favorite.getUser());
-        RecipeDto recipeDto = recipeToRecipeDtoConverter.convert(favorite.getRecipe());
+        RecipeDetailsDto recipeDetailsDto = recipeToRecipeDetailsDtoConverter.convert(favorite.getRecipe());
 
         return new FavoriteDto(favorite.getFavoriteId(),
                 userDto,
-                recipeDto);
+                recipeDetailsDto);
     }
 
     public List<FavoriteDto> convertAll(List<Favorite> favorites){

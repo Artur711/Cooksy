@@ -1,8 +1,5 @@
 package com.cooksy.service;
 
-import com.cooksy.dto.ProductDto;
-import com.cooksy.model.Grammage;
-import com.cooksy.model.Product;
 import com.cooksy.repository.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,8 +26,8 @@ public class ProductServiceTest {
     @Test
     public void should_return_all_products() {
         //given
-        List<Product> expectedValue = prepareData();
-        when(productRepository.findAll()).thenReturn(expectedValue);
+//        List<Product> expectedValue = prepareData();
+//        when(productRepository.findAll()).thenReturn(expectedValue);
 
         //when
 //        List<ProductDto> allProducts = productService.getAll(); //nullPointer??
@@ -53,12 +46,12 @@ public class ProductServiceTest {
         verify(productRepository, times(1)).deleteById(eq(productId));
     }
 
-    private List<Product> prepareData() {
-        Grammage grammage = new Grammage();
-        grammage.setGmId(1L);
-
-        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, grammage),
-                new Product(2L, "Tomato", 3.25, 2L, 1L, grammage));
-    }
+//    private List<Product> prepareData() {
+//        Grammage grammage = new Grammage();
+//        grammage.setGmId(1L);
+//
+//        return Arrays.asList(new Product(1L, "Pepper", 5.82, 1L, 1L, grammage),
+//                new Product(2L, "Tomato", 3.25, 2L, 1L, grammage));
+//    }
 
 }

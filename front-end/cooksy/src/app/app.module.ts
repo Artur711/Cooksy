@@ -22,6 +22,7 @@ import { FormsModule} from "@angular/forms";
 import { FrontPageComponent } from './front-page/front-page.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HomeComponent } from './home/home.component';
     FrontPageComponent,
     RegisterComponent,
     HomeComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import {Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
-import {Details} from "../model/details";
+import {RecipeDetails} from "../model/recipeDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -29,15 +29,14 @@ export class RecipesService {
     return this.http.get<Recipes>(url).pipe(
       catchError(this.handleError<Recipes>('getRecipesPage'))
     );
-}
-
-  getRecipeDetail(id: string | null): Observable<Details> {
-    const url = `${this.recipesUrl}/recipe-detail/${id}`;
-    return this.http.get<Details>(url).pipe(
-      catchError(this.handleError<Details>(`getRecipeDetail id=${id}`))
-    );
   }
 
+  getRecipeDetail$(id: string | null): Observable<RecipeDetails> {
+    const url = `${this.recipesUrl}/recipe-detail/${id}`;
+    return this.http.get<RecipeDetails>(url).pipe(
+      catchError(this.handleError<RecipeDetails>(`getRecipeDetail id=${id}`))
+    );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
