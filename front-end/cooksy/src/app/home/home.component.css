@@ -6,3 +6,12 @@
 strong {
   font-style: italic;
 }
+
+#listing_pagination /deep/ .ngx-pagination .current {
+  background: rgba(207, 36, 10, 0.75);
+}
+
+.bg-green {
+  background-color: #2E9000;
+  border: 2px solid #1F7A08;
+}

@@ -18,3 +18,19 @@ export interface FavoriteDto {
   user: UserDto;
   recipe: RecipeDetails;
 }
+
+export interface ProductDto {
+  strProductId: string;
+  description: string;
+  regularPrice: number;
+  promoPrice: number;
+  size: string;
+  url: string;
+}
+
+export interface ProductsDto {
+  start: number;
+  limit: number;
+  total: number;
+  products: ProductDto[];
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from "../service/product.service";
+import {ProductDto} from "../model/dto";
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  products: ProductDto[] = [];
+  page = 1;
+  total = 1;
+  limit = 1;
+  private product = 'beef';
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
+  search(product: string): void {
+    this.product = product.replace(' ', '-');
+    if (this.product == '') {
+      this.product = 'beef';
+    }
+    this.page = 1;
+    this.productService
+      .getKrogerProducts$(this.product, this.page)
+      .subscribe(result => {this.products = result.products
+        this.page = result.start
+        this.total = result.total - 4
+        this.limit = result.limit
+      });
   }
 
+  ngOnInit(): void {
+    this.search(this.product);
+  }
+
+  getPage(): void {
+    this.productService.getKrogerProducts$(this.product, this.page)
+      .subscribe(result => {this.products = result.products});
+  }
 }
