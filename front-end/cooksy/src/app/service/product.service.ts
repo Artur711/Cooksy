@@ -18,10 +18,10 @@ export class ProductService {
       .get<Product[]>(this.productUrl);
   }
 
-  getSumOfProducts(products: Product[]): number {
-    let sum = 0;
-    products.forEach(product => sum = sum + product.price)
-    return sum;
-  }
+  // getSumOfProducts(products: Product[]): number {
+  //   let sum = 0;
+  //   products.forEach(product => sum = sum + product.price)
+  //   return sum;
+  // }
 
 }

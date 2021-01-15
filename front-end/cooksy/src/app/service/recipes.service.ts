@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
-import {catchError, mapTo} from "rxjs/operators";
+import {catchError, map, mapTo} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
 import {Details} from "../model/details";
@@ -11,7 +11,7 @@ import {Details} from "../model/details";
 })
 export class RecipesService {
   private recipesUrl = `${environment.apiUrl}/recipes`
-  private apiRecipeUrl = `${environment.apiRecipeUrl}/recipes`
+  private apiRecipeUrl = `${environment.apiRecipeUrl}/shopping-list`
 
 
   constructor(private http: HttpClient) {

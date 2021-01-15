@@ -1,7 +1,9 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.Id;
+import com.cooksy.dto.ProductDto;
 import com.cooksy.dto.RecipeDetailsDto;
+import com.cooksy.dto.ShoppingListDto;
 import com.cooksy.model.Product;
 import com.cooksy.model.ShpList;
 import com.cooksy.model.User;
@@ -15,12 +17,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 @CrossOrigin("http://localhost:4200")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/recipes")
+@RequestMapping("/shopping-list")
 public class ShoppingListController {
 
     private final RecipeService recipeService;
@@ -35,10 +40,13 @@ public class ShoppingListController {
 //        return recipeService.getAll();
 //    }
 
-//    @GetMapping("/{id}")
-//    public RecipeDetailsDto getById(@PathVariable String id) {
-//        return recipeService.getRecipeById((Long.parseLong(id)));
-//    }
+    @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
+    public List<ProductDto> getByUserId(@PathVariable String id) {
+        return  shoppingListService.getAll().stream()
+                .filter(shoppingListDto -> shoppingListDto.getUser().getUserId() == Long.parseLong(id))
+                .flatMap(shoppingListDto -> shoppingListDto.getProducts().stream())
+                .collect(Collectors.toList());
+    }
 
     @PostMapping("/{recipeID}/{userID}")
     public void addRecipeToShoppingList(@PathVariable String recipeID, @PathVariable String userID) {

@@ -17,10 +17,10 @@ public class ShoppingListDtoToShoppingListConverter {
 
     public ShpList convert(ShoppingListDto shoppingListDto) {
         User user = new User();
-        user.setUserId(shoppingListDto.getUserId());
+        user.setUserId(shoppingListDto.getUser().getUserId());
         List<Product> productList = productDtoToProductConverter.convertAll(shoppingListDto.getProducts());
         return new ShpList(
-                shoppingListDto.getShoppingListId(),
+                shoppingListDto.getShpListId(),
                 productList,
                 user,
                 shoppingListDto.getIsConfirmed(),

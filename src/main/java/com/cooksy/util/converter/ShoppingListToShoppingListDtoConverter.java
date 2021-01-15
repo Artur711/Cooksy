@@ -19,7 +19,7 @@ public class ShoppingListToShoppingListDtoConverter {
         List<ProductDto> products = productToProductDtoConverter.convertAll(shoppingList.getProducts());
         return new ShoppingListDto(shoppingList.getShpListId(),
                 shoppingList.getIsConfirmed(),
-                shoppingList.getUser().getUserId(),
+                shoppingList.getUser(),
                 shoppingList.getName(),
                 shoppingList.getDate(),
                 products);
