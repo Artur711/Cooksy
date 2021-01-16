@@ -1,7 +1,6 @@
 package com.cooksy.client;
 import com.cooksy.configuration.ApplicationProperties;
 import com.cooksy.model.api.KrogerToken;
-import com.cooksy.util.enums.ApiURL;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpHeaders;
