@@ -6,7 +6,7 @@ import {RecipeComponent} from "./recipe/recipe.component";
 import {RecipeDetailsComponent} from "./recipe-details/recipe-details.component";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
+// import {RegisterComponent} from "./register/register.component";
 import {AuthGuard} from "./guards/auth.guard";
 // import {AuthGuard} from "./guards/auth.guard";
 // import {CustomersGuard} from "./guards/customers.guard";
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'shopping-lists', component: ShoppingListComponent},
   { path: 'products', component: ProductComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
+  // { path: 'register', component: RegisterComponent},
   { path: 'recipe', component: RecipeComponent}
 ];
 

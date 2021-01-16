@@ -20,7 +20,7 @@ import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FrontPageComponent } from './front-page/front-page.component';
-import { RegisterComponent } from './register/register.component';
+// import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
@@ -43,7 +43,7 @@ import {AuthGuard} from "./guards/auth.guard";
     EmailComponent,
     LoginComponent,
     FrontPageComponent,
-    RegisterComponent
+    // RegisterComponent
   ],
   imports: [
     BrowserModule,

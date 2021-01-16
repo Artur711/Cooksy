@@ -1,6 +1,6 @@
 export class ILogin {
   // @ts-ignore
-  userid: string;
+  username: string;
   // @ts-ignore
   password: string;
 }
