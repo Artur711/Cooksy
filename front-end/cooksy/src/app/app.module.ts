@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// @ts-ignore
 import { NgxPaginationModule} from "ngx-pagination";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,11 +19,14 @@ import { BackArrowComponent } from './back-arrow/back-arrow.component';
 import { ToPdfComponent } from './to-pdf/to-pdf.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FrontPageComponent } from './front-page/front-page.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -42,7 +46,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     FrontPageComponent,
     RegisterComponent,
     HomeComponent,
-    FavoritesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,10 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserAnimationsModule,
     NgbModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

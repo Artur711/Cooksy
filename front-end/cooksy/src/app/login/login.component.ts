@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -9,12 +9,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // emailValue = '';
-  // passwordValue = '';
-  // placeholderEmail = 'Email';
-  // placeholderPassword = 'Password';
 
-  loginForm: FormGroup;
+ loginForm = this.formBuilder.group({
+    id: [''],
+    type: ['']
+ });
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {}
 
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/recipe']);
+          this.router.navigate(['/home']);
         }
       })
   }

@@ -10,10 +10,20 @@ import {AuthService} from "../services/auth.service";
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+  registerForm = this.formBuilder.group({
+    id: [''],
+    type: [''],
+    username: [''],
+    password: [''],
+    firstName: [''],
+    lastName: [''],
+    email: [''],
+    photoUrl: ['']
+  });
 
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -46,7 +56,7 @@ export class RegisterComponent implements OnInit {
     )
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/register']);
+          this.router.navigate(['/login']);
         }
       })
   }
