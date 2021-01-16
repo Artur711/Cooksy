@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-around flex-wrap px-3">
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
+  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
     <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="meatCollapsed()"
         [attr.aria-expanded]="!meatIsCollapsed" aria-controls="dropdownMeat">Meat</h3>
 
@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
+  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
     <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="vegetablesCollapsed()"
         [attr.aria-expanded]="!vegetablesIsCollapsed" aria-controls="dropdownVegetables">Vegetables</h3>
 
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
+  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
     <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="additionalCollapsed()"
          [attr.aria-expanded]="!additionalIsCollapsed" aria-controls="dropdownAdditional">Additional</h3>
 
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
+  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
     <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="promotionCollapsed()"
          [attr.aria-expanded]="!promotionIsCollapsed" aria-controls="dropdownPromotion">Promotion</h3>
 
@@ -133,5 +133,21 @@
         <label class="custom-control-label" for="additional_promotion">Additional promotion</label>
       </div>
     </div>
+  </div>
+
+  <div class="dropdown col-6 col-xl-1">
+    <img class="dropdown-toggle bg-style-2" src="assets/image/Icon/search.png" (click)="searchCollapsed()"
+         [attr.aria-expanded]="!searchIsCollapsed" aria-controls="dropdownSearch" alt="Search">
+
+    <div class="dropdown-menu dropdown-menu-2 bg-style-3 px-2" id="dropdownSearch" [ngbCollapse]="searchIsCollapsed">
+        <h2 class="mt-4"><label class="mr-2" for="search-box">Ingredient</label>
+          <input class="col-12 mb-3" #searchBox id="search-box"/>
+          <button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button>
+          <button *ngIf="searchBox.value != ''" class="button" (click)="searchBox.value = ''">
+            <img class="bg-style" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
+          </button>
+        </h2>
+    </div>
+
   </div>
 </div>

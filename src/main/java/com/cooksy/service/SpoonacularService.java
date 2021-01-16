@@ -28,7 +28,7 @@ public class SpoonacularService {
     public RecipesDto getRecipes(String page) {
         SpCuRecipes recipes = (page == null) ?
                 spoonacularClient.getObject(SpCuRecipes.class, ApiURL.RECIPES.getUrl()) :
-                spoonacularClient.getObject(SpCuRecipes.class, getRecipesPage(page));
+                spoonacularClient.getObject(SpCuRecipes.class, getRecipesPage(page, ApiURL.RECIPES.getUrl()));
 
         return recipesConverter.convert(recipes);
     }
@@ -38,14 +38,16 @@ public class SpoonacularService {
         return recipesConverter.convert(recipes);
     }
 
-    public RecipesDto getRecipesIngredient(String ingredient) {
+    public RecipesDto getRecipesIngredient(String ingredient, String page) {
         String url = String.format(ApiURL.INGREDIENT.getUrl(), "%s", ingredient);
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, url);
+        SpCuRecipes recipes = (page == null || page.equals("") ?
+                spoonacularClient.getObject(SpCuRecipes.class, url) :
+                spoonacularClient.getObject(SpCuRecipes.class, getRecipesPage(page, url)));
         return recipesConverter.convert(recipes);
     }
 
-    private String getRecipesPage(String page) {
+    private String getRecipesPage(String page, String url) {
         int valuePage = Integer.parseInt(page) - 1;
-        return ApiURL.RECIPES.getUrl() + String.format(ApiURL.PAGE.getUrl(), valuePage * 10);
+        return url + String.format(ApiURL.PAGE.getUrl(), valuePage * 10);
     }
 }

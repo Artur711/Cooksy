@@ -34,7 +34,8 @@ public class SpoonacularController {
     }
 
     @GetMapping(value = "/{ingredient}", produces = APPLICATION_JSON_VALUE)
-    public RecipesDto getRecipesIngredient(@PathVariable("ingredient") String ingredient) {
-        return service.getRecipesIngredient(ingredient);
+    public RecipesDto getRecipesIngredient(@PathVariable("ingredient") String ingredient,
+                                           @RequestParam(required = false) String page) {
+        return service.getRecipesIngredient(ingredient, page);
     }
 }

@@ -24,8 +24,11 @@ export class RecipesService {
       );
   }
 
-  getRecipesPage(page: number): Observable<Recipes> {
-    const url = `${this.recipesUrl}?page=${page}`;
+  getRecipesPage$(page: number, ingredient: string): Observable<Recipes> {
+    const url = ingredient == '' || ingredient == null ?
+      `${this.recipesUrl}?page=${page}` :
+      `${this.recipesUrl}/${ingredient}?page=${page}`;
+
     return this.http.get<Recipes>(url).pipe(
       catchError(this.handleError<Recipes>('getRecipesPage'))
     );

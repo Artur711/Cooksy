@@ -18,3 +18,19 @@
 .dropdown {
   cursor: pointer;
 }
+
+.bg-style-2 {
+  background: rgba(207, 36, 10, 0.55);
+  border: 2px solid #A10505;
+  border-radius: 12px;
+}
+
+.bg-style-3 {
+  background-color: #4E2F2F;
+  color: white;
+  border: 3px solid #A20505;
+}
+
+.dropdown-menu {
+  top: 80%;
+}

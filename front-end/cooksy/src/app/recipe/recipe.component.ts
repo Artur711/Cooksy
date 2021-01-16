@@ -9,6 +9,7 @@ import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
+  ingredient = '';
   recipes: Recipe[] = [];
   pages = 1;
   page = 1;
@@ -16,8 +17,9 @@ export class RecipeComponent implements OnInit {
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
+    console.log(this.ingredient);
     this.recipeService
-      .getRecipesPage(this.page)
+      .getRecipesPage$(this.page, this.ingredient)
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -28,7 +30,9 @@ export class RecipeComponent implements OnInit {
   }
 
   getPage(): void {
-    this.recipeService.getRecipesPage(this.page)
-      .subscribe(recipes => {this.recipes = recipes.recipes});
+    this.recipeService.getRecipesPage$(this.page, this.ingredient)
+      .subscribe(recipes => {this.recipes = recipes.recipes
+      this.pages = recipes.numberOfPages
+      this.page = recipes.page});
   }
 }

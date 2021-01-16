@@ -11,6 +11,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-height: 8vh;
 }
 
+.button {
+  background: none;
+  border: none;
+}
+
 @media screen and (max-width: 1581px) {
   .item {
     width: 9vw;
