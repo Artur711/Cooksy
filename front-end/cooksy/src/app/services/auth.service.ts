@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(user: {id: number, type: number, username: string, password: string, firstName: string, lastName: string, email: string, photoUrl: string}): Observable<boolean> {
-    return this.http.post<any>(`${environment.apiUrl}/register`, user)
+    return this.http.post<any>(`${environment.apiUrlHost}/register`, user)
       .pipe(
       mapTo(true),
           catchError(error => {
@@ -30,7 +30,7 @@ export class AuthService {
     console.log(user.username);
     console.log(user.password);
 
-    return this.http.post<any>(`${environment.apiUrl}/login`, user, {withCredentials: true})
+    return this.http.post<any>(`${environment.apiUrlHost}/login`, user, {withCredentials: true})
       .pipe(
         tap( (data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
         mapTo(true),
@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<any>(`${environment.apiUrl}/logout`, {}).pipe(
+    return this.http.post<any>(`${environment.apiUrlHost}/logout`, {}).pipe(
       tap(() => this.doLogoutUser()),
       mapTo(true),
       catchError(error => {
