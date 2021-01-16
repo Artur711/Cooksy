@@ -21,16 +21,16 @@ export class RecipeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getRecipe();
+    // this.getRecipe();
   }
 
-  getRecipe(): void {
-    //const id = +this.route.snapshot.paramMap.get('id');
-
-    const id = 716426;
-    this.recipesService.getRecipeDetail(id)
-      .subscribe(details => this.details = details);
-  }
+  // getRecipe(): void {
+  //   //const id = +this.route.snapshot.paramMap.get('id');
+  //
+  //   const id = 716426;
+  //   this.recipesService.getRecipeDetail(id)
+  //     .subscribe(details => this.details = details);
+  // }
 
   goBack(): void {
     this.location.back();

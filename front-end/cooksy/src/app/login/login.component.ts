@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {ILogin} from "../models/ILogin";
+
 
 @Component({
   selector: 'app-login',
@@ -9,34 +11,45 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // emailValue = '';
-  // passwordValue = '';
-  // placeholderEmail = 'Email';
-  // placeholderPassword = 'Password';
 
+  model: ILogin = { userid: "admin", password: "admin123"};
   loginForm: FormGroup;
+  message: string;
+  returnUrl: string;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {}
 
-  ngOnInit() {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {
+    this.message = "";
+    this.returnUrl = "";
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: ['']
     });
   }
 
-  get form() {return this.loginForm.controls;}
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    this.returnUrl = "/home";
+    this.authService.logout();
+  }
 
   login() {
-    this.authService.login(
-      {
-        username: this.form.username.value,
-        password: this.form.password.value
-      })
-      .subscribe(success => {
-        if (success) {
-          this.router.navigate(['/recipe']);
-        }
-      })
+    if (this.loginForm.invalid) {
+      return;
+    }else{
+      if(this.form.userid.value == this.model.userid && this.form.password.value == this.model.password){
+        console.log("Login successful!");
+        localStorage.setItem('isLoggedIn', "true");
+        localStorage.setItem('token', this.form.userid.value);
+        this.router.navigate([this.returnUrl]);
+      }else{
+        this.message = "Please check your userid and password";
+      }
+    }
   }
+
+  get form() {return this.loginForm.controls;}
 }

@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

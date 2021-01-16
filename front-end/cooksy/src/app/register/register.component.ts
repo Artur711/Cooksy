@@ -10,8 +10,21 @@ import {AuthService} from "../services/auth.service";
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+  registerForm = this.formBuilder.group({
+     id: [''],
+     type: [''],
+     username: [''],
+     password: [''],
+     firstName: [''],
+     lastName: [''],
+     email: [''],
+     photoUrl: ['']
+  });
 
+  loginForm = this.formBuilder.group({
+    username: [''],
+    password: ['']
+  });
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
   }

@@ -1,5 +1,4 @@
 export interface LoginData {
-  userId: number;
-  username: string;
-  jwtToken: string;
+  userid: string;
+  password: string;
 }
