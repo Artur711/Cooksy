@@ -4,9 +4,14 @@
     In our application we use external API to downloading and displaying recipes.
   </h3>
 </div>
-<h2 class="mt-4"><label class="mr-2" for="search-box">Product Search</label>
-<input #searchBox id="search-box"/>
-<button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button></h2>
+<div class="d-flex justify-content-center">
+  <h2 class="mt-4"><label class="mr-2" for="search-box">Product Search</label>
+    <input #searchBox id="search-box"/>
+    <button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button></h2>
+  <button *ngIf="searchBox.value != ''" class="button" (click)="searchBox.value = ''">
+    <img class="bg-danger" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
+  </button>
+</div>
 
 <div class="col-1-4 d-flex important! justify-content-center flex-wrap">
   <a *ngFor="let product of products | paginate: { id: 'listing_pagination',

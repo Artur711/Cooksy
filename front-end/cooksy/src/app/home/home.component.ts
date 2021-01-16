@@ -18,6 +18,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
+  ngOnInit(): void {
+    this.search(this.product);
+  }
+
   show(url: string) {
     this.showModal = true;
     this.url = url;
@@ -40,10 +44,6 @@ export class HomeComponent implements OnInit {
         this.total = result.total - 4
         this.limit = result.limit
       });
-  }
-
-  ngOnInit(): void {
-    this.search(this.product);
   }
 
   getPage(): void {
