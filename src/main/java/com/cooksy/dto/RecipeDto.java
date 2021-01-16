@@ -1,35 +1,15 @@
 package com.cooksy.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class RecipeDto {
 
-    private Long recipeId;
+    private Long id;
     private String name;
-    private List<RecipeProductDto> recipeProducts;
-    private String description;
-    private String photoUrl;
-    private String author;
-    private Double sumPrices;
-
-    public RecipeDto(Long recipeId, String name, List<RecipeProductDto> recipeProducts, String description, String photoUrl, String author) {
-        this.recipeId = recipeId;
-        this.name = name;
-        this.recipeProducts = recipeProducts;
-        this.description = description;
-        this.photoUrl = photoUrl;
-        this.author = author;
-        this.sumPrices = getSumProductsPrices(recipeProducts);
-    }
-
-    private Double getSumProductsPrices(List<RecipeProductDto> recipeProducts) {
-        return recipeProducts.stream()
-                .mapToDouble(recipeProduct -> recipeProduct.getQuantity() * recipeProduct.getProduct().getPrice())
-                .sum();
-    }
+    private String imageUrl;
 }

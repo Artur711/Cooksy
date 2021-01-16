@@ -1,32 +1,31 @@
 <div class="navbar navbar-expand-lg col= z-1">
   <div class="container-fluid">
-    <button class="navbar-toggler navbar-dark bg-style p-2 mr-auto" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbar" aria-controls="navbar"
-            aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-dark bg-style p-2 mr-auto" type="button" aria-label="Toggle navigation"
+            (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse bg-nav" id="navbar">
+    <div class="collapse navbar-collapse bg-nav" id="navbar" [ngbCollapse]="isCollapsed" >
       <div class="navbar-nav">
         <nav class="text-lg-start col d-block">
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="/products"><strong class="text-white">HOME</strong></a>
+            <a routerLink="#" (click)="home()"><strong class="text-white">HOME</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="/recipes"><strong class="text-white">ALL RECIPES</strong></a>
+            <a routerLink="#" (click)="recipes()"><strong class="text-white">ALL RECIPES</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="/shopping-lists"><strong class="text-white">SHOPPING LISTS</strong></a>
+            <a routerLink="#" (click)="shopping()"><strong class="text-white">SHOPPING LISTS</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="/products"><strong class="text-white">FAVORITE RECIPES</strong></a>
+            <a routerLink="#" (click)="favorite()"><strong class="text-white">FAVORITE RECIPES</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="/products"><strong class="text-white">ACCOUNT SETTING</strong></a>
+            <a routerLink="#" (click)="setting()"><strong class="text-white">ACCOUNT SETTING</strong></a>
           </div>
           <br>
         </nav>

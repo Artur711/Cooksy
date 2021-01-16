@@ -4,19 +4,21 @@ import com.cooksy.dto.FavoriteDto;
 import com.cooksy.model.Favorite;
 import com.cooksy.model.Recipe;
 import com.cooksy.model.User;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class FavoriteDtoToFavoriteConverter {
 
-    public Favorite convert(FavoriteDto favoriteDto){
-        User user = new User();
-        user.setUserId(favoriteDto.getUser().getUserId());
-        Recipe recipe = new Recipe();
-        recipe.setRecipeId(favoriteDto.getRecipe().getRecipeId());
+    private final UserDtoToUserConverter userDtoToUserConverter;
+    private final RecipeDetailsDtoToRecipeConverter recipeDetailsDtoToRecipeConverter;
 
+    public Favorite convert(FavoriteDto favoriteDto){
+        User user = userDtoToUserConverter.convert(favoriteDto.getUser());
+        Recipe recipe = recipeDetailsDtoToRecipeConverter.convert(favoriteDto.getRecipe());
         return new Favorite(favoriteDto.getFavoriteId(), user, recipe);
     }
 

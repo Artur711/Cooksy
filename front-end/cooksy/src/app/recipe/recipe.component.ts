@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from "../recipe";
-import {RecipesService} from "../recipes.service";
+import {RecipesService} from "../service/recipes.service";
+import {Recipe} from "../model/recipe";
+import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe',
@@ -9,13 +10,25 @@ import {RecipesService} from "../recipes.service";
 })
 export class RecipeComponent implements OnInit {
   recipes: Recipe[] = [];
-  title = 'Dom'
+  pages = 1;
+  page = 1;
 
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
     this.recipeService
-      .getRecipes()
-      .subscribe(recipes => this.recipes = recipes.recipes);
+      .getRecipesPage(this.page)
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+      )
+      .subscribe(recipes => {this.recipes = recipes.recipes
+      this.pages = recipes.numberOfPages
+      this.page = recipes.page});
+  }
+
+  getPage(): void {
+    this.recipeService.getRecipesPage(this.page)
+      .subscribe(recipes => {this.recipes = recipes.recipes});
   }
 }

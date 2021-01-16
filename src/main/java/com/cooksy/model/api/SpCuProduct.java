@@ -2,9 +2,14 @@ package com.cooksy.model.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "spCuProduct")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter

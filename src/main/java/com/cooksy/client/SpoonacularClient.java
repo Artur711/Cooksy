@@ -26,10 +26,9 @@ public class SpoonacularClient {
     }
 
     public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) {
-
         try {
             HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKeys().get(0))))
+                    .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
                     .GET()
                     .build();
             HttpResponse<String> httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());

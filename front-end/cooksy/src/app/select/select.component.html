@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-around flex-wrap px-3">
   <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-orange dropdown-toggle p-1 p-md-2 m-1 m-md-3"
-        id="dropdownMeat" data-bs-toggle="dropdown" role="button" aria-expanded="false">Meat</h3>
+    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="meatCollapsed()"
+        [attr.aria-expanded]="!meatIsCollapsed" aria-controls="dropdownMeat">Meat</h3>
 
-    <div class="dropdown-menu bg-style" aria-labelledby="dropdownMeat">
+    <div class="dropdown-menu bg-style" id="dropdownMeat" [ngbCollapse]="meatIsCollapsed">
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input mx-1" id="meat_all">
         <label class="custom-control-label" for="meat_all">All</label>
@@ -40,10 +40,10 @@
   </div>
 
   <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
-        id="dropdownVegetables" data-bs-toggle="dropdown" role="button" aria-expanded="false">Vegetables</h3>
+    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="vegetablesCollapsed()"
+        [attr.aria-expanded]="!vegetablesIsCollapsed" aria-controls="dropdownVegetables">Vegetables</h3>
 
-    <div class="dropdown-menu bg-style" aria-labelledby="dropdownVegetables">
+    <div class="dropdown-menu bg-style" id="dropdownVegetables" [ngbCollapse]="vegetablesIsCollapsed">
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input mx-1" id="vegetables_all">
         <label class="custom-control-label" for="vegetables_all">All</label>
@@ -76,10 +76,10 @@
   </div>
 
   <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-orange p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
-        id="dropdownAdditional" data-bs-toggle="dropdown" role="button" aria-expanded="false">Additional</h3>
+    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="additionalCollapsed()"
+         [attr.aria-expanded]="!additionalIsCollapsed" aria-controls="dropdownAdditional">Additional</h3>
 
-    <div class="dropdown-menu bg-style" aria-labelledby="dropdownAdditional">
+    <div class="dropdown-menu bg-style" id="dropdownAdditional" [ngbCollapse]="additionalIsCollapsed">
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input mx-1" id="additional_all">
         <label class="custom-control-label" for="additional_all">All</label>
@@ -112,10 +112,10 @@
   </div>
 
   <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 m-md-3 dropdown-toggle"
-        id="dropdownPromotion" data-bs-toggle="dropdown" role="button" aria-expanded="false">Promotion</h3>
+    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="promotionCollapsed()"
+         [attr.aria-expanded]="!promotionIsCollapsed" aria-controls="dropdownPromotion">Promotion</h3>
 
-    <div class="dropdown-menu bg-style" aria-labelledby="dropdownPromotion">
+    <div class="dropdown-menu bg-style" id="dropdownPromotion" [ngbCollapse]="promotionIsCollapsed">
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input mx-1" id="promotion_all">
         <label class="custom-control-label" for="promotion_all">All</label>
