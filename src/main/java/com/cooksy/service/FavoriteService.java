@@ -30,15 +30,6 @@ public class FavoriteService {
     private final FavoriteToFavoriteDtoConverter favoriteToFavoriteDtoConverter;
     private final UserService userService;
     private final UserDtoToUserConverter userDtoToUserConverter;
-    private final RecipeRepository recipeRepository;
-    private final ProductRepository productRepository;
-    private final ProductDtoToProductConverter productDtoToProductConverter;
-
-    public List<FavoriteDto> getAll() {
-        List<FavoriteDto> favoritesDto = favoriteToFavoriteDtoConverter.convertAll((List<Favorite>) favoriteRepository.findAll());
-        log.info(String.format("Returned %d favorites", favoritesDto.size()));
-        return favoritesDto;
-    }
 
     public List<FavoriteDto> getFavoritesByUser(Id id) {
         User user = userDtoToUserConverter.convert(userService.getUserById(id));
@@ -52,8 +43,6 @@ public class FavoriteService {
         Optional<Favorite> maybeFavorite = favoriteRepository.findByUserAndAndRecipe(favorite.getUser(), favorite.getRecipe());
 
         if (maybeFavorite.isEmpty()) {
-//            productRepository.saveAll(favorite.getRecipe().getProducts());
-//            recipeRepository.save(favorite.getRecipe());
             favoriteRepository.save(favorite);
             log.info(String.format("Added favorite [id: %d, userId: %d, recipeId: %d]", favoriteDto.getFavoriteId(),
                     favoriteDto.getUser().getUserId(), favoriteDto.getRecipe().getRecipeId()));
@@ -63,10 +52,8 @@ public class FavoriteService {
     }
 
     public void deleteFavorite(Id id) {
-//        FavoriteDto favoriteDto = getFavoriteById(id);
-//        productRepository.deleteAll(productDtoToProductConverter.convertAll(favoriteDto.getRecipe().getProducts()));
-
-//        Favorite convert = favoriteDtoToFavoriteConverter.convert(getFavoriteByRecipeId(id));
+        FavoriteDto favoriteByRecipeId = getFavoriteByRecipeId(id);
+//        List<Integer> integers = favoriteRepository.deleteByFavoriteId(favoriteByRecipeId.getFavoriteId());
         favoriteRepository.deleteById(id.getValue());
         log.info(String.format("Deleted favorite [id: %d]", id.getValue()));
     }
@@ -74,6 +61,7 @@ public class FavoriteService {
     public FavoriteDto getFavoriteBuUserAndRecipe(UserDto userDto, RecipeDetailsDto recipeDto) {
         Favorite favorite = favoriteDtoToFavoriteConverter.convert(new FavoriteDto(0L, userDto, recipeDto));
         Optional<Favorite> maybeFavorite = favoriteRepository.findByUserAndAndRecipe(favorite.getUser(), favorite.getRecipe());
+        log.info(String.format("Returned favorite by user [id: %d] and recipe [id: %d]", userDto.getUserId(), recipeDto.getRecipeId()));
         return (maybeFavorite.isPresent()) ? favoriteToFavoriteDtoConverter.convert(maybeFavorite.get()) : new FavoriteDto();
     }
 

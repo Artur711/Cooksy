@@ -20,7 +20,7 @@ export class FavoritesService {
 
 
   isFavorite$(recipeId: string | null): Observable<FavoriteDto> {
-    return this.http.get<FavoriteDto>(`${this.favoriteUrl}/${recipeId}`);
+    return this.http.get<FavoriteDto>(`${this.favoriteUrl}/recipe/${recipeId}`);
   }
 
   addRecipeToFavorite(recipe: RecipeDetails) {
@@ -41,4 +41,3 @@ export class FavoritesService {
       }));
   }
 }
-

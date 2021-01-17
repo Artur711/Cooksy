@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,7 +19,6 @@ public class RecipeService {
     private final RecipeDetailsDtoToRecipeConverter recipeDetailsDtoToRecipeConverter;
     private final RecipeToRecipeDetailsDtoConverter recipeToRecipeDetailsDtoConverter;
     private final RecipeRepository recipeRepository;
-    //private ProductService productService;
 
     public List<RecipeDetailsDto> getAll() {
         return recipeToRecipeDetailsDtoConverter.convertAll((List<Recipe>) recipeRepository.findAll());
@@ -33,9 +33,9 @@ public class RecipeService {
     }
 
     public RecipeDetailsDto getRecipeById(Long recipeId) {
-
-        if (recipeRepository.findById(recipeId).isPresent()) {
-            return recipeToRecipeDetailsDtoConverter.convert(recipeRepository.findById(recipeId).get());
+        Optional<Recipe> recipeById = recipeRepository.findById(recipeId);
+        if (recipeById.isPresent()) {
+            return recipeToRecipeDetailsDtoConverter.convert(recipeById.get());
         }
         return new RecipeDetailsDto();
     }

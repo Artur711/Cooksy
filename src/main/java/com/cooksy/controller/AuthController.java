@@ -1,6 +1,7 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.CredentialsDto;
+import com.cooksy.dto.Id;
 import com.cooksy.dto.UserDto;
 import com.cooksy.service.UserService;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -29,8 +32,9 @@ public class AuthController {
 
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    public void login (@RequestBody CredentialsDto credentialsDto) {
+    public void login (@RequestBody CredentialsDto credentialsDto, HttpSession httpSession) {
         Authentication authentication = userService.login(credentialsDto);
+        httpSession.setAttribute("userID", Id.idFromLong(userService.getUserByNick(credentialsDto.getNick()).getUserId()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

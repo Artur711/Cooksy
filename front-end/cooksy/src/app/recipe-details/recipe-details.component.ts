@@ -11,6 +11,7 @@ import {FavoritesService} from "../service/favorites.service";
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
+  private favoriteId = 0;
   recipeId: string = '';
   isFavorite = false;
   details$!: RecipeDetails;
@@ -42,7 +43,8 @@ export class RecipeDetailsComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.favoritesService.isFavorite$(id)
       .subscribe(favorite => {
-        this.isFavorite = !!favorite.favoriteId;
+        this.isFavorite = favorite.favoriteId != null;
+        this.favoriteId = favorite.favoriteId;
       });
   }
 
@@ -53,6 +55,7 @@ export class RecipeDetailsComponent implements OnInit {
     else {
       this.addRecipeToFavorite();
     }
+    this.checkIfFavorite();
   }
 
   private addRecipeToFavorite(): void {
@@ -66,13 +69,13 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   private removeRecipeFromFavorite():void {
-    this.favoritesService.removeRecipeFromFavorite(this.details$.recipeId)
+    this.favoritesService.removeRecipeFromFavorite(this.favoriteId)
       .subscribe(success => {
-      if (success) {
-        console.log('Success');
-      }
-      })
-    this.isFavorite = false;
+        if (success) {
+          console.log('Success');
+          this.isFavorite = false;
+        }
+      });
   }
 
   // we need to change parameter to global variable at the end

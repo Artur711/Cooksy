@@ -94,6 +94,12 @@ public class UserService implements UserDetailsService {
         return usersDto;
     }
 
+    public UserDto getUserByNick(String userName) {
+        Optional<User> userByNick = userRepository.findByName(userName);
+        log.info(String.format("Found user [nick: %s]", userName));
+        return userByNick.isPresent() ? userToUserDtoConverter.convert(userByNick.get()) : new UserDto();
+    }
+
     public void addUser(UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         User savedUser = userRepository.save(user);
@@ -123,12 +129,12 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByNick(userName)
+        return userRepository.findByName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with nick %s cannot be found.", userName)));
     }
 
     private void failIfUserAlreadyRegistered(String userName) {
-        Optional<User> maybeUser = userRepository.findByNick(userName);
+        Optional<User> maybeUser = userRepository.findByName(userName);
         if (maybeUser.isPresent()) {
             throw new ValidationException("User already exist: " + maybeUser.get().getFirstName());
         }

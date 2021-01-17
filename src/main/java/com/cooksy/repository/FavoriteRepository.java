@@ -16,5 +16,9 @@ public interface FavoriteRepository extends CrudRepository<Favorite, Long> {
     List<Favorite> findByUser(@Param("user") User user);
 
     Optional<Favorite> findByUserAndAndRecipe(User user, Recipe recipe);
+
+//    @Modifying
+//    @Query("DELETE FROM Favorite f where f.favoriteId = :id")
+//    List<Integer> deleteByFavoriteId(@Param("id") Long id);
 }
 

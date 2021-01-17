@@ -14,6 +14,10 @@ public class Id {
         return new Id(parseLong(value));
     }
 
+    public static Id idFromLong(Long value) {
+        return new Id(value);
+    }
+
     public Long getValue() {
         return value;
     }
