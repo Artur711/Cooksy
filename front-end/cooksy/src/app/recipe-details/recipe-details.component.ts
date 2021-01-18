@@ -51,19 +51,16 @@ export class RecipeDetailsComponent implements OnInit {
   mark(): void {
     if (this.isFavorite) {
       this.removeRecipeFromFavorite();
-    }
-    else {
+    } else {
       this.addRecipeToFavorite();
     }
-    this.checkIfFavorite();
   }
 
   private addRecipeToFavorite(): void {
     this.favoritesService.addRecipeToFavorite(this.details$)
       .subscribe(success => {
         if (success) {
-          console.log('Success');
-          this.isFavorite = true;
+          this.checkIfFavorite();
         }
       });
   }
@@ -72,8 +69,7 @@ export class RecipeDetailsComponent implements OnInit {
     this.favoritesService.removeRecipeFromFavorite(this.favoriteId)
       .subscribe(success => {
         if (success) {
-          console.log('Success');
-          this.isFavorite = false;
+          this.checkIfFavorite();
         }
       });
   }

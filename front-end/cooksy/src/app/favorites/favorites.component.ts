@@ -8,7 +8,7 @@ import {FavoriteDto} from "../model/dto";
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  favorites: FavoriteDto[] | undefined;
+  favorites: FavoriteDto[] = [];
   totalRecords = 1;
   page = 1;
 
