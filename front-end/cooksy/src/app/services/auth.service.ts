@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 })
 export class AuthService {
 
-  // private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?: string;
 
 
@@ -33,7 +33,7 @@ export class AuthService {
 
     return  this.http.post<any>(`${environment.apiUrlHost}/login`, user, { withCredentials: true})
       .pipe(
-        tap(() => this.doLoginUser()),
+        tap((data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
         mapTo(true),
         catchError(error => {
           alert(error.error + 'login error');
@@ -52,54 +52,29 @@ export class AuthService {
     }));
   }
 
-  isLoggedIn(): boolean {
-    if (localStorage.getItem('isLoggedIn') == "true") {
-      return true;
-    }else{
-      return false;
-    }
+  isLoggedIn() {
+    return !!this.getJwtToken();
   }
 
-
-  private doLoginUser() {
-    return true;
+  getJwtToken() {
+    return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private doLogoutUser(){
-    console.log("Logout");
-    localStorage.setItem('isLoggedIn', "false");
-    localStorage.removeItem('token');
+  private doLoginUser(username: string, token: string) {
+    this.loggedUser = username;
+    this.storeToken(token);
   }
 
-    private storeToken() {
-      localStorage.setItem('isLoggedIn', 'true');
-      // localStorage.setItem('token', username);
+  private doLogoutUser() {
+    this.loggedUser = 'null';
+    this.removeToken();
   }
 
-//   isLoggedIn() {
-//     return !!this.getJwtToken();
-//   }
-//
-//   getJwtToken() {
-//     return localStorage.getItem(this.JWT_TOKEN);
-//   }
-//
-//   private doLoginUser(username: string, token: string) {
-//     this.loggedUser = username;
-//     this.storeToken(token);
-//   }
-//
-//   private doLogoutUser() {
-//     this.loggedUser = null;
-//     this.removeToken();
-//   }
-//
-//   private storeToken(token: string) {
-//     localStorage.setItem(this.JWT_TOKEN, token);
-//   }
-//
-//   private removeToken() {
-//     localStorage.removeItem(this.JWT_TOKEN);
-//   }
-// }
+  private storeToken(token: string) {
+    localStorage.setItem(this.JWT_TOKEN, token);
+  }
+
+  private removeToken() {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
 }
