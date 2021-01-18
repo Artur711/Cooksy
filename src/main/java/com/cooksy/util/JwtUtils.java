@@ -15,14 +15,13 @@ public class JwtUtils {
 
     private static final long JWT_EXPIRATION_MS = 3_600_000;
     private static final String BEARER_SCHEMA_NAME = "Bearer";
-    private static final String JWT_SECRET = "Cooksy2019"; // bazowo nie ma być trzymany w githubie
+    private static final String JWT_SECRET = "Cooksy2020";
 
     public String generateJwtToken(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
-                .setSubject(user.getUserId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(new Date().toInstant().plusMillis(JWT_EXPIRATION_MS)))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
@@ -44,13 +43,4 @@ public class JwtUtils {
                 .getBody()
                 .getSubject();
     }
-
-    // tu trzeba uważać jak coś pójdzie nie tak to od razu rzuci exception, jak zadziała to zwróci true
-//    public boolean validateJwtToken(String token) {
-//        Jwts.parser()
-//                .setSigningKey(JWT_SECRET)
-//                .parseClaimsJws(token);
-//        return true;
-//    }
-
 }
