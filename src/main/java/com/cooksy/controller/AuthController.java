@@ -7,10 +7,7 @@ import com.cooksy.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +15,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "http://localhost:4200",allowCredentials="true")
 @RestController
 @AllArgsConstructor
 public class AuthController {
@@ -30,11 +28,18 @@ public class AuthController {
         userService.register(userDto);
     }
 
+
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
     public void login (@RequestBody CredentialsDto credentialsDto, HttpSession httpSession) {
         Authentication authentication = userService.login(credentialsDto);
         httpSession.setAttribute("userID", Id.idFromLong(userService.getUserByNick(credentialsDto.getNick()).getUserId()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        System.out.println("Post działa");
+        System.out.println(authentication.getDetails());
+        System.out.println(authentication.isAuthenticated());
+
+
     }
 }
