@@ -4,6 +4,7 @@ import com.cooksy.dto.CredentialsDto;
 import com.cooksy.dto.UserDto;
 import com.cooksy.model.JwtResponse;
 import com.cooksy.service.UserService;
+import com.cooksy.util.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class AuthController {
 
     private final UserService userService;
+    private final JwtUtils jwtUtils;
 
     @PostMapping(value = "/register", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
@@ -32,9 +34,7 @@ public class AuthController {
     public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
         Authentication authentication = userService.login(credentialsDto);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-//        System.out.println("Post działa");
-//        System.out.println(authentication.isAuthenticated());
-//        System.out.println();
-        return JwtResponse();
+
+        return new JwtResponse(jwtUtils.generateJwtToken(authentication));
     }
 }
