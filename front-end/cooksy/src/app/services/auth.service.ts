@@ -31,9 +31,9 @@ export class AuthService {
     console.log(user.username + "login() test");
     console.log(user.password + "login() test");
 
-    return  this.http.post<any>(`${environment.apiUrlHost}/login`, user, { withCredentials: true})
+    return  this.http.post<any>(`${environment.apiUrlHost}/login`, user)
       .pipe(
-        tap((data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
+        tap((data: LoginData) => this.doLoginUser(data.username, data.token)),
         mapTo(true),
         catchError(error => {
           alert(error.error + 'login error');
@@ -61,12 +61,14 @@ export class AuthService {
   }
 
   private doLoginUser(username: string, token: string) {
+    console.log(username);
     this.loggedUser = username;
+    console.log(token + "token");
     this.storeToken(token);
   }
 
-  private doLogoutUser() {
-    this.loggedUser = 'null';
+  public doLogoutUser() {
+    this.loggedUser = "";
     this.removeToken();
   }
 
@@ -76,5 +78,9 @@ export class AuthService {
 
   private removeToken() {
     localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  public getLoggedUser() {
+    return this.loggedUser;
   }
 }

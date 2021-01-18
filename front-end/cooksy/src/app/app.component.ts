@@ -8,8 +8,14 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent {
 
-  constructor(authService: AuthService) {
+
+  constructor(private authService: AuthService) {
   }
 
-  isLogged = true;
+
+  public isLogged() {
+    console.log(this.authService.isLoggedIn() + "app is Logged IN")
+    console.log(this.authService.getLoggedUser())
+    return this.authService.isLoggedIn();
+  }
 }
