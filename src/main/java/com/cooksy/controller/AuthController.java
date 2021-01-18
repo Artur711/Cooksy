@@ -34,7 +34,17 @@ public class AuthController {
     public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
         Authentication authentication = userService.login(credentialsDto);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        System.out.println(authentication.getCredentials());
+        System.out.println(authentication.getDetails());
+        System.out.println(authentication.getName());
+        System.out.println(authentication.getPrincipal().toString());
+        System.out.println(authentication.getAuthorities());
+        System.out.println(credentialsDto.getNick());
+        System.out.println(credentialsDto.getPassword());
         return new JwtResponse(jwtUtils.generateJwtToken(authentication));
+    }
+
+    public void logout() {
+        SecurityContextHolder.getContext().setAuthentication(null);
     }
 }

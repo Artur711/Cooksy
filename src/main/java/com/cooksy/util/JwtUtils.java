@@ -8,12 +8,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class JwtUtils {
 
     private static final long JWT_EXPIRATION_MS = 3_600_000;
-
+    private static final String BEARER_SCHEMA_NAME = "Bearer";
     private static final String JWT_SECRET = "Cooksy2019"; // bazowo nie ma być trzymany w githubie
 
     public String generateJwtToken(Authentication authentication) {
@@ -21,10 +22,35 @@ public class JwtUtils {
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
+                .setSubject(user.getUserId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(new Date().toInstant().plusMillis(JWT_EXPIRATION_MS)))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
     }
+
+
+    public Optional<String> getTokenFromHeader(String authorizationHeaderValue) {
+        if(authorizationHeaderValue != null && authorizationHeaderValue.startsWith(BEARER_SCHEMA_NAME)) {
+            return Optional.of(authorizationHeaderValue.substring(7));
+        }
+        return Optional.empty();
+    }
+
+    public String getUsernameFromJwtToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(JWT_SECRET)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
+    // tu trzeba uważać jak coś pójdzie nie tak to od razu rzuci exception, jak zadziała to zwróci true
+//    public boolean validateJwtToken(String token) {
+//        Jwts.parser()
+//                .setSigningKey(JWT_SECRET)
+//                .parseClaimsJws(token);
+//        return true;
+//    }
 
 }
