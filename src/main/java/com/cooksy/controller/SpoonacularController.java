@@ -2,6 +2,7 @@ package com.cooksy.controller;
 
 import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.RecipesDto;
+import com.cooksy.service.RecipeService;
 import com.cooksy.service.SpoonacularService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class SpoonacularController {
 
     private final SpoonacularService service;
-
+    private final RecipeService recipeService;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     private RecipesDto getRecipes(@RequestParam(required = false) String page) {
@@ -30,7 +31,8 @@ public class SpoonacularController {
 
     @GetMapping(value = "/recipe-detail/{id}", produces = APPLICATION_JSON_VALUE)
     public RecipeDetailsDto getRecipe(@PathVariable("id") String id) {
-        return service.getRecipeDetails(id);
+        RecipeDetailsDto recipeById = recipeService.getRecipeById(Long.valueOf(id));
+        return (recipeById.equals(new RecipeDetailsDto())) ? service.getRecipeDetails(id) : recipeById;
     }
 
     @GetMapping(value = "/{ingredient}", produces = APPLICATION_JSON_VALUE)
