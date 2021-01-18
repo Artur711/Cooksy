@@ -10,8 +10,9 @@ import {environment} from "../../environments/environment";
 })
 export class AuthService {
 
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  // private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?: string;
+
 
   constructor(private http: HttpClient) {}
 
@@ -27,12 +28,12 @@ export class AuthService {
 
   login(user: {username: string, password: string}): Observable<boolean> {
 
-    console.log(user.username);
-    console.log(user.password);
+    console.log(user.username + "login() test");
+    console.log(user.password + "login() test");
 
-    return this.http.post<any>(`${environment.apiUrlHost}/login`, user, {withCredentials: true})
+    return  this.http.post<any>(`${environment.apiUrlHost}/login`, user, { withCredentials: true})
       .pipe(
-        tap( (data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
+        tap(() => this.doLoginUser()),
         mapTo(true),
         catchError(error => {
           alert(error.error + 'login error');
@@ -41,7 +42,8 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<any>(`${environment.apiUrlHost}/logout`, {}).pipe(
+    return this.http.post<any>(`${environment.apiUrlHost}/logout`, {})
+      .pipe(
       tap(() => this.doLogoutUser()),
       mapTo(true),
       catchError(error => {
@@ -50,29 +52,54 @@ export class AuthService {
     }));
   }
 
-  isLoggedIn() {
-    return !!this.getJwtToken();
+  isLoggedIn(): boolean {
+    if (localStorage.getItem('isLoggedIn') == "true") {
+      return true;
+    }else{
+      return false;
+    }
   }
 
-  getJwtToken() {
-    return localStorage.getItem(this.JWT_TOKEN);
-  }
 
-  private doLoginUser(username: string, token: string) {
-    this.loggedUser = username;
-    this.storeToken(token);
+  private doLoginUser() {
+    return true;
   }
 
   private doLogoutUser(){
-    this.loggedUser = "";
-    this.removeToken();
+    console.log("Logout");
+    localStorage.setItem('isLoggedIn', "false");
+    localStorage.removeItem('token');
   }
 
-  private storeToken(token: string) {
-    localStorage.setItem(this.JWT_TOKEN, token);
+    private storeToken() {
+      localStorage.setItem('isLoggedIn', 'true');
+      // localStorage.setItem('token', username);
   }
 
-  private removeToken() {
-    localStorage.removeItem(this.JWT_TOKEN);
-  }
+//   isLoggedIn() {
+//     return !!this.getJwtToken();
+//   }
+//
+//   getJwtToken() {
+//     return localStorage.getItem(this.JWT_TOKEN);
+//   }
+//
+//   private doLoginUser(username: string, token: string) {
+//     this.loggedUser = username;
+//     this.storeToken(token);
+//   }
+//
+//   private doLogoutUser() {
+//     this.loggedUser = null;
+//     this.removeToken();
+//   }
+//
+//   private storeToken(token: string) {
+//     localStorage.setItem(this.JWT_TOKEN, token);
+//   }
+//
+//   private removeToken() {
+//     localStorage.removeItem(this.JWT_TOKEN);
+//   }
+// }
 }
