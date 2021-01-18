@@ -11,12 +11,24 @@ import java.util.Scanner;
 @Component
 public class ApiKeyReader {
 
-    private List<String> apiKeys;
+    private final List<String> apiKeys;
     private int numberOfKey = 0;
 
     public ApiKeyReader() {
         this.apiKeys = getKeys();
+    }
 
+    public String getKey() {
+        return this.apiKeys.get(numberOfKey);
+    }
+
+    public void next() {
+        if (numberOfKey + 1 != apiKeys.size()) {
+            this.numberOfKey++;
+        }
+        else {
+            this.numberOfKey = 0;
+        }
     }
 
     private List<String> getKeys() {
@@ -28,21 +40,9 @@ public class ApiKeyReader {
                 apiKeys.add(inFile.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("CSV file not found");
+            System.out.println("Txt file not found");
         }
 
-        return apiKeys;
-    }
-
-    public String getKey() {
-        return this.apiKeys.get(numberOfKey);
-    }
-
-    public void getNext() {
-        numberOfKey = (numberOfKey + 1 != apiKeys.size()) ? numberOfKey++ : 0;
-    }
-
-    public List<String> getApiKeys() {
         return apiKeys;
     }
 }
