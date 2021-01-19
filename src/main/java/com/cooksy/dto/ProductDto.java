@@ -5,9 +5,10 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+public class  ProductDto {
 
     private Long productId;
+    private Boolean isChecked;
     private String name;
     private String original;
     private Integer amount;

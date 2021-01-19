@@ -15,6 +15,7 @@ public class ProductToProductDtoConverter {
 
     public ProductDto convert(Product product){
         return new ProductDto(product.getProductID(),
+                true,
                 product.getName(),
                 product.getOriginal(),
                 product.getAmount(),

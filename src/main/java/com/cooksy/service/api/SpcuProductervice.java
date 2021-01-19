@@ -18,10 +18,7 @@ public class SpcuProductervice {
     private final ProductRepository productRepository;
     private final ProductDtoToProductConverter spCuProductDtoToSpCuProductConverter;
 
-    public void addSpCuProduct(List<Product> products) {
-        products.stream().filter(product -> !productRepository.existsById(product.getProductID()))
-                .forEach(productRepository::save);
-    }
+
 
     public List<Product> getProductsFromRecipe(RecipeDetailsDto recipe) {
         ArrayList<Product> products = new ArrayList<>();

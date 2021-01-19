@@ -20,6 +20,11 @@ export class ProductService {
       .get<Product[]>(this.productUrl);
   }
 
+  // getSumOfProducts(products: Product[]): number {
+  //   let sum = 0;
+  //   products.forEach(product => sum = sum + product.price)
+  //   return sum;
+  // }
   getKrogerProducts$(product: string, page: number): Observable<ProductsDto> {
     return this.http
       .get<ProductsDto>(`${this.productUrl}/${product}?page=${page}`).pipe(

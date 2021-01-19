@@ -1,9 +1,9 @@
 package com.cooksy.repository;
 
 
-import com.cooksy.model.ShoppingList;
+import com.cooksy.model.ShpList;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ShoppingListRepository extends CrudRepository<ShoppingList, Long> {
+public interface ShoppingListRepository extends CrudRepository<ShpList, Long> {
 
 }
