@@ -15,7 +15,8 @@
         <div class="row">
           <div class="col-8 float-start">
             <div class="custom-control custom-checkbox" *ngFor="let product of details$.products">
-              <input type="checkbox" class="custom-control-input mx-1" [(ngModel)]="product.isChecked" id="{{product.name}}">
+              <input type="checkbox" class="custom-control-input mx-1" [(ngModel)]="product.isChecked"
+                     id="{{product.name}}">
               <label class="custom-control-label" for="{{product.name}}">
                 <span>{{product.name}}  </span>
                 <span> - {{product.measuresAmount}} {{product.measuresUnitShort}}</span>
@@ -34,10 +35,8 @@
         <p>{{ details$.description }}</p>
         <p>Source: {{ details$.sourceUrl }}</p>
         <div class="mt-5">
-<!--          <img class="col-2 col-sm-1 img-fluid d-block m-auto"-->
-<!--               src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">-->
           <button class="col-2 col-sm-1 img-fluid d-block m-auto button"
-                  (click)="addRecipeToList('1')">
+                  (click)="addRecipeToList('1'); goBack()">
             <img src="assets/image/Icon/add_shopping_cart.png" alt="Shopping cart">
           </button>
         </div>

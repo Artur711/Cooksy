@@ -33,7 +33,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteTheUser(@PathVariable String id) {
-        productService.deleteProduct(id);
+        productService.deleteProduct(Long.parseLong(id));
     }
 
     @GetMapping("/{id}")

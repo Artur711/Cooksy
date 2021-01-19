@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -28,13 +29,27 @@ public class ProductService {
         productRepository.save(productDtoToProductConverter.convert(productDto));
     }
 
-    public ProductDto getProductByID(Id id) {
-            return productToProductDtoConverter.convert(productRepository.findById(id.getValue())
-                    .orElseThrow(()-> new UserNotFoundException(id)));
+    public void addOnlyNewProducts(List<Product> products) {
+        products.stream().filter(product -> !productRepository.existsById(product.getProductID()))
+                .forEach(productRepository::save);
     }
 
-    public void deleteProduct(String productID) {
-        productRepository.deleteById(Long.parseLong(productID));
+    public ProductDto getProductByID(Id id) {
+        return productToProductDtoConverter.convert(productRepository.findById(id.getValue())
+                .orElseThrow(() -> new UserNotFoundException(id)));
+    }
+
+
+    public List<Product> filterIfAlreadyInDB(List<Product> userProductsToShoppingList) {
+        return userProductsToShoppingList.stream().filter(product -> !productRepository.existsById(product.getProductID()))
+                .collect(Collectors.toList());
+    }
+
+
+    public void deleteProduct(Long productID) {
+        if (productRepository.existsById(productID)) {
+            productRepository.deleteById(productID);
+        }
     }
 
     public void updateTheProduct(String id, ProductDto productDto) {

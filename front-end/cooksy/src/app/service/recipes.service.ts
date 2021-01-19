@@ -5,6 +5,8 @@ import {catchError, map, mapTo} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
 import {Details} from "../model/details";
+import {RecipeProduct} from "../model/recipe-product";
+import {getMatIconFailedToSanitizeLiteralError} from "@angular/material/icon";
 
 @Injectable({
   providedIn: 'root'
@@ -45,10 +47,14 @@ export class RecipesService {
     };
   }
 
-  addRecipe(recipeID: string | null, userID: string) {
+  addRecipe(recipeID: string | null, userID: string, products: RecipeProduct[]) {
     console.log(recipeID);
     const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
     console.log(url);
-    return this.http.post(url, {});
+    return this.http.post<RecipeProduct[]>(url, products).pipe(mapTo(true),
+      catchError(error => {
+        console.log(error.error);
+        return of(false)
+      }));
   }
 }

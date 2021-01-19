@@ -1,4 +1,5 @@
 export interface RecipeProduct {
+  isChecked: boolean;
 
   productId: number;
 
