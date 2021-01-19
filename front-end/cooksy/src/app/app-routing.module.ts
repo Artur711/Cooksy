@@ -9,6 +9,7 @@ import {FavoritesComponent} from "./favorites/favorites.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {FrontPageComponent} from "./front-page/front-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard]},
   { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard]},
   { path: 'products', component: ProductComponent, canActivate: [AuthGuard]},
+  { path: 'start', component: FrontPageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent}
 ];

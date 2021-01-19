@@ -1,12 +1,18 @@
 <div class="limiter">
   <div class="container-login">
     <div class="wrap-login pt-0">
-      <div *ngIf="isLogin">
-        <app-login></app-login>
-      </div>
-      <div *ngIf="!isLogin">
-        <app-register></app-register>
-      </div>
+<!--      <div *ngIf="isLogin">-->
+<!--        <app-login></app-login>-->
+<!--      </div>-->
+<!--      <div *ngIf="!isLogin">-->
+<!--        <app-register></app-register>-->
+<!--      </div>-->
+      <nav>
+        <ul>
+          <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+          <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+        </ul>
+      </nav>
 
     </div>
   </div>

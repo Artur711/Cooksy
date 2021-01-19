@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(user: {id: number, type: number, username: string, password: string, firstName: string, lastName: string, email: string, photoUrl: string}): Observable<boolean> {
+  register(user: {username: string, password: string, firstName: string, lastName: string, email: string}): Observable<boolean> {
     return this.http.post<any>(`${environment.apiUrlHost}/register`, user)
       .pipe(
       mapTo(true),
@@ -27,10 +27,6 @@ export class AuthService {
   }
 
   login(user: {username: string, password: string}): Observable<boolean> {
-
-    console.log(user.username + "login() test");
-    console.log(user.password + "login() test");
-
     return  this.http.post<any>(`${environment.apiUrlHost}/login`, user)
       .pipe(
         tap((data: LoginData) => this.doLoginUser(data.username, data.token)),
@@ -53,7 +49,9 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.getJwtToken();
+    console.log(localStorage.getItem('isLoggedIn') + " is logged in local storege")
+    return localStorage.getItem('isLoggedIn');
+    // return !!this.getJwtToken();
   }
 
   getJwtToken() {
@@ -61,9 +59,7 @@ export class AuthService {
   }
 
   private doLoginUser(username: string, token: string) {
-    console.log(username);
     this.loggedUser = username;
-    console.log(token + "token");
     this.storeToken(token);
   }
 

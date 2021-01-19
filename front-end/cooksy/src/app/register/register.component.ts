@@ -11,14 +11,11 @@ import {AuthService} from "../services/auth.service";
 export class RegisterComponent implements OnInit {
 
   registerForm = this.formBuilder.group({
-    id: [''],
-    type: [''],
     username: [''],
     password: [''],
     firstName: [''],
     lastName: [''],
-    email: [''],
-    photoUrl: ['']
+    email: ['']
   });
 
 
@@ -28,14 +25,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      id: [''],
-      type: [''],
       username: [''],
       password: [''],
       firstName: [''],
       lastName: [''],
-      email: [''],
-      photoUrl: ['']
+      email: ['']
     });
   }
 
@@ -44,14 +38,11 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(
       {
-        id: this.form.id.value,
-        type: this.form.type.value,
         username: this.form.username.value,
         password: this.form.password.value,
         firstName: this.form.firstName.value,
         lastName: this.form.lastName.value,
-        email: this.form.email.value,
-        photoUrl: this.form.photoUrl.value
+        email: this.form.email.value
       }
     )
       .subscribe(success => {

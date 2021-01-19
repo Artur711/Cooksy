@@ -1,47 +1,41 @@
+<div class="limiter">
+  <div class="container-login">
+    <div class="wrap-login pt-0">
 
-<form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
+          <form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
 
-  <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
-  <span class="login-form-title mb-2 text-white">Cooksy</span>
-
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="number" id="id"  placeholder="Id" formControlName="id" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="number" id="type"  placeholder="Type" formControlName="type" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="text" id="username"  placeholder="Username" autocomplete="off" formControlName="username" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="password" id="password" placeholder="Password" formControlName="password" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="text" id="firstName" placeholder="First Name" formControlName="firstName" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="text" id="lastName" placeholder="Last Name" formControlName="lastName" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="text" id="email" placeholder="Email" formControlName="email" required>
-  </mat-form-field>
-
-  <mat-form-field class="wrap-input">
-    <input matInput class="input" type="text" id="photoUrl" placeholder="Photo Url" formControlName="photoUrl" required>
-  </mat-form-field>
+        <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
+        <span class="login-form-title mb-2 text-white">Cooksy</span>
 
 
-  <div class="wrap-login-form-btn">
-    <div class="login-form-bgbtn"></div>
-    <button mat-raised-button class="login-form-btn" type="submit" [disabled]="!registerForm.valid">Register</button>
+        <mat-form-field class="wrap-input">
+          <input matInput class="input" type="text" id="username"  placeholder="Username" autocomplete="off" formControlName="username" required>
+        </mat-form-field>
+
+        <mat-form-field class="wrap-input">
+          <input matInput class="input" type="password" id="password" placeholder="Password" formControlName="password" required>
+        </mat-form-field>
+
+        <mat-form-field class="wrap-input">
+          <input matInput class="input" type="text" id="firstName" placeholder="First Name" formControlName="firstName" required>
+        </mat-form-field>
+
+        <mat-form-field class="wrap-input">
+          <input matInput class="input" type="text" id="lastName" placeholder="Last Name" formControlName="lastName" required>
+        </mat-form-field>
+
+        <mat-form-field class="wrap-input">
+          <input matInput class="input" type="text" id="email" placeholder="Email" formControlName="email" required>
+        </mat-form-field>
+
+
+        <div class="wrap-login-form-btn">
+          <div class="login-form-bgbtn"></div>
+          <button mat-raised-button class="login-form-btn" type="submit" [disabled]="!registerForm.valid">Register</button>
+        </div>
+      </form>
+
+
+    </div>
   </div>
-</form>
-
-
+</div>

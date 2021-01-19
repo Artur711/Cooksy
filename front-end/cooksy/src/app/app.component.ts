@@ -9,13 +9,14 @@ import {AuthService} from "./services/auth.service";
 export class AppComponent {
 
 
-  constructor(private authService: AuthService) {
+  constructor() {
   }
 
+  isLogged = localStorage.getItem('isLoggedIn');
 
-  public isLogged() {
-    console.log(this.authService.isLoggedIn() + "app is Logged IN")
-    console.log(this.authService.getLoggedUser())
-    return this.authService.isLoggedIn();
-  }
+  // public isLogged() {
+  //   localStorage.setItem("isLoggedIn", "true");
+  //   console.log(localStorage.getItem("isLoggedIn") + " odp from main component")
+  //   return localStorage.getItem("isLoggedIn");
+  // }
 }

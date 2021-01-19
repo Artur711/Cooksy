@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
         password: this.form.password.value
       })
       .subscribe(success => {
-        console.log(success)
         if (success) {
           this.router.navigate(['/home']);
         }
