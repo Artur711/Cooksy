@@ -13,6 +13,7 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?: string;
 
+
   constructor(private http: HttpClient) {}
 
   register(user: {id: number, type: number, username: string, password: string, firstName: string, lastName: string, email: string, photoUrl: string}): Observable<boolean> {
@@ -27,12 +28,12 @@ export class AuthService {
 
   login(user: {username: string, password: string}): Observable<boolean> {
 
-    console.log(user.username);
-    console.log(user.password);
+    console.log(user.username + "login() test");
+    console.log(user.password + "login() test");
 
-    return this.http.post<any>(`${environment.apiUrlHost}/login`, user, {withCredentials: true})
+    return  this.http.post<any>(`${environment.apiUrlHost}/login`, user)
       .pipe(
-        tap( (data: LoginData) => this.doLoginUser(data.username, data.jwtToken)),
+        tap((data: LoginData) => this.doLoginUser(data.username, data.token)),
         mapTo(true),
         catchError(error => {
           alert(error.error + 'login error');
@@ -41,7 +42,8 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<any>(`${environment.apiUrlHost}/logout`, {}).pipe(
+    return this.http.post<any>(`${environment.apiUrlHost}/logout`, {})
+      .pipe(
       tap(() => this.doLogoutUser()),
       mapTo(true),
       catchError(error => {
@@ -59,11 +61,13 @@ export class AuthService {
   }
 
   private doLoginUser(username: string, token: string) {
+    console.log(username);
     this.loggedUser = username;
+    console.log(token + "token");
     this.storeToken(token);
   }
 
-  private doLogoutUser(){
+  public doLogoutUser() {
     this.loggedUser = "";
     this.removeToken();
   }
@@ -74,5 +78,9 @@ export class AuthService {
 
   private removeToken() {
     localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  public getLoggedUser() {
+    return this.loggedUser;
   }
 }
