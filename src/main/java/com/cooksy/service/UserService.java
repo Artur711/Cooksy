@@ -38,7 +38,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
     private final UserRepository userRepository;
+
     private final UserToUserDtoConverter userToUserDtoConverter;
     private final UserDtoToUserConverter userDtoToUserConverter;
 

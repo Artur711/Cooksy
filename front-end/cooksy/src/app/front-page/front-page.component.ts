@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontPageComponent implements OnInit {
 
+  isLogin = true;
+
   constructor() { }
 
   ngOnInit(): void {
