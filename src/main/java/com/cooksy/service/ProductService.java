@@ -54,9 +54,9 @@ public class ProductService {
     }
 
 
-    public void deleteProduct(Long productID) {
-        if (productRepository.existsById(productID)) {
-            productRepository.deleteById(productID);
+    public void deleteProduct(Id productID) {
+        if (productRepository.existsById(productID.getValue())) {
+            productRepository.deleteById(productID.getValue());
         }
     }
 

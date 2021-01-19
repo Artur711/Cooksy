@@ -29,7 +29,7 @@ public class Product {
     private List<ShpList> shpList;
 
     public Product(Long productID, String name, String original, Integer amount,
-                   String unit, String measuresAmount, String measuresUnitShort) {
+                   String unit, double measuresAmount, String measuresUnitShort) {
         this.productID = productID;
         this.name = name;
         this.original = original;

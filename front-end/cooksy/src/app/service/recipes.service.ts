@@ -5,9 +5,7 @@ import {catchError, map, mapTo} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
 import {RecipeDetails} from "../model/recipeDetails";
-import {Details} from "../model/details";
 import {RecipeProduct} from "../model/recipe-product";
-import {getMatIconFailedToSanitizeLiteralError} from "@angular/material/icon";
 
 @Injectable({
   providedIn: 'root'

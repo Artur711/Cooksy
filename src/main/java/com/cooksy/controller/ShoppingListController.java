@@ -59,7 +59,7 @@ public class ShoppingListController {
                     counter += 1;
                 }
             }
-            productDto.setMeasuresAmount(Double.toString(Double.parseDouble(productDto.getMeasuresAmount()) * counter));
+            productDto.setMeasuresAmount(productDto.getMeasuresAmount() * counter);
             uniqueProducts.add(productDto);
 
         });
