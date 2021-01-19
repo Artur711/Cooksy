@@ -7,5 +7,6 @@ export interface RecipeDetails {
   description: string;
   pricePerServing: number;
   sourceUrl: number;
+  readyInMinutes: number;
   products: RecipeProduct[];
 }

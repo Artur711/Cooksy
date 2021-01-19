@@ -25,6 +25,7 @@ public class Recipe {
 
     private Double pricePerServing;
     private String sourceUrl;
+    private Integer readyInMinutes;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "recipe_composition", joinColumns = @JoinColumn(name = "Recipe_ID"),
