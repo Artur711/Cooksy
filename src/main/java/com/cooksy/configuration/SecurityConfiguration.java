@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login", "/register", "/swagger**", "/api/v1/*", "/api/v1/recipes/*",
                         "/api/v1/recipes/recipe-detail/*", "/api/v1/favorites/*", "/api/v1/products/*", "/api/v1/favorites/recipe/*",
-                        "/temp/*").permitAll()
+                        "/temp/*", "/shopping-list/*/*", "/shopping-list/*").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //                .logout()

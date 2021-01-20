@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -33,6 +34,11 @@ public class ProductService {
         log.info(String.format("Saved product [id: %d]", productDto.getProductId()));
     }
 
+    public void addOnlyNewProducts(List<Product> products) {
+        products.stream().filter(product -> !productRepository.existsById(product.getProductID()))
+                .forEach(productRepository::save);
+    }
+
     public ProductDto getProductByID(Id id) {
         ProductDto productDto = productToProductDtoConverter.convert(productRepository.findById(id.getValue())
                 .orElseThrow(() -> new UserNotFoundException(id)));
@@ -41,9 +47,17 @@ public class ProductService {
         return productDto;
     }
 
-    public void deleteProduct(Id id) {
-        productRepository.deleteByProductId(id.getValue());
-        log.info(String.format("Deleted product by [id: %d]", id.getValue()));
+
+    public List<Product> filterIfAlreadyInDB(List<Product> userProductsToShoppingList) {
+        return userProductsToShoppingList.stream().filter(product -> !productRepository.existsById(product.getProductID()))
+                .collect(Collectors.toList());
+    }
+
+
+    public void deleteProduct(Id productID) {
+        if (productRepository.existsById(productID.getValue())) {
+            productRepository.deleteById(productID.getValue());
+        }
     }
 
     public void updateTheProduct(String id, ProductDto productDto) {
