@@ -7,7 +7,8 @@ public enum ApiURL {
     RECIPES("https://api.spoonacular.com/recipes/complexSearch?%s&"),
     INGREDIENT("&includeIngredients=%s"),
     EQUIPMENT("&equipment=%s"),
-    PAGE("&offset=%d");
+    PAGE("&offset=%d"),
+    TYPE("&type=%s");
 
     private final String url;
 

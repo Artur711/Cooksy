@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RecipeComponent} from "../recipe/recipe.component";
+import {TypeDish} from "../model/type";
 
 @Component({
   selector: 'app-select',
@@ -8,6 +9,7 @@ import {RecipeComponent} from "../recipe/recipe.component";
 })
 export class SelectComponent implements OnInit {
 
+  types: TypeDish[] = SelectComponent.getTypes();
   ingredients: string[] = [];
   ingredient = '';
   equipments: string[] = [];
@@ -25,6 +27,7 @@ export class SelectComponent implements OnInit {
   search(): void {
     this.recipe.ingredients = this.ingredients;
     this.recipe.equipments = this.equipments;
+    this.recipe.types = this.types;
     this.recipe.getPage();
   }
 
@@ -57,5 +60,25 @@ export class SelectComponent implements OnInit {
   removeAll(): void {
     this.ingredients = [];
     this.equipments = [];
+    for (let type of this.types) {
+      type.isChecked = true;
+    }
+  }
+
+  private static getTypes(): TypeDish[] {
+    return [{name: 'Main course', isChecked: true},
+      {name: 'Side dish', isChecked: true},
+      {name: 'Dessert', isChecked: true},
+      {name: 'Appetizer', isChecked: true},
+      {name: 'Salad', isChecked: true},
+      {name: 'Bread', isChecked: true},
+      {name: 'Breakfast', isChecked: true},
+      {name: 'Soup', isChecked: true},
+      {name: 'Beverage', isChecked: true},
+      {name: 'Sauce', isChecked: true},
+      {name: 'Marinade', isChecked: true},
+      {name: 'Finger food', isChecked: true},
+      {name: 'Snack', isChecked: true},
+      {name: 'Drink', isChecked: true}];
   }
 }

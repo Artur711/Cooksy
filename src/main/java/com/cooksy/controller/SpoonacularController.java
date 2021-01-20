@@ -22,8 +22,9 @@ public class SpoonacularController {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     private RecipesDto getRecipes(@RequestParam(required = false) String page,
                                   @RequestParam(required = false) String ingredient,
-                                  @RequestParam(required = false) String equipment) {
-        return service.getRecipes(page, ingredient, equipment);
+                                  @RequestParam(required = false) String equipment,
+                                  @RequestParam(required = false) String type) {
+        return service.getRecipes(page, ingredient, equipment, type);
     }
 
     @GetMapping(value = "/vegetarian", produces = APPLICATION_JSON_VALUE)

@@ -4,65 +4,11 @@
          [attr.aria-expanded]="!isCollapsed" aria-controls="dropdown" alt="Search">
 
     <div class="dropdown-menu bg-style" id="dropdown" [ngbCollapse]="isCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="all" checked>
-        <label class="custom-control-label" for="all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="main_course" checked>
-        <label class="custom-control-label" for="main_course">Main course</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="side_dish" checked>
-        <label class="custom-control-label" for="side_dish">side dish</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="dessert" checked>
-        <label class="custom-control-label" for="dessert">Dessert</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="appetizer" checked>
-        <label class="custom-control-label" for="appetizer">Appetizer</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="salad" checked>
-        <label class="custom-control-label" for="salad">Salad</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="bread" checked>
-        <label class="custom-control-label" for="bread">Bread</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="breakfast" checked>
-        <label class="custom-control-label" for="breakfast">Breakfast</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="soup" checked>
-        <label class="custom-control-label" for="soup">Soup</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="beverage" checked>
-        <label class="custom-control-label" for="beverage">Beverage</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="sauce" checked>
-        <label class="custom-control-label" for="sauce">Sauce</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="marinade" checked>
-        <label class="custom-control-label" for="marinade">Marinade</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="fingerfood" checked>
-        <label class="custom-control-label" for="fingerfood">Fingerfood</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="snack" checked>
-        <label class="custom-control-label" for="snack">Snack</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="drink" checked>
-        <label class="custom-control-label" for="drink">Drink</label>
+      <div *ngFor="let type of types">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input mx-1" id="{{type.name}}" [(ngModel)]="type.isChecked">
+          <label class="custom-control-label" for="{{type.name}}">{{type.name}}</label>
+        </div>
       </div>
     </div>
   </div>

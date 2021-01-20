@@ -25,7 +25,7 @@ export class RecipesService {
       );
   }
 
-  getRecipesPage$(page: number, ingredient: string, equipment: string): Observable<Recipes> {
+  getRecipesPage$(page: number, ingredient: string, equipment: string, type: string): Observable<Recipes> {
     let url = `${this.recipesUrl}?page=${page}`;
 
     if (ingredient != '') {
@@ -34,6 +34,10 @@ export class RecipesService {
 
     if (equipment != '') {
       url = url + `&equipment=${equipment}`;
+    }
+
+    if (type != '') {
+      url = url + `&type=${type}`;
     }
 
     return this.http.get<Recipes>(url).pipe(
