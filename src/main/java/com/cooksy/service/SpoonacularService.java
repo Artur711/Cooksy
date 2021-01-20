@@ -20,8 +20,7 @@ public class SpoonacularService {
     private final SpCuRecipesToRecipesDtoConverter recipesConverter;
 
     public RecipeDetailsDto getRecipeDetails(String id) {
-        String url = String.format(ApiURL.DETAILS.getUrl(), id, "%s");
-        SpCuRecipeDetails recipeDetails = spoonacularClient.getObject(SpCuRecipeDetails.class, url);
+        SpCuRecipeDetails recipeDetails = spoonacularClient.getSpCuRecipeDetails(id);
         return recipeDetailsConverter.convert(recipeDetails);
     }
 
@@ -33,12 +32,12 @@ public class SpoonacularService {
         if (equipment != null) {
             recipesUrl = recipesUrl + String.format(ApiURL.EQUIPMENT.getUrl(), equipment);
         }
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, recipesUrl);
+        SpCuRecipes recipes = spoonacularClient.callSpoonacularApi(SpCuRecipes.class, recipesUrl);
         return recipesConverter.convert(recipes);
     }
 
     public RecipesDto getRecipesVegetarian() {
-        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, ApiURL.VEGETARIAN.getUrl());
+        SpCuRecipes recipes = spoonacularClient.callSpoonacularApi(SpCuRecipes.class, ApiURL.VEGETARIAN.getUrl());
         return recipesConverter.convert(recipes);
     }
 

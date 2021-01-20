@@ -23,10 +23,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.cooksy.util.enums.UserSortedType.*;
+import static java.util.Comparator.comparing;
 
 @Service
 @Slf4j
@@ -63,27 +66,20 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserDto> getSortedUsers(UserSortedType sortedType) {
-        List<User> users;
-
-        if (sortedType.equals(FIRST_NAME_SORT)) {
-            users = userRepository.getSortedUserByFirstName();
-            log.info("Returned sorted users by first name");
-        }
-        else if (sortedType.equals(LAST_NAME_SORT)) {
-            users = userRepository.getSortedUserByLastName();
-            log.info("Returned sorted users by last name");
-        } else if (sortedType.equals(USER_TYPE_SORT)) {
-            users = userRepository.getSortedUserByUserType();
-            log.info("Returned sorted users by type from administrators");
-        } else {
-            users = (List<User>) userRepository.findAll();
-            log.info("Returns users not sorted");
-        }
+        List<User> users = sortBy(sortedType);
+        log.info("Returned sorted users by" + sortedType.name());
         return userToUserDtoConverter.convertAll(users);
     }
 
+    private List<User> sortBy(UserSortedType sortedType) {
+        List<User> users = (List<User>) userRepository.findAll();
+        return users.stream()
+                .sorted(sortedType.getSortTypeComparator())
+                .collect(Collectors.toList());
+    }
+
     public List<UserDto> getUsers() {
-        List<UserDto> usersDto  = userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
+        List<UserDto> usersDto = userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
         log.info("Returned all users from database");
         return usersDto;
     }
