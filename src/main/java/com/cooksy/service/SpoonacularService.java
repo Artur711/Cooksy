@@ -25,24 +25,20 @@ public class SpoonacularService {
         return recipeDetailsConverter.convert(recipeDetails);
     }
 
-    public RecipesDto getRecipes(String page) {
-        SpCuRecipes recipes = (page == null) ?
-                spoonacularClient.getObject(SpCuRecipes.class, ApiURL.RECIPES.getUrl()) :
-                spoonacularClient.getObject(SpCuRecipes.class, getRecipesPage(page, ApiURL.RECIPES.getUrl()));
-
+    public RecipesDto getRecipes(String page, String ingredient, String equipment) {
+        String recipesUrl = (page == null) ? ApiURL.RECIPES.getUrl() : getRecipesPage(page, ApiURL.RECIPES.getUrl());
+        if (ingredient != null) {
+            recipesUrl = recipesUrl + String.format(ApiURL.INGREDIENT.getUrl(), ingredient);
+        }
+        if (equipment != null) {
+            recipesUrl = recipesUrl + String.format(ApiURL.EQUIPMENT.getUrl(), equipment);
+        }
+        SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, recipesUrl);
         return recipesConverter.convert(recipes);
     }
 
     public RecipesDto getRecipesVegetarian() {
         SpCuRecipes recipes = spoonacularClient.getObject(SpCuRecipes.class, ApiURL.VEGETARIAN.getUrl());
-        return recipesConverter.convert(recipes);
-    }
-
-    public RecipesDto getRecipesIngredient(String ingredient, String page) {
-        String url = String.format(ApiURL.INGREDIENT.getUrl(), "%s", ingredient);
-        SpCuRecipes recipes = (page == null || page.equals("") ?
-                spoonacularClient.getObject(SpCuRecipes.class, url) :
-                spoonacularClient.getObject(SpCuRecipes.class, getRecipesPage(page, url)));
         return recipesConverter.convert(recipes);
     }
 

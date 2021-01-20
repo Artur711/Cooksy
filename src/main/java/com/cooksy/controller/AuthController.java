@@ -34,8 +34,9 @@ public class AuthController {
 
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
+    public JwtResponse login (@RequestBody CredentialsDto credentialsDto, HttpSession httpSession) {
         Authentication authentication = userService.login(credentialsDto);
+
         httpSession.setAttribute("userID", Id.idFromLong(userService.getUserByNick(credentialsDto.getNick()).getUserId()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

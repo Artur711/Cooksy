@@ -8,55 +8,54 @@ import {RecipeComponent} from "../recipe/recipe.component";
 })
 export class SelectComponent implements OnInit {
 
+  ingredients: string[] = [];
   ingredient = '';
-  collapsed = true;
-  meatIsCollapsed = true;
-  vegetablesIsCollapsed = true;
-  additionalIsCollapsed = true;
-  promotionIsCollapsed = true;
-  searchIsCollapsed = true;
+  equipments: string[] = [];
+  equipment = '';
+  isCollapsed = true;
 
   constructor(private recipe: RecipeComponent) { }
 
   ngOnInit(): void { }
 
-  meatCollapsed(): void {
-    this.collapsedAll(this.meatIsCollapsed);
-    this.meatIsCollapsed = !this.collapsed;
+  collapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 
-  vegetablesCollapsed(): void {
-    this.collapsedAll(this.vegetablesIsCollapsed);
-    this.vegetablesIsCollapsed = !this.collapsed;
-  }
-
-  additionalCollapsed(): void {
-    this.collapsedAll(this.additionalIsCollapsed);
-    this.additionalIsCollapsed = !this.collapsed;
-  }
-
-  promotionCollapsed(): void {
-    this.collapsedAll(this.promotionIsCollapsed);
-    this.promotionIsCollapsed = !this.collapsed;
-  }
-
-  searchCollapsed(): void {
-    this.collapsedAll(this.searchIsCollapsed);
-    this.searchIsCollapsed = !this.collapsed;
-  }
-
-  search(ingredient: string): void {
-    this.ingredient = ingredient.replace(' ', '-');
-    this.recipe.ingredient = this.ingredient;
+  search(): void {
+    this.recipe.ingredients = this.ingredients;
+    this.recipe.equipments = this.equipments;
     this.recipe.getPage();
   }
 
-  private collapsedAll(collapsed: boolean): void {
-    this.collapsed = collapsed;
-    this.meatIsCollapsed = true;
-    this.vegetablesIsCollapsed = true;
-    this.additionalIsCollapsed = true;
-    this.promotionIsCollapsed = true;
-    this.searchIsCollapsed = true;
+  addIngredient(ingredient: string): void {
+    if (ingredient != '') {
+      this.ingredients.push(ingredient);
+    }
+  }
+
+  removeIngredient(ingredient: string): void {
+    const index: number = this.ingredients.indexOf(ingredient);
+    if (index !== -1) {
+      this.ingredients.splice(index, 1);
+    }
+  }
+
+  addEquipment(equipment: string): void {
+    if (equipment != '') {
+      this.equipments.push(equipment);
+    }
+  }
+
+  removeEquipment(equipment: string): void {
+    const index: number = this.equipments.indexOf(equipment);
+    if (index !== -1) {
+      this.equipments.splice(index, 1);
+    }
+  }
+
+  removeAll(): void {
+    this.ingredients = [];
+    this.equipments = [];
   }
 }

@@ -7,13 +7,13 @@ import {AuthService} from "./services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  isLogged = true;
 
   constructor(private authService: AuthService) {
   }
 
 
-  public isLogged() {
+  public checkIsLogged() {
     console.log(this.authService.isLoggedIn() + "app is Logged IN")
     console.log(this.authService.getLoggedUser())
     return this.authService.isLoggedIn();

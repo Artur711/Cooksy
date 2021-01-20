@@ -20,8 +20,10 @@ public class SpoonacularController {
     private final RecipeService recipeService;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    private RecipesDto getRecipes(@RequestParam(required = false) String page) {
-        return service.getRecipes(page);
+    private RecipesDto getRecipes(@RequestParam(required = false) String page,
+                                  @RequestParam(required = false) String ingredient,
+                                  @RequestParam(required = false) String equipment) {
+        return service.getRecipes(page, ingredient, equipment);
     }
 
     @GetMapping(value = "/vegetarian", produces = APPLICATION_JSON_VALUE)
@@ -33,11 +35,5 @@ public class SpoonacularController {
     public RecipeDetailsDto getRecipe(@PathVariable("id") String id) {
         RecipeDetailsDto recipeById = recipeService.getRecipeById(Long.valueOf(id));
         return (recipeById.equals(new RecipeDetailsDto())) ? service.getRecipeDetails(id) : recipeById;
-    }
-
-    @GetMapping(value = "/{ingredient}", produces = APPLICATION_JSON_VALUE)
-    public RecipesDto getRecipesIngredient(@PathVariable("ingredient") String ingredient,
-                                           @RequestParam(required = false) String page) {
-        return service.getRecipesIngredient(ingredient, page);
     }
 }

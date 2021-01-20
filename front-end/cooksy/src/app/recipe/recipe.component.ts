@@ -9,7 +9,8 @@ import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-  ingredient = '';
+  ingredients: string[] = [];
+  equipments: string[] = [];
   recipes: Recipe[] = [];
   pages = 1;
   page = 1;
@@ -17,9 +18,11 @@ export class RecipeComponent implements OnInit {
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
-    console.log(this.ingredient);
+    const ingredient = RecipeComponent.getStringFromArrayElements(this.ingredients);
+    const equipment = RecipeComponent.getStringFromArrayElements(this.equipments);
+
     this.recipeService
-      .getRecipesPage$(this.page, this.ingredient)
+      .getRecipesPage$(this.page, ingredient, equipment)
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -30,9 +33,23 @@ export class RecipeComponent implements OnInit {
   }
 
   getPage(): void {
-    this.recipeService.getRecipesPage$(this.page, this.ingredient)
+    const ingredient = RecipeComponent.getStringFromArrayElements(this.ingredients);
+    const equipment = RecipeComponent.getStringFromArrayElements(this.equipments);
+
+    this.recipeService.getRecipesPage$(this.page, ingredient, equipment)
       .subscribe(recipes => {this.recipes = recipes.recipes
       this.pages = recipes.numberOfPages
       this.page = recipes.page});
+  }
+
+  private static getStringFromArrayElements(array: string[]): string {
+    let result = '';
+    for (let index = 0; index < array.length; index++) {
+      if (index != 0) {
+        result = result + '-';
+      }
+      result = result + array[index];
+    }
+    return result;
   }
 }

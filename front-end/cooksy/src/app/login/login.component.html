@@ -1,6 +1,6 @@
-<form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()" >
-
-    <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
+<form class="login-form" [formGroup]="loginForm"  >
+<!--  (ngSubmit)="login()"-->
+    <img class="img-fluid d-block mx-auto" src="assets/logo2.png" alt="logo">
     <span class="login-form-title mb-2 text-white">Cooksy</span>
 
   <mat-form-field class="wrap-input">
@@ -14,7 +14,8 @@
 
     <div class="wrap-login-form-btn">
       <div class="login-form-bgbtn"></div>
-      <button class="login-form-btn" mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+      <button class="login-form-btn" mat-raised-button color="primary" type="submit" >LOG IN</button>
+<!--      [disabled]="!loginForm.valid"-->
     </div>
 </form>
 

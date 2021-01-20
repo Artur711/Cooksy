@@ -21,9 +21,9 @@
             <div class="custom-control custom-checkbox" *ngFor="let product of details$.products">
               <input type="checkbox" class="custom-control-input mx-1" [(ngModel)]="product.isChecked"
                      id="{{product.name}}">
-              <label class="custom-control-label" for="{{product.name}}">
+              <label class="custom-control-label d-flex justify-content-between" for="{{product.name}}">
                 <span>{{product.name}}  </span>
-                <span> - {{product.measuresAmount}} {{product.measuresUnitShort}}</span>
+                <span>{{product.measuresAmount}} {{product.measuresUnitShort}}</span>
               </label>
             </div>
           </div>

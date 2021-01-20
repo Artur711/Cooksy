@@ -1,153 +1,113 @@
-<div class="d-flex justify-content-around flex-wrap px-3">
-  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
-    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="meatCollapsed()"
-        [attr.aria-expanded]="!meatIsCollapsed" aria-controls="dropdownMeat">Meat</h3>
+<div class="d-flex justify-content-around flex-wrap">
+  <div class="dropdown mt-2">
+    <img class="dropdown-toggle bg-orange" src="assets/image/Icon/dish.png" (click)="collapsed()"
+         [attr.aria-expanded]="!isCollapsed" aria-controls="dropdown" alt="Search">
 
-    <div class="dropdown-menu bg-style" id="dropdownMeat" [ngbCollapse]="meatIsCollapsed">
+    <div class="dropdown-menu bg-style" id="dropdown" [ngbCollapse]="isCollapsed">
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_all">
-        <label class="custom-control-label" for="meat_all">All</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="all" checked>
+        <label class="custom-control-label" for="all">All</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_chicken">
-        <label class="custom-control-label" for="meat_chicken">Chicken</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="main_course" checked>
+        <label class="custom-control-label" for="main_course">Main course</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_pork">
-        <label class="custom-control-label" for="meat_pork">Pork</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="side_dish" checked>
+        <label class="custom-control-label" for="side_dish">side dish</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_beef">
-        <label class="custom-control-label" for="meat_beef">Beef</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="dessert" checked>
+        <label class="custom-control-label" for="dessert">Dessert</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_minced">
-        <label class="custom-control-label" for="meat_minced">Minced meat</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="appetizer" checked>
+        <label class="custom-control-label" for="appetizer">Appetizer</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_fish">
-        <label class="custom-control-label" for="meat_fish">Fish</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="salad" checked>
+        <label class="custom-control-label" for="salad">Salad</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_seafood">
-        <label class="custom-control-label" for="meat_seafood">Seafood</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="bread" checked>
+        <label class="custom-control-label" for="bread">Bread</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_vegetarian">
-        <label class="custom-control-label" for="meat_vegetarian">Vegetarian</label>
+        <input type="checkbox" class="custom-control-input mx-1" id="breakfast" checked>
+        <label class="custom-control-label" for="breakfast">Breakfast</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="soup" checked>
+        <label class="custom-control-label" for="soup">Soup</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="beverage" checked>
+        <label class="custom-control-label" for="beverage">Beverage</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="sauce" checked>
+        <label class="custom-control-label" for="sauce">Sauce</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="marinade" checked>
+        <label class="custom-control-label" for="marinade">Marinade</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="fingerfood" checked>
+        <label class="custom-control-label" for="fingerfood">Fingerfood</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="snack" checked>
+        <label class="custom-control-label" for="snack">Snack</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input mx-1" id="drink" checked>
+        <label class="custom-control-label" for="drink">Drink</label>
       </div>
     </div>
   </div>
 
-  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="vegetablesCollapsed()"
-        [attr.aria-expanded]="!vegetablesIsCollapsed" aria-controls="dropdownVegetables">Vegetables</h3>
+  <h3 class="bg-style-2 col-12 col-md-6 col-xl-4 mt-2">
+    <label class="mr-2" for="search-ingredient">Ingredient</label>
+    <input class="mt-1 col-5" #searchIngredient id="search-ingredient"/>
+    <button class="ml-2 bg-green text-white"
+            (click)="addIngredient(searchIngredient.value); searchIngredient.value = ''">Add</button>
+  </h3>
 
-    <div class="dropdown-menu bg-style" id="dropdownVegetables" [ngbCollapse]="vegetablesIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_all">
-        <label class="custom-control-label" for="vegetables_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_steam">
-        <label class="custom-control-label" for="vegetables_steam">Steam vegetables</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_baked">
-        <label class="custom-control-label" for="vegetables_baked">Baked vegetables</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_tomato">
-        <label class="custom-control-label" for="vegetables_tomato">Tomato</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_paprika">
-        <label class="custom-control-label" for="vegetables_paprika">Paprika</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_cabbage">
-        <label class="custom-control-label" for="vegetables_cabbage">Cabbage</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_courgette">
-        <label class="custom-control-label" for="vegetables_courgette">Courgette</label>
+  <h3 class="bg-style-2 col-12 col-md-6 col-xl-4 mt-2">
+    <label class="mr-2" for="search-equipment">Equipment</label>
+    <input class="mt-1 col-5" #searchEquipment id="search-equipment"/>
+    <button class="ml-2 bg-green text-white"
+            (click)="addEquipment(searchEquipment.value); searchEquipment.value = ''">Add</button>
+  </h3>
+
+  <button class="button" (click)="search()">
+    <img class="dropdown-toggle bg-style-2" src="assets/image/Icon/search.png" alt="Search">
+  </button>
+
+  <button *ngIf="ingredients.length != 0 || equipments.length != 0" class="button"
+          (click)="removeAll()">
+    <img class="bg-style" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
+  </button>
+</div>
+
+<div class="col-12">
+  <div class="d-flex flex-wrap justify-content-start" *ngIf="ingredients.length != 0">
+    <div *ngFor="let ingredient of ingredients">
+      <div class="bg-green m-1">{{ingredient}}
+        <button class="button" (click)="removeIngredient(ingredient)">
+          <img src="assets/image/Icon/baseline_clear_white_18dp.png" alt="Clear">
+        </button>
       </div>
     </div>
   </div>
-
-  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
-    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="additionalCollapsed()"
-         [attr.aria-expanded]="!additionalIsCollapsed" aria-controls="dropdownAdditional">Additional</h3>
-
-    <div class="dropdown-menu bg-style" id="dropdownAdditional" [ngbCollapse]="additionalIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_all">
-        <label class="custom-control-label" for="additional_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_rice">
-        <label class="custom-control-label" for="additional_rice">Rice</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_groat">
-        <label class="custom-control-label" for="additional_groat">Groat</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_pasta">
-        <label class="custom-control-label" for="additional_pasta">Pasta</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_potatoes">
-        <label class="custom-control-label" for="additional_potatoes">Potatoes</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_baked_potatoes">
-        <label class="custom-control-label" for="additional_baked_potatoes">Baked potatoes</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_mushrooms">
-        <label class="custom-control-label" for="additional_mushrooms">Mushrooms</label>
+  <div class="d-flex flex-wrap justify-content-start" *ngIf="equipments.length != 0">
+    <div *ngFor="let equipment of equipments">
+      <div class="bg-orange m-1">{{equipment}}
+        <button class="button" (click)="removeEquipment(equipment)">
+          <img src="assets/image/Icon/baseline_clear_white_18dp.png" alt="Clear">
+        </button>
       </div>
     </div>
-  </div>
-
-  <div class="dropdown col-8 col-sm-5 col-lg-3 col-xl-2">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="promotionCollapsed()"
-         [attr.aria-expanded]="!promotionIsCollapsed" aria-controls="dropdownPromotion">Promotion</h3>
-
-    <div class="dropdown-menu bg-style" id="dropdownPromotion" [ngbCollapse]="promotionIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="promotion_all">
-        <label class="custom-control-label" for="promotion_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_promotion">
-        <label class="custom-control-label" for="meat_promotion">Meat promotion</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetable_promotion">
-        <label class="custom-control-label" for="vegetable_promotion">Vegetable promotion</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_promotion">
-        <label class="custom-control-label" for="additional_promotion">Additional promotion</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="dropdown col-6 col-xl-1">
-    <img class="dropdown-toggle bg-style-2" src="assets/image/Icon/search.png" (click)="searchCollapsed()"
-         [attr.aria-expanded]="!searchIsCollapsed" aria-controls="dropdownSearch" alt="Search">
-
-    <div class="dropdown-menu dropdown-menu-2 bg-style-3 px-2" id="dropdownSearch" [ngbCollapse]="searchIsCollapsed">
-        <h2 class="mt-4"><label class="mr-2" for="search-box">Ingredient</label>
-          <input class="col-12 mb-3" #searchBox id="search-box"/>
-          <button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button>
-          <button *ngIf="searchBox.value != ''" class="button" (click)="searchBox.value = ''">
-            <img class="bg-style" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
-          </button>
-        </h2>
-    </div>
-
   </div>
 </div>
