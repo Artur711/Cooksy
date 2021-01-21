@@ -26,7 +26,7 @@ export class RecipesService {
   }
 
   getRecipesPage$(page: number, ingredient: string, equipment: string, type: string): Observable<Recipes> {
-    let url = `${this.recipesUrl}?page=${page}`;
+    let url = `${this.recipesUrl}?start=${page}`;
 
     if (ingredient != '') {
       url = url + `&ingredients=${ingredient}`;

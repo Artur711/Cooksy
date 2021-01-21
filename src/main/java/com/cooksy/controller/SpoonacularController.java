@@ -2,6 +2,7 @@ package com.cooksy.controller;
 
 import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.RecipesDto;
+import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.service.RecipeService;
 import com.cooksy.service.SpoonacularService;
 import lombok.AllArgsConstructor;
@@ -23,18 +24,13 @@ public class SpoonacularController {
     private final RecipeService recipeService;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    private RecipesDto getRecipes(@RequestParam(required = false) String page,
+    private RecipesDto getRecipes(@RequestParam(required = false) String start,
                                   @RequestParam(required = false) String ingredients,
                                   @RequestParam(required = false) String equipments,
                                   @RequestParam(required = false) String types) throws
             InterruptedException, IOException, URISyntaxException {
-
-        return service.getRecipes(page, ingredients, equipments, types);
-    }
-
-    @GetMapping(value = "/vegetarian", produces = APPLICATION_JSON_VALUE)
-    public RecipesDto getRecipesVegetarian() throws InterruptedException, IOException, URISyntaxException {
-        return service.getRecipesVegetarian();
+        SpCuParameters spCuParameters = new SpCuParameters(start, ingredients, equipments, types);
+        return service.getRecipes(spCuParameters);
     }
 
     @GetMapping(value = "/recipe-detail/{id}", produces = APPLICATION_JSON_VALUE)
