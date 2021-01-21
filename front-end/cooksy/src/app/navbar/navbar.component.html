@@ -9,23 +9,23 @@
         <nav class="text-lg-start col d-block">
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="home()"><strong class="text-white">HOME</strong></a>
+            <a routerLink="/home" (click)="onNavItemClick('Home')"><strong class="text-white">HOME</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="recipes()"><strong class="text-white">ALL RECIPES</strong></a>
+            <a routerLink="/recipes" (click)="onNavItemClick('recipes')"><strong class="text-white">ALL RECIPES</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="shopping()"><strong class="text-white">SHOPPING LISTS</strong></a>
+            <a routerLink="/shopping-lists" (click)="onNavItemClick('shopping-lists')"><strong class="text-white">SHOPPING LISTS</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="favorite()"><strong class="text-white">FAVORITE RECIPES</strong></a>
+            <a routerLink="/favorites" (click)="onNavItemClick('favorites')"><strong class="text-white">FAVORITE RECIPES</strong></a>
           </div>
           <br>
           <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="setting()"><strong class="text-white">ACCOUNT SETTING</strong></a>
+            <a routerLink="/products" (click)="onNavItemClick('products')"><strong class="text-white">ACCOUNT SETTING</strong></a>
           </div>
           <br>
         </nav>

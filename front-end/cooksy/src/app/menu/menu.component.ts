@@ -19,4 +19,7 @@ export class MenuComponent implements OnInit {
     this.authService.doLogoutUser();
   }
 
+  onNavigationChange(newTitle: string): void {
+    this.title = newTitle;
+  }
 }

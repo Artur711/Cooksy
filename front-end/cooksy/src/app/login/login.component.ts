@@ -8,21 +8,14 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
  loginForm = this.formBuilder.group({
-    id: [''],
-    type: ['']
+   username: [''],
+   password: ['']
  });
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {}
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
-    });
-  }
 
   get form() {return this.loginForm.controls;}
 
