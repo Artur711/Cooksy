@@ -25,29 +25,22 @@ public class SpoonacularClient {
                 .build();
     }
 
-    public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) {
+    public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) throws URISyntaxException,
+            IOException, InterruptedException {
         HttpResponse<String> httpResponse;
-        try {
-            HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
-                    .GET()
-                    .build();
-            httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
+                .GET()
+                .build();
+        httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
-        } catch (URISyntaxException | IOException | InterruptedException e) {
-            return (T) e.getMessage();
-        }
         if (httpResponse.statusCode() == 402) {
             apiKeyReader.next();
         }
         return deserialize(httpResponse.body(), tClass);
     }
 
-    private <T> T deserialize(String body, Class<T> tClass) {
-        try {
-            return new ObjectMapper().readValue(body, tClass);
-        } catch (JsonProcessingException e) {
-            return (T) e.getMessage();
-        }
+    private <T> T deserialize(String body, Class<T> tClass) throws JsonProcessingException {
+        return new ObjectMapper().readValue(body, tClass);
     }
 }

@@ -61,12 +61,12 @@ export class RecipeComponent implements OnInit {
     let types = array.filter(type => type.isChecked);
     let result = '';
 
-    if (types.length != array.length) {
+    if (types.length != array.length || types.length == 0) {
       for (let index = 0; index < types.length; index++) {
         if (index != 0) {
           result = result + '-';
         }
-        result = result + types[index].name;
+        result = result + types[index].name.replace(' ', '%20');
       }
     }
     return result;

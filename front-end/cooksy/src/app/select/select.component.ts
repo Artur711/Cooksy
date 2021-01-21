@@ -61,24 +61,28 @@ export class SelectComponent implements OnInit {
     this.ingredients = [];
     this.equipments = [];
     for (let type of this.types) {
-      type.isChecked = true;
+      type.isChecked = false;
     }
   }
 
+  checkIfTypeIsUnchecked(): boolean {
+    return this.types.filter(type => type.isChecked).length != 0;
+  }
+
   private static getTypes(): TypeDish[] {
-    return [{name: 'Main course', isChecked: true},
-      {name: 'Side dish', isChecked: true},
-      {name: 'Dessert', isChecked: true},
-      {name: 'Appetizer', isChecked: true},
-      {name: 'Salad', isChecked: true},
-      {name: 'Bread', isChecked: true},
-      {name: 'Breakfast', isChecked: true},
-      {name: 'Soup', isChecked: true},
-      {name: 'Beverage', isChecked: true},
-      {name: 'Sauce', isChecked: true},
-      {name: 'Marinade', isChecked: true},
-      {name: 'Finger food', isChecked: true},
-      {name: 'Snack', isChecked: true},
-      {name: 'Drink', isChecked: true}];
+    return [{name: 'Main course', isChecked: false},
+      {name: 'Side dish', isChecked: false},
+      {name: 'Dessert', isChecked: false},
+      {name: 'Appetizer', isChecked: false},
+      {name: 'Salad', isChecked: false},
+      {name: 'Bread', isChecked: false},
+      {name: 'Breakfast', isChecked: false},
+      {name: 'Soup', isChecked: false},
+      {name: 'Beverage', isChecked: false},
+      {name: 'Sauce', isChecked: false},
+      {name: 'Marinade', isChecked: false},
+      {name: 'Fingerfood', isChecked: false},
+      {name: 'Snack', isChecked: false},
+      {name: 'Drink', isChecked: false}];
   }
 }

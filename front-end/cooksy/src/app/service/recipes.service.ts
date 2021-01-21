@@ -29,15 +29,15 @@ export class RecipesService {
     let url = `${this.recipesUrl}?page=${page}`;
 
     if (ingredient != '') {
-      url = url + `&ingredient=${ingredient}`;
+      url = url + `&ingredients=${ingredient}`;
     }
 
     if (equipment != '') {
-      url = url + `&equipment=${equipment}`;
+      url = url + `&equipments=${equipment}`;
     }
 
     if (type != '') {
-      url = url + `&type=${type}`;
+      url = url + `&types=${type}`;
     }
 
     return this.http.get<Recipes>(url).pipe(

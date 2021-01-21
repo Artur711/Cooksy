@@ -31,7 +31,7 @@
     <img class="dropdown-toggle bg-style-2" src="assets/image/Icon/search.png" alt="Search">
   </button>
 
-  <button *ngIf="ingredients.length != 0 || equipments.length != 0" class="button"
+  <button *ngIf="ingredients.length != 0 || equipments.length != 0 || checkIfTypeIsUnchecked()" class="button"
           (click)="removeAll()">
     <img class="bg-style" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
   </button>
