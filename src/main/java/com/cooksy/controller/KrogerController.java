@@ -28,7 +28,7 @@ public class KrogerController {
                                        @RequestParam(required = false) String page) throws
             InterruptedException, IOException, URISyntaxException {
 
-        KrogerResult krogerProducts = krogerClient.getKrogerProducts(product, page, KrogerResult.class);
+        KrogerResult krogerProducts = krogerClient.getKrogerProducts(product, page);
         KrogerResultDto krogerResultDto = converter.convert(krogerProducts);
         log.info(String.format("Returned %s offset %s", product, page));
         return krogerResultDto;

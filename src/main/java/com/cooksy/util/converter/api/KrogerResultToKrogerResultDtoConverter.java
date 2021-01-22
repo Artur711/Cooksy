@@ -16,10 +16,11 @@ public class KrogerResultToKrogerResultDtoConverter {
 
     public KrogerResultDto convert(KrogerResult krogerResult) {
         List<KrogerProductDto> krogerProductsDto = krogerProductToKrogerProductDtoConverter.convertAll(krogerResult.getProductsList());
+        Integer total = krogerResult.getMeta().getPagination().getTotal();
 
         return new KrogerResultDto(krogerResult.getMeta().getPagination().getStart(),
                 krogerResult.getMeta().getPagination().getLimit(),
-                krogerResult.getMeta().getPagination().getTotal(),
+                (total > 1000) ? 1000 : total,
                 krogerProductsDto);
     }
 

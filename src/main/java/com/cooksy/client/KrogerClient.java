@@ -1,5 +1,6 @@
 package com.cooksy.client;
 import com.cooksy.configuration.ApplicationProperties;
+import com.cooksy.model.api.KrogerResult;
 import com.cooksy.model.api.KrogerToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +25,8 @@ public class KrogerClient {
     private HttpResponse<String> httpResponse;
     private KrogerToken token;
 
-    public KrogerClient(ApplicationProperties applicationProperties) throws InterruptedException, IOException, URISyntaxException {
+    public KrogerClient(ApplicationProperties applicationProperties) throws
+            InterruptedException, IOException, URISyntaxException {
         this.applicationProperties = applicationProperties;
         this.httpClient =  HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
@@ -32,11 +34,12 @@ public class KrogerClient {
         this.token = getToken();
     }
 
-    public <T> T getKrogerProducts(String product, String page, Class<T> tClass) throws URISyntaxException, IOException, InterruptedException {
-        String krogerApiUrl = "https://api.kroger.com/v1/products?filter.term=%s&filter.fulfillment=sth&filter.start=%d&filter.limit=5";
+    public KrogerResult getKrogerProducts(String product, String page) throws
+            URISyntaxException, IOException, InterruptedException {
+        String url = "https://api.kroger.com/v1/products?filter.term=%s&filter.fulfillment=sth&filter.start=%d&filter.limit=5";
 
         getRequest = HttpRequest.newBuilder()
-                .uri(new URI(String.format(krogerApiUrl, product, getProductPage(page))))
+                .uri(new URI(String.format(url, product, getProductPage(page))))
                 .headers(HttpHeaders.ACCEPT, "application/json")
                 .headers(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", token.getToken()))
                 .GET()
@@ -47,20 +50,22 @@ public class KrogerClient {
             this.token = getToken();
 
             if (!token.isEmpty()) {
-                return getKrogerProducts(product, page, tClass);
+                return getKrogerProducts(product, page);
             }
         }
-        return deserialize(httpResponse.body(), tClass);
+        return deserialize(httpResponse.body(), KrogerResult.class);
     }
 
     private KrogerToken getToken() throws IOException, InterruptedException, URISyntaxException {
         String clientId = applicationProperties.getKroger().getClientId();
         String clientSecret = applicationProperties.getKroger().getClientSecret();
 
-        String grantType = String.format("grant_type=client_credentials&scope=%s", applicationProperties.getKroger().getScope());
+        String grantType = String.format("grant_type=client_credentials&scope=%s",
+                applicationProperties.getKroger().getScope());
         HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(grantType);
 
-        String encodedData = DatatypeConverter.printBase64Binary((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));
+        String encodedData = DatatypeConverter.printBase64Binary((clientId + ":" + clientSecret)
+                .getBytes(StandardCharsets.UTF_8));
         getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.kroger.com/v1/connect/oauth2/token"))
                 .headers("Content-Type", "application/x-www-form-urlencoded")
