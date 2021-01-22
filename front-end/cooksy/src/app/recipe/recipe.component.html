@@ -1,5 +1,5 @@
 <div class="justify-content-around">
-  <app-select></app-select>
+  <app-select (onSelectChange)="onSelectChange($event)"></app-select>
 </div>
 <div class="col-1-4 d-flex important! justify-content-center flex-wrap mt-2">
   <a *ngFor="let recipe of recipes | paginate: { id: 'listing_pagination',

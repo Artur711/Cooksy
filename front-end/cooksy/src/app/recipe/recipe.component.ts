@@ -3,6 +3,7 @@ import {RecipesService} from "../service/recipes.service";
 import {Recipe} from "../model/recipe";
 import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {TypeDish} from "../model/type";
+import {Select} from "../model/select";
 
 @Component({
   selector: 'app-recipe',
@@ -20,14 +21,13 @@ export class RecipeComponent implements OnInit {
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
-    const ingredient = RecipeComponent.getStringFromArrayElements(this.ingredients);
-    const equipment = RecipeComponent.getStringFromArrayElements(this.equipments);
-    const type = RecipeComponent.getStringFromArrayTypes(this.types);
+    this.getPage();
+  }
 
-    this.recipeService
-      .getRecipesPage$(this.page, ingredient, equipment, type)
+  getPage(): void {
+    this.recipeService.getRecipesPage$(this.page, this.ingredients, this.equipments, this.types)
       .pipe(
-        debounceTime(300),
+        debounceTime(120),
         distinctUntilChanged(),
       )
       .subscribe(recipes => {this.recipes = recipes.recipes
@@ -35,40 +35,10 @@ export class RecipeComponent implements OnInit {
       this.page = recipes.page});
   }
 
-  getPage(): void {
-    const ingredient = RecipeComponent.getStringFromArrayElements(this.ingredients);
-    const equipment = RecipeComponent.getStringFromArrayElements(this.equipments);
-    const type = RecipeComponent.getStringFromArrayTypes(this.types);
-
-    this.recipeService.getRecipesPage$(this.page, ingredient, equipment, type)
-      .subscribe(recipes => {this.recipes = recipes.recipes
-      this.pages = recipes.numberOfPages
-      this.page = recipes.page});
-  }
-
-  private static getStringFromArrayElements(array: string[]): string {
-    let result = '';
-    for (let index = 0; index < array.length; index++) {
-      if (index != 0) {
-        result = result + '-';
-      }
-      result = result + array[index];
-    }
-    return result;
-  }
-
-  private static getStringFromArrayTypes(array: TypeDish[]): string {
-    let types = array.filter(type => type.isChecked);
-    let result = '';
-
-    if (types.length != array.length || types.length == 0) {
-      for (let index = 0; index < types.length; index++) {
-        if (index != 0) {
-          result = result + '-';
-        }
-        result = result + types[index].name.replace(' ', '%20');
-      }
-    }
-    return result;
+  onSelectChange(select: Select): void {
+    this.ingredients = select.ingredients;
+    this.equipments = select.equipments;
+    this.types = select.types;
+    this.getPage();
   }
 }

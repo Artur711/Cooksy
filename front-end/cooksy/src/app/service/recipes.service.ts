@@ -6,6 +6,7 @@ import {environment} from "../../environments/environment";
 import {Recipes} from "../model/recipes";
 import {RecipeDetails} from "../model/recipeDetails";
 import {RecipeProduct} from "../model/recipe-product";
+import {TypeDish} from "../model/type";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,14 @@ export class RecipesService {
       );
   }
 
-  getRecipesPage$(page: number, ingredient: string, equipment: string, type: string): Observable<Recipes> {
+  getRecipesPage$(page: number, ingredients: string[], equipments: string[], types: TypeDish[]): Observable<Recipes> {
+    const ingredient = ingredients.toString().replace(',', '-');
+    const equipment = equipments.toString().replace(',', '-');
+    const type = types.filter(type => type.isChecked)
+      .map(type => type.name.replace(' ', '%20'))
+      .toString()
+      .replace(',', '-')
+
     let url = `${this.recipesUrl}?start=${page}`;
 
     if (ingredient != '') {

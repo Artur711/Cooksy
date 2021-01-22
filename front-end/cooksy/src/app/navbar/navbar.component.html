@@ -8,25 +8,25 @@
       <div class="navbar-nav">
         <nav class="text-lg-start col d-block">
           <br>
-          <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="home()"><strong class="text-white">HOME</strong></a>
-          </div>
+          <a routerLink="/home" (click)="onNavItemClick('Home')">
+            <div class="bg-nav-item col p-3"><strong class="text-white">HOME</strong></div>
+          </a>
           <br>
-          <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="recipes()"><strong class="text-white">ALL RECIPES</strong></a>
-          </div>
+          <a routerLink="/recipes" (click)="onNavItemClick('All Recipes')">
+            <div class="bg-nav-item col p-3"><strong class="text-white">ALL RECIPES</strong></div>
+          </a>
           <br>
-          <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="shopping()"><strong class="text-white">SHOPPING LISTS</strong></a>
-          </div>
+          <a routerLink="/shopping-lists" (click)="onNavItemClick('Shopping lists')">
+            <div class="bg-nav-item col p-3"><strong class="text-white">SHOPPING LISTS</strong></div>
+          </a>
           <br>
-          <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="favorite()"><strong class="text-white">FAVORITE RECIPES</strong></a>
-          </div>
+          <a routerLink="/favorites" (click)="onNavItemClick('Favorite recipes')">
+            <div class="bg-nav-item col p-3"><strong class="text-white">FAVORITE RECIPES</strong></div>
+          </a>
           <br>
-          <div class="bg-nav-item col p-3">
-            <a routerLink="#" (click)="setting()"><strong class="text-white">ACCOUNT SETTING</strong></a>
-          </div>
+          <a routerLink="/products" (click)="onNavItemClick('Account Setting')">
+            <div class="bg-nav-item col p-3"><strong class="text-white">ACCOUNT SETTING</strong></div>
+          </a>
           <br>
         </nav>
       </div>

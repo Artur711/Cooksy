@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -6,12 +6,9 @@ import { Location } from '@angular/common';
   templateUrl: './back-arrow.component.html',
   styleUrls: ['./back-arrow.component.css']
 })
-export class BackArrowComponent implements OnInit {
+export class BackArrowComponent {
 
   constructor(private location: Location) { }
-
-  ngOnInit(): void {
-  }
 
   goBack() {
     this.location.back();

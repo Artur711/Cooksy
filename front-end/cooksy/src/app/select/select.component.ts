@@ -1,34 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import {RecipeComponent} from "../recipe/recipe.component";
+import {Component, EventEmitter, Output} from '@angular/core';
 import {TypeDish} from "../model/type";
+import {Select} from "../model/select";
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css']
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent {
 
-  types: TypeDish[] = SelectComponent.getTypes();
+  @Output()
+  onSelectChange = new EventEmitter<Select>();
+
   ingredients: string[] = [];
-  ingredient = '';
   equipments: string[] = [];
-  equipment = '';
+  types: TypeDish[] = SelectComponent.getTypes();
   isCollapsed = true;
-
-  constructor(private recipe: RecipeComponent) { }
-
-  ngOnInit(): void { }
 
   collapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 
   search(): void {
-    this.recipe.ingredients = this.ingredients;
-    this.recipe.equipments = this.equipments;
-    this.recipe.types = this.types;
-    this.recipe.getPage();
+    this.onSelectChange.emit({ingredients: this.ingredients, equipments: this.equipments, types: this.types})
   }
 
   addIngredient(ingredient: string): void {

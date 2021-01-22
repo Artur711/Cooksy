@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 
 @Component({
@@ -6,13 +6,14 @@ import {AuthService} from "../services/auth.service";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   public title = "Home";
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  onNavigationChange(newTitle: string): void {
+    this.title = newTitle;
   }
 
   logout(){
