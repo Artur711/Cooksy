@@ -26,10 +26,10 @@ export class RecipeComponent implements OnInit {
 
   getPage(): void {
     this.recipeService.getRecipesPage$(this.page, this.ingredients, this.equipments, this.types)
-      .pipe(
-        debounceTime(120),
-        distinctUntilChanged(),
-      )
+      // .pipe(
+      //   debounceTime(120),
+      //   distinctUntilChanged(),
+      // )
       .subscribe(recipes => {this.recipes = recipes.recipes
       this.pages = recipes.numberOfPages
       this.page = recipes.page});

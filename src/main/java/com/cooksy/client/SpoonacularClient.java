@@ -31,25 +31,18 @@ public class SpoonacularClient {
 
     public SpCuRecipeDetails getSpCuRecipeDetails(String id) throws
             IOException, InterruptedException, URISyntaxException {
-        String url = String.format(ApiURL.DETAILS.getUrl(), id, "%s");
-        HttpResponse<String> response = callSpoonacularApi(url);
+        String urlDetails = "https://api.spoonacular.com/recipes/%s/information?%s&includeNutrition=true";
+        HttpResponse<String> response = callSpoonacularApi(String.format(urlDetails, id, "%s"));
         return deserialize(response.body(), SpCuRecipeDetails.class);
     }
 
     public SpCuRecipes getSpCuRecipes(SpCuParameters spCuParameters) throws
             IOException, InterruptedException, URISyntaxException {
-        String recipesUrl = (spCuParameters.getStart() == null) ?
-                ApiURL.RECIPES.getUrl() : getRecipesPage(spCuParameters.getStart(), ApiURL.RECIPES.getUrl());
-
-        if (spCuParameters.getIngredients() != null) {
-            recipesUrl = recipesUrl + String.format(ApiURL.INGREDIENT.getUrl(), replaceSpaces(spCuParameters.getIngredients()));
-        }
-        if (spCuParameters.getEquipments() != null) {
-            recipesUrl = recipesUrl + String.format(ApiURL.EQUIPMENT.getUrl(), replaceSpaces(spCuParameters.getEquipments()));
-        }
-        if (spCuParameters.getTypes() != null) {
-            recipesUrl = recipesUrl + String.format(ApiURL.TYPE.getUrl(), replaceSpaces(spCuParameters.getTypes()));
-        }
+        String recipesUrl = ApiURL.RECIPES.getUrl("%s")
+                + ApiURL.PAGE.getUrl(getRecipesPage(spCuParameters.getStart()))
+                + ApiURL.INGREDIENT.getUrl(spCuParameters.getIngredients())
+                + ApiURL.EQUIPMENT.getUrl(spCuParameters.getEquipments())
+                + ApiURL.TYPE.getUrl(spCuParameters.getTypes());
 
         HttpResponse<String> response = callSpoonacularApi(recipesUrl);
         return deserialize(response.body(), SpCuRecipes.class);
@@ -74,12 +67,8 @@ public class SpoonacularClient {
         return new ObjectMapper().readValue(body, tClass);
     }
 
-    private String getRecipesPage(String page, String url) {
+    private String getRecipesPage(String page) {
         int valuePage = Integer.parseInt(page) - 1;
-        return url + String.format(ApiURL.PAGE.getUrl(), valuePage * 10);
-    }
-
-    private String replaceSpaces(String str) {
-        return str.replaceAll(" ", "+");
+        return  String.format("%d", valuePage * 10);
     }
 }

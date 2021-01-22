@@ -2,12 +2,10 @@ package com.cooksy.util.enums;
 
 public enum ApiURL {
 
-    VEGETARIAN("https://api.spoonacular.com/recipes/complexSearch?%s&diet=vegetarian"),
-    DETAILS("https://api.spoonacular.com/recipes/%s/information?%s&includeNutrition=true"),
-    RECIPES("https://api.spoonacular.com/recipes/complexSearch?%s&"),
+    RECIPES("https://api.spoonacular.com/recipes/complexSearch?%s"),
     INGREDIENT("&includeIngredients=%s"),
     EQUIPMENT("&equipment=%s"),
-    PAGE("&offset=%d"),
+    PAGE("&offset=%s"),
     TYPE("&type=%s");
 
     private final String url;
@@ -16,7 +14,7 @@ public enum ApiURL {
         this.url = url;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrl(String parameter) {
+        return (parameter != null) ? String.format(this.url, parameter.replaceAll(" ", "+")) : "";
     }
 }

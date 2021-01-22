@@ -22,15 +22,15 @@ public class SpoonacularService {
     private final SpoonacularClient spoonacularClient;
     private final SpCuRecipesToRecipesDtoConverter recipesConverter;
 
-    public RecipeDetailsDto getRecipeDetails(String id) throws InterruptedException, IOException, URISyntaxException {
-        SpCuRecipeDetails recipeDetails = spoonacularClient.getSpCuRecipeDetails(id);
-        return recipeDetailsConverter.convert(recipeDetails);
-    }
-
     public RecipesDto getRecipes(SpCuParameters spCuParameters) throws
             InterruptedException, IOException, URISyntaxException {
 
         SpCuRecipes recipes = spoonacularClient.getSpCuRecipes(spCuParameters);
         return recipesConverter.convert(recipes);
+    }
+
+    public RecipeDetailsDto getRecipeDetails(String id) throws InterruptedException, IOException, URISyntaxException {
+        SpCuRecipeDetails recipeDetails = spoonacularClient.getSpCuRecipeDetails(id);
+        return recipeDetailsConverter.convert(recipeDetails);
     }
 }
