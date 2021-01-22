@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Optional;
 
+import static java.util.Optional.empty;
+
 @Component
 public class JwtUtils {
 
@@ -19,9 +21,9 @@ public class JwtUtils {
 
     public String generateJwtToken(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-
         return Jwts.builder()
-                .setSubject(user.getUsername())
+                .setSubject(user.getName())
+                .setId(user.getUserId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(new Date().toInstant().plusMillis(JWT_EXPIRATION_MS)))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
@@ -33,7 +35,7 @@ public class JwtUtils {
         if(authorizationHeaderValue != null && authorizationHeaderValue.startsWith(BEARER_SCHEMA_NAME)) {
             return Optional.of(authorizationHeaderValue.substring(7));
         }
-        return Optional.empty();
+        return empty();
     }
 
     public String getUsernameFromJwtToken(String token) {
@@ -42,5 +44,12 @@ public class JwtUtils {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }
+    public String getUsernameIDFromJwtToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(JWT_SECRET)
+                .parseClaimsJws(token)
+                .getBody()
+                .getId();
     }
 }
