@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.cooksy.util.enums.UserSortedType.*;
-
 @Service
 @Slf4j
 public class UserService implements UserDetailsService {
@@ -88,12 +86,6 @@ public class UserService implements UserDetailsService {
         List<UserDto> usersDto = userToUserDtoConverter.convertAll(userRepository.findByUserType(userType));
         log.info(String.format("Returned all users by type: %d from database", id.getValue()));
         return usersDto;
-    }
-
-    public UserDto getUserByNick(String userName) {
-        Optional<User> userByNick = userRepository.findByName(userName);
-        log.info(String.format("Found user [nick: %s]", userName));
-        return userByNick.isPresent() ? userToUserDtoConverter.convert(userByNick.get()) : new UserDto();
     }
 
     public void addUser(UserDto userDto) {

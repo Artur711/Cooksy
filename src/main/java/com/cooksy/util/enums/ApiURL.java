@@ -2,6 +2,8 @@ package com.cooksy.util.enums;
 
 public enum ApiURL {
 
+    DETAILS("https://api.spoonacular.com/recipes/%s"),
+    INFORMATION("/information?%s&includeNutrition=true"),
     RECIPES("https://api.spoonacular.com/recipes/complexSearch?%s"),
     INGREDIENT("&includeIngredients=%s"),
     EQUIPMENT("&equipment=%s"),

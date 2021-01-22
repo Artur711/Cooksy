@@ -2,6 +2,8 @@ package com.cooksy.controller;
 
 import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.RecipesDto;
+import com.cooksy.exception.ApiException;
+import com.cooksy.exception.ApiRequestException;
 import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.service.RecipeService;
 import com.cooksy.service.SpoonacularService;
@@ -29,14 +31,24 @@ public class SpoonacularController {
                                   @RequestParam(required = false) String equipments,
                                   @RequestParam(required = false) String types) throws
             InterruptedException, IOException, URISyntaxException {
-        SpCuParameters spCuParameters = new SpCuParameters(start, ingredients, equipments, types);
-        return service.getRecipes(spCuParameters);
+       try {
+           SpCuParameters spCuParameters = new SpCuParameters(start, ingredients, equipments, types);
+           return service.getRecipes(spCuParameters);
+       }
+       catch (NullPointerException e) {
+           throw new ApiRequestException("API Spoonacular error");
+       }
     }
 
     @GetMapping(value = "/recipe-detail/{id}", produces = APPLICATION_JSON_VALUE)
     public RecipeDetailsDto getRecipe(@PathVariable("id") String id) throws
             InterruptedException, IOException, URISyntaxException {
-        RecipeDetailsDto recipeById = recipeService.getRecipeById(Long.valueOf(id));
-        return (recipeById.equals(new RecipeDetailsDto())) ? service.getRecipeDetails(id) : recipeById;
+        try {
+            RecipeDetailsDto recipeById = recipeService.getRecipeById(Long.valueOf(id));
+            return (recipeById.equals(new RecipeDetailsDto())) ? service.getRecipeDetails(id) : recipeById;
+        }
+        catch (NullPointerException e) {
+            throw new ApiRequestException("API Spoonacular error");
+        }
     }
 }

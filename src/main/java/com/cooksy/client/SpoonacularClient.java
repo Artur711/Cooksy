@@ -1,5 +1,6 @@
 package com.cooksy.client;
 
+import com.cooksy.exception.ApiRequestException;
 import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.model.api.SpCuRecipeDetails;
 import com.cooksy.model.api.SpCuRecipes;
@@ -31,8 +32,8 @@ public class SpoonacularClient {
 
     public SpCuRecipeDetails getSpCuRecipeDetails(String id) throws
             IOException, InterruptedException, URISyntaxException {
-        String urlDetails = "https://api.spoonacular.com/recipes/%s/information?%s&includeNutrition=true";
-        HttpResponse<String> response = callSpoonacularApi(String.format(urlDetails, id, "%s"));
+        String urlDetails = ApiURL.DETAILS.getUrl(id) + ApiURL.INFORMATION.getUrl("%s");
+        HttpResponse<String> response = callSpoonacularApi(urlDetails);
         return deserialize(response.body(), SpCuRecipeDetails.class);
     }
 
@@ -59,6 +60,7 @@ public class SpoonacularClient {
 
         if (httpResponse.statusCode() == 402) {
             apiKeyReader.next();
+            throw new ApiRequestException("API Spoonacular request limit reached");
         }
         return httpResponse;
     }
