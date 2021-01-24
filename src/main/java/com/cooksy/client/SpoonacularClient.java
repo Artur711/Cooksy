@@ -1,10 +1,10 @@
 package com.cooksy.client;
 
+import com.cooksy.api.service.ApiKeyReader;
 import com.cooksy.exception.ApiRequestException;
 import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.model.api.SpCuRecipeDetails;
 import com.cooksy.model.api.SpCuRecipes;
-import com.cooksy.service.ApiKeyReader;
 import com.cooksy.util.enums.ApiURL;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

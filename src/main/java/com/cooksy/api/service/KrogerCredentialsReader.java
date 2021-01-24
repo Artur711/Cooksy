@@ -1,4 +1,4 @@
-package com.cooksy.service;
+package com.cooksy.api.service;
 
 import org.springframework.stereotype.Component;
 
