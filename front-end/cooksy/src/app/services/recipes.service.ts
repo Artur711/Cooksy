@@ -12,9 +12,9 @@ import {TypeDish} from "../models/type";
   providedIn: 'root'
 })
 export class RecipesService {
+
   private recipesUrl = `${environment.apiUrl}/recipes`
   private apiRecipeUrl = `${environment.apiRecipeUrl}/shopping-list`
-
 
   constructor(private http: HttpClient) {
   }
@@ -27,26 +27,15 @@ export class RecipesService {
   }
 
   getRecipesPage$(page: number, ingredients: string[], equipments: string[], types: TypeDish[]): Observable<Recipes> {
-    const ingredient = ingredients.toString().replace(',', '-');
-    const equipment = equipments.toString().replace(',', '-');
-    const type = types.filter(type => type.isChecked)
-      .map(type => type.name.replace(' ', '%20'))
-      .toString()
-      .replace(',', '-')
+    const ingredient = this.getStrFromArray(ingredients);
+    const equipment = this.getStrFromArray(equipments);
+    const type = this.getStrFromArray(types.filter(type => type.isChecked)
+      .map(type => type.name.replace(' ', '%20')))
 
-    let url = `${this.recipesUrl}?start=${page}`;
-
-    if (ingredient != '') {
-      url = url + `&ingredients=${ingredient}`;
-    }
-
-    if (equipment != '') {
-      url = url + `&equipments=${equipment}`;
-    }
-
-    if (type != '') {
-      url = url + `&types=${type}`;
-    }
+    const ingredientPar = ingredient != '' ? `&ingredients=${ingredient}` : '';
+    const equipmentPar = equipment != '' ? `&equipments=${equipment}` : '';
+    const typePar = type != '' ? `&types=${type}` : '';
+    const url = `${this.recipesUrl}?start=${page}${ingredientPar}${equipmentPar}${typePar}`;
 
     return this.http.get<Recipes>(url).pipe(
       catchError(this.handleError<Recipes>('getRecipesPage'))
@@ -60,11 +49,15 @@ export class RecipesService {
     );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation: string, result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(`${operation}/${error}`);
       return of(result as T);
     };
+  }
+
+  private getStrFromArray(array: string[]): string {
+    return array.toString().replace(',', '-');
   }
 
   addRecipe(recipeID: string | null, userID: string, products: RecipeProduct[]) {
