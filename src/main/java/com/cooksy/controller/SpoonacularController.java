@@ -2,7 +2,6 @@ package com.cooksy.controller;
 
 import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.RecipesDto;
-import com.cooksy.exception.ApiException;
 import com.cooksy.exception.ApiRequestException;
 import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.service.RecipeService;

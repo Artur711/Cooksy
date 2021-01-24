@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {TypeDish} from "../model/type";
-import {Select} from "../model/select";
+import {TypeDish} from "../models/type";
+import {Select} from "../models/select";
 
 @Component({
   selector: 'app-select',

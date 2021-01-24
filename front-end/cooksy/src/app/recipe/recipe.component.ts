@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {RecipesService} from "../service/recipes.service";
-import {Recipe} from "../model/recipe";
-import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {TypeDish} from "../model/type";
-import {Select} from "../model/select";
+import {RecipesService} from "../services/recipes.service";
+import {Recipe} from "../models/recipe";
+import {TypeDish} from "../models/type";
+import {Select} from "../models/select";
 
 @Component({
   selector: 'app-recipe',

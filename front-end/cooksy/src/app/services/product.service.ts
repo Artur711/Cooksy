@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
-import {Product} from "../model/product";
-import {ProductsDto} from "../model/dto";
+import {Product} from "../models/product";
+import {ProductsDto} from "../models/dto";
 import {catchError} from "rxjs/operators";
 
 @Injectable({

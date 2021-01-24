@@ -3,10 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {catchError, mapTo} from "rxjs/operators";
 import {environment} from "../../environments/environment";
-import {Recipes} from "../model/recipes";
-import {RecipeDetails} from "../model/recipeDetails";
-import {RecipeProduct} from "../model/recipe-product";
-import {TypeDish} from "../model/type";
+import {Recipes} from "../models/recipes";
+import {RecipeDetails} from "../models/recipeDetails";
+import {RecipeProduct} from "../models/recipe-product";
+import {TypeDish} from "../models/type";
 
 @Injectable({
   providedIn: 'root'

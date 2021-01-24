@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../service/product.service";
-import {Product} from "../model/product";
-import {ShoppingListService} from "../service/shopping-list.service";
-import {of} from "rxjs";
-import {map} from "rxjs/operators";
+import {ProductService} from "../services/product.service";
+import {Product} from "../models/product";
+import {ShoppingListService} from "../services/shopping-list.service";
 
 @Component({
   selector: 'app-shopping-list',

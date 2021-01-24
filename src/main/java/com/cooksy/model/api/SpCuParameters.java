@@ -8,10 +8,10 @@ public class SpCuParameters {
     private final String types;
 
     public SpCuParameters(String start, String ingredients, String equipments, String types) {
-        this.start = start;
-        this.ingredients = ingredients;
-        this.equipments = equipments;
-        this.types = types;
+        this.start = start.replaceAll("'", "");
+        this.ingredients = ingredients.replaceAll("'", "");
+        this.equipments = equipments.replaceAll("'", "");
+        this.types = types.replaceAll("'", "");
     }
 
     public String getStart() {
