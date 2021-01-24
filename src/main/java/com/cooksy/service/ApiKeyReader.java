@@ -40,7 +40,7 @@ public class ApiKeyReader {
                 apiKeys.add(inFile.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Txt file not found");
+            System.out.println("api-key.txt file not found");
         }
 
         return apiKeys;

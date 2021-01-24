@@ -70,7 +70,10 @@ public class SpoonacularClient {
     }
 
     private String getRecipesPage(String page) {
-        int valuePage = Integer.parseInt(page) - 1;
-        return  String.format("%d", valuePage * 10);
+        if (page != null) {
+            int valuePage = Integer.parseInt(page) - 1;
+            return  String.format("%d", valuePage * 10);
+        }
+        return "";
     }
 }
