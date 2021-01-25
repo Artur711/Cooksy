@@ -6,7 +6,6 @@ import { NgxPaginationModule} from "ngx-pagination";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
 import { MenuComponent } from './menu/menu.component';
@@ -31,7 +30,6 @@ import {MatButtonModule} from "@angular/material/button";
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     RecipeComponent,
     MenuComponent,
     NavbarComponent,

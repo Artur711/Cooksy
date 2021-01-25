@@ -3,38 +3,34 @@
   <div class="row d-flex justify-content-end">
       <app-back-arrow></app-back-arrow>
   </div>
-  <div class="container text-center py-3 ml-5">
+  <div id="shopping-list" class="container text-center py-3 ml-5">
 
-    <p>shopping-list - DD/MM/YYYY</p>
-    <div class="row">
-      <div class="col-5">
-        <p>Product DESCRIPTION</p>
+    <div class="sum pb-3">
+      <p class="sum pb-3">shopping-list - DD/MM/YYYY</p>
+      <div class="row">
+        <div class="col-5">
+          <p>Product DESCRIPTION</p>
+        </div>
+        <div class="col-2">
+          Amount
+        </div>
+        <div class="col-5">
+          Grammage
+        </div>
       </div>
-      <div class="col-2">
-        Amount
-      </div>
-      <div class="col-5">
-        Grammage
+      <div class="row" *ngFor="let product of products">
+        <div class="col-5 list-data">{{product.original}}</div>
+        <div class="col-2 list-data">{{product.measuresAmount}}</div>
+        <div class="col-5 list-data">{{product.measuresUnitShort}}
+        </div>
       </div>
     </div>
-    <div class="row" *ngFor="let product of products">
-      <div class="col-5 list-data">{{product.original}}</div>
-      <div class="col-2 list-data">{{product.measuresAmount}}</div>
-      <div class="col-5 list-data">{{product.measuresUnitShort}}
-      </div>
 
-    </div>
-
-    <p>-----------------------------------------------------------------------------------</p>
-
-    <div class="row">
-      <div class="col-12">Total amount: {{sumOfProductsPrice}}</div>
-      <div class="col-6 mail-icon d-block container-fluid list-data">
-        <app-email></app-email>
-      </div>
-      <div class="col-6 pdf-icon d-block container-fluid list-data">
-        <app-to-pdf></app-to-pdf>
-      </div>
+    <div class="d-flex justify-content-center mt-3">
+      <app-email></app-email>
+      <button class="button ml-5" (click)="printPDF()">
+        <img src="assets/image/Icon/outline_picture_as_pdf_white_18dp.png" alt="to-pdf">
+      </button>
     </div>
 
   </div>
