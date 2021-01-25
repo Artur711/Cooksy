@@ -1,8 +1,9 @@
-<!--<div *ngIf="isLogged">-->
+<!--<div *ngIf="isLogged == 'true'">-->
 <!--  <app-menu></app-menu>-->
 <!--</div>-->
-<!--<div *ngIf="!isLogged">-->
+<!--<ng-template #elseBlock>-->
 <!--  <app-front-page></app-front-page>-->
-<!--</div>-->
+<!--</ng-template>-->
+
 
 <router-outlet></router-outlet>

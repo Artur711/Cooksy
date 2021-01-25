@@ -8,13 +8,13 @@ import {AuthService} from "../services/auth.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent{
 
   registerForm = this.formBuilder.group({
     username: [''],
     password: [''],
-    firstName: [''],
-    lastName: [''],
+    // firstName: [''],
+    // lastName: [''],
     email: ['']
   });
 
@@ -23,25 +23,18 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: [''],
-      password: [''],
-      firstName: [''],
-      lastName: [''],
-      email: ['']
-    });
-  }
 
-  get form() {return this.registerForm.controls;}
+  get form() {
+    return this.registerForm.controls;
+  }
 
   register() {
     this.authService.register(
       {
         username: this.form.username.value,
         password: this.form.password.value,
-        firstName: this.form.firstName.value,
-        lastName: this.form.lastName.value,
+        // firstName: this.form.firstName.value,
+        // lastName: this.form.lastName.value,
         email: this.form.email.value
       }
     )

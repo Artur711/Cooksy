@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
  loginForm = this.formBuilder.group({
-    id: [''],
-    type: ['']
+   username: [''],
+   password: ['']
  });
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {}
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(success => {
         if (success) {
+          // this.router.navigateByUrl('/home');
           this.router.navigate(['/home']);
         }
       })

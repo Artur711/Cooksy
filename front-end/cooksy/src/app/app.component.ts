@@ -10,9 +10,13 @@ export class AppComponent {
 
 
   constructor() {
+    // localStorage.setItem("isLogged", "false")
+    // console.log(localStorage.getItem("isLogged") + ":constructora")
   }
 
-  isLogged = localStorage.getItem('isLoggedIn');
+
+  isLogged = localStorage.getItem('isLogged');
+
 
   // public isLogged() {
   //   localStorage.setItem("isLoggedIn", "true");
