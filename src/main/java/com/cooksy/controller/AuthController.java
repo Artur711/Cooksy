@@ -1,7 +1,6 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.CredentialsDto;
-import com.cooksy.dto.Id;
 import com.cooksy.dto.UserDto;
 import com.cooksy.model.JwtResponse;
 import com.cooksy.service.UserService;
@@ -25,7 +24,7 @@ public class AuthController {
 
     @PostMapping(value = "/register", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
-    public void register(@RequestBody UserDto userDto) {
+    public void register(@RequestBody UserDto userDto)   {
         userService.register(userDto);
     }
 

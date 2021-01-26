@@ -49,9 +49,9 @@ export class RecipesService {
     };
   }
 
-  addRecipe(recipeID: string | null, userID: string, products: RecipeProduct[]) {
+  addRecipe(recipeID: string | null, products: RecipeProduct[]) {
     console.log(recipeID);
-    const url = `${this.apiRecipeUrl}/${recipeID}/${userID}`;
+    const url = `${this.apiRecipeUrl}/add-to-list`;
     console.log(url);
     return this.http.post<RecipeProduct[]>(url, products).pipe(mapTo(true),
       catchError(error => {

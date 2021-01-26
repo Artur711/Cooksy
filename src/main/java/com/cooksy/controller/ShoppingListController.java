@@ -2,16 +2,13 @@ package com.cooksy.controller;
 
 import com.cooksy.dto.Id;
 import com.cooksy.dto.ProductDto;
-import com.cooksy.dto.RecipeDetailsDto;
-import com.cooksy.dto.ShoppingListDto;
+import com.cooksy.exception.NotFoundException;
 import com.cooksy.model.Product;
 import com.cooksy.model.ShpList;
 import com.cooksy.model.User;
 import com.cooksy.service.ProductService;
-import com.cooksy.service.RecipeService;
 import com.cooksy.service.ShoppingListService;
-import com.cooksy.service.UserService;
-import com.cooksy.service.api.SpcuProductervice;
+import com.cooksy.util.JwtUtils;
 import com.cooksy.util.converter.ProductDtoToProductConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -31,24 +27,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/shopping-list")
 public class ShoppingListController {
 
-    private final RecipeService recipeService;
-    private final UserService userService;
     private final ProductDtoToProductConverter productDtoToProductConverter;
     private final ProductService productService;
-    private final SpcuProductervice spcuProductervice;
-    private final SpoonacularController spoonacularController;
+    private final JwtUtils jwtUtils;
     private final ShoppingListService shoppingListService;
 
-//    @GetMapping
-//    public List<RecipeDetailsDto> getAll() {
-//        return recipeService.getAll();
-//    }
 
-    @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
-    public List<ProductDto> getByUserId(@PathVariable String id) {
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    public List<ProductDto> getProductsByUserId(@RequestHeader("Authorization") String headerValue) {
+        String userIdFromToken = getUserIdFromToken(headerValue);
         Set<ProductDto> uniqueProducts = new HashSet<>();
         List<ProductDto> usersProductDtosList = shoppingListService.getAll().stream()
-                .filter(shoppingListDto -> shoppingListDto.getUser().getUserId() == Long.parseLong(id))
+                .filter(shoppingListDto -> shoppingListDto.getUser().getUserId() == Long.parseLong(userIdFromToken))
                 .flatMap(shoppingListDto -> shoppingListDto.getProducts().stream())
                 .collect(Collectors.toList());
         usersProductDtosList.forEach(productDto -> {
@@ -67,11 +57,12 @@ public class ShoppingListController {
     }
 
 
-    @PostMapping(value = "/{recipeID}/{userID}", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add-to-list", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addRecipeToShoppingList(@PathVariable String recipeID, @PathVariable String userID, @RequestBody ProductDto[] productDTOs) {
+    public void addRecipeToShoppingList(@RequestBody ProductDto[] productDTOs, @RequestHeader("Authorization") String headerValue) {
+        String userIdFromToken = getUserIdFromToken(headerValue);
         User user = new User();
-        user.setUserId(Id.idFromString(userID).getValue());
+        user.setUserId(Id.idFromString(jwtUtils.getUsernameIDFromJwtToken(userIdFromToken)).getValue());
         productService.addOnlyNewProducts(productDtoToProductConverter.convertAll(Arrays.asList(productDTOs)));
         List<Product> userProductsToShoppingList = productDtoToProductConverter.convertAll(Arrays.stream(productDTOs)
                 .filter(ProductDto::getIsChecked)
@@ -79,20 +70,18 @@ public class ShoppingListController {
         shoppingListService.saveUsersShoppingList(new ShpList(userProductsToShoppingList, user));
     }
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void saveRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
-//        recipeService.saveRecipe(recipeDetailsDto);
-//    }
-
-//    @PutMapping("/{id}")
-//    public void updateRecipe(@PathVariable String id, @RequestBody RecipeDetailsDto recipeDetailsDto) {
-//        recipeService.updateRecipe((Long.valueOf(id)), recipeDetailsDto);
-//    }
-
-//    @DeleteMapping
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deleteRecipe(@RequestBody RecipeDetailsDto recipeDetailsDto) {
-//        recipeService.deleteRecipe(recipeDetailsDto);
-//    }
+    private String getUserIdFromToken(String tokenValue){
+        Optional<String> tokenFromHeader = jwtUtils.getTokenFromHeader(tokenValue);
+        String valueOfToken = "";
+        if (tokenFromHeader.isPresent()) {
+            valueOfToken = tokenFromHeader.get();
+        }
+        String usernameIDFromJwtToken;
+        try {
+            usernameIDFromJwtToken = jwtUtils.getUsernameIDFromJwtToken(valueOfToken);
+        } catch (RuntimeException e) {
+            throw new NotFoundException("User");
+        }
+        return usernameIDFromJwtToken;
+    }
 }

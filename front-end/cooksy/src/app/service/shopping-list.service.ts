@@ -13,7 +13,7 @@ export class ShoppingListService {
   constructor(private http: HttpClient) { }
 
   getUserShoppingList(): Observable<Product[]> {
-   return this.http.get<Product[]>(`${this.apiRecipeUrl}/1`);
+   return this.http.get<Product[]>(`${this.apiRecipeUrl}`);
   }
 }
 
