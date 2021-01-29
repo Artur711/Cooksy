@@ -40,7 +40,7 @@ export class RegisterComponent{
     )
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/start/login']);
         }
       })
   }

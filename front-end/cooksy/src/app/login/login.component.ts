@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(success => {
         if (success) {
-          // this.router.navigateByUrl('/home');
-          this.router.navigate(['/home']);
+          // this.router.navigateByUrl('/menu');
+          this.router.navigate(['/menu']);
         }
       })
   }

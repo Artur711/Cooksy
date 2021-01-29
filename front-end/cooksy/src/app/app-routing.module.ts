@@ -10,19 +10,23 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {FrontPageComponent} from "./front-page/front-page.component";
+import {MenuComponent} from "./menu/menu.component";
+import {AlwaysAuthGuardGuard} from "./guards/always-auth-guard.guard";
+
 
 const routes: Routes = [
-  { path: '', redirectTo: '/start', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
-  { path: 'recipes', component: RecipeComponent},
-  { path: 'recipes/:page', component:RecipeComponent},
-  { path: 'detail/:id', component: RecipeDetailsComponent},
-  { path: 'shopping-lists', component: ShoppingListComponent},
-  { path: 'favorites', component: FavoritesComponent},
-  { path: 'products', component: ProductComponent},
-  { path: 'start', component: FrontPageComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: '', redirectTo: '/start', pathMatch: 'full', canActivate: [AlwaysAuthGuardGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'recipes', component: RecipeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'recipes/:page', component:RecipeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'products', component: ProductComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
+  { path: 'start', component: FrontPageComponent, canActivate: [AlwaysAuthGuardGuard]},
+  { path: 'start/login', component: LoginComponent, canActivate: [AlwaysAuthGuardGuard]},
+  { path: 'start/register', component: RegisterComponent, canActivate: [AlwaysAuthGuardGuard]},
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]}
 ];
 
 @NgModule({
