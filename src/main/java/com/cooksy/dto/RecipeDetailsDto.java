@@ -17,5 +17,6 @@ public class RecipeDetailsDto {
     private String description;
     private Double pricePerServing;
     private String sourceUrl;
+    private Integer readyInMinutes;
     private List<ProductDto> products;
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../service/product.service";
-import {Product} from "../model/product";
+import {ProductService} from "../services/product.service";
+import {Product} from "../models/product";
+import {ShoppingListService} from "../services/shopping-list.service";
 
 @Component({
   selector: 'app-shopping-list',
@@ -9,49 +10,41 @@ import {Product} from "../model/product";
 })
 export class ShoppingListComponent implements OnInit {
   products: Product[] = [];
-  sumOfProductsPrice: number = 0;
+  ultimateProducts: Product[] = [];
 
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private shpListService: ShoppingListService) {
   }
 
 
   ngOnInit(): void {
-    this.products = [
-      {
-        productId: 1,
-        name: 'product1',
-        price: 12,
-        productTypeId: 1,
-        marketId: 1,
-        grammage: {gmId: 1, grammage: 'L', quantity: 3}
-      },
-      {
-        productId: 2,
-        name: 'product2',
-        price: 1,
-        productTypeId: 1,
-        marketId: 1,
-        grammage: {gmId: 1, grammage: 'KG', quantity: 3}
-      },
-      {
-        productId: 3,
-        name: 'product3',
-        price: 2,
-        productTypeId: 1,
-        marketId: 1,
-        grammage: {gmId: 1, grammage: 'KG', quantity: 3}
-      },
-      {
-        productId: 4,
-        name: 'product4',
-        price: 10,
-        productTypeId: 1,
-        marketId: 1,
-        grammage: {gmId: 1, grammage: 'L', quantity: 3}
-      },
+    this.shpListService.getUserShoppingList().subscribe(product => product.forEach(element => this.products.push(element)));
+  }
 
-    ]
-    this.sumOfProductsPrice = this.productService.getSumOfProducts(this.products);
+  printPDF() {
+    let win = window.open('', 'PRINT', 'height=400,width=600');
+
+    if (win) {
+      win.document.write('<html lang=""><head><title>' + document.title  + '</title>');
+      win.document.write('</head><body >');
+      win.document.write('<h1>' + document.title  + '</h1>');
+      win.document.write('<p><strong>Shopping-list - DD/MM/YYYY</strong></p>');
+      win.document.write('<table style="border: black double 2px">')
+      win.document.write('<tr><th style="border: black solid 1px">Product Description</th>' +
+        '<th style="border: black solid 1px">Amount</th>' +
+        '<th style="border: black solid 1px">Grammage</th></tr>');
+      for (let i = 0; i < this.products.length; i++) {
+        let product = this.products[i];
+        win.document.write(`<tr><td style="border: black solid 1px">${product.original}</td>
+                <td style="border: black solid 1px; text-align: center;">${product.measuresAmount}</td>
+                <td style="border: black solid 1px; text-align: center;">${product.measuresUnitShort}</td></tr>`);
+      }
+      win.document.write('</table>')
+      win.document.write('</body></html>');
+      win.document.close();
+      win.focus();
+      win.print();
+      win.close();
+    }
   }
 }

@@ -1,12 +1,20 @@
-<div class="row bg-style p-2 mt-3">
+<div class="row bg-style px-2 pt-2 mt-3">
   <h3>
     Application <strong>CookSy</strong> was created to improve making shopping list by own by using external recipes.
     In our application we use external API to downloading and displaying recipes.
+    Our app let on selecting dish by type, ingredients and equipments.
+    You can also select products to your shopping list or add recipe to your favorites.
+    On the main page (below) we have placed a products search engine.
   </h3>
 </div>
-<h2 class="mt-4"><label class="mr-2" for="search-box">Product Search</label>
-<input #searchBox id="search-box"/>
-<button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button></h2>
+<div class="d-flex justify-content-center">
+  <h2 class="mt-4"><label class="mr-2" for="search-box">Product Search</label>
+    <input #searchBox id="search-box"/>
+    <button class="ml-2 bg-green text-white" (click)="search(searchBox.value)">Search</button></h2>
+  <button *ngIf="searchBox.value != ''" class="button" (click)="searchBox.value = ''">
+    <img class="bg-danger" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
+  </button>
+</div>
 
 <div class="col-1-4 d-flex important! justify-content-center flex-wrap">
   <a *ngFor="let product of products | paginate: { id: 'listing_pagination',
@@ -30,7 +38,8 @@
   <pagination-controls id="listing_pagination" (pageChange)="page = $event" (click)="getPage()"></pagination-controls>
 </div>
 
-<div [style.display]="showModal ? 'block' : 'none'" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">

@@ -2,7 +2,7 @@ package com.cooksy.configuration;
 
 import com.cooksy.filter.AuthTokenFilter;
 
-import com.cooksy.util.JwtUtils;
+//import com.cooksy.util.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/login", "/register", "/swagger**", "/api/v1/*", "/api/v1/recipes/recipe-detail/*", "/api/v1/favorites/*", "/api/v1/products/*").permitAll()
+                .antMatchers("/login", "/register", "/swagger**", "/api/v1/*", "/api/v1/recipes/*",
+                        "/api/v1/recipes/recipe-detail/*", "/api/v1/favorites/*", "/api/v1/products/*", "/api/v1/favorites/recipe/*",
+                        "/shopping-list/*/*", "/shopping-list/*").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //                .logout()

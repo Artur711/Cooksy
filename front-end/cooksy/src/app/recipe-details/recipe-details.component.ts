@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {RecipesService} from "../service/recipes.service";
+import {RecipesService} from "../services/recipes.service";
 import {ActivatedRoute} from "@angular/router";
-import {RecipeDetails} from "../model/recipeDetails";
-import {FavoritesService} from "../service/favorites.service";
+import {RecipeDetails} from "../models/recipeDetails";
+import {FavoritesService} from "../services/favorites.service";
 
 @Component({
   selector: 'app-recipe-details',
@@ -11,6 +11,7 @@ import {FavoritesService} from "../service/favorites.service";
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
+  private favoriteId = 0;
   recipeId: string = '';
   isFavorite = false;
   details$!: RecipeDetails;
@@ -42,15 +43,15 @@ export class RecipeDetailsComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.favoritesService.isFavorite$(id)
       .subscribe(favorite => {
-        this.isFavorite = !!favorite.favoriteId;
+        this.isFavorite = favorite.favoriteId != null;
+        this.favoriteId = favorite.favoriteId;
       });
   }
 
   mark(): void {
     if (this.isFavorite) {
       this.removeRecipeFromFavorite();
-    }
-    else {
+    } else {
       this.addRecipeToFavorite();
     }
   }
@@ -59,24 +60,22 @@ export class RecipeDetailsComponent implements OnInit {
     this.favoritesService.addRecipeToFavorite(this.details$)
       .subscribe(success => {
         if (success) {
-          console.log('Success');
-          this.isFavorite = true;
+          this.checkIfFavorite();
         }
       });
   }
 
   private removeRecipeFromFavorite():void {
-    this.favoritesService.removeRecipeFromFavorite(this.details$.recipeId)
+    this.favoritesService.removeRecipeFromFavorite(this.favoriteId)
       .subscribe(success => {
-      if (success) {
-        console.log('Success');
-      }
-      })
-    this.isFavorite = false;
+        if (success) {
+          this.checkIfFavorite();
+        }
+      });
   }
 
   // we need to change parameter to global variable at the end
-  addRecipeToList( userID: string) {
-    this.recipesService.addRecipe(this.details$.recipeId.toString(), userID).subscribe();
+  addRecipeToList(userID: string) {
+    this.recipesService.addRecipe(this.details$.recipeId.toString(), userID, this.details$.products).subscribe();
   }
 }

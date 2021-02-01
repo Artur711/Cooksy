@@ -25,8 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
-
-import static com.cooksy.util.enums.UserSortedType.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -63,36 +62,21 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserDto> getSortedUsers(UserSortedType sortedType) {
-        List<User> users;
-
-        if (sortedType.equals(FIRST_NAME_SORT)) {
-            users = userRepository.getSortedUserByFirstName();
-            log.info("Returned sorted users by first name");
-        }
-        else if (sortedType.equals(LAST_NAME_SORT)) {
-            users = userRepository.getSortedUserByLastName();
-            log.info("Returned sorted users by last name");
-        } else if (sortedType.equals(USER_TYPE_SORT)) {
-            users = userRepository.getSortedUserByUserType();
-            log.info("Returned sorted users by type from administrators");
-        } else {
-            users = (List<User>) userRepository.findAll();
-            log.info("Returns users not sorted");
-        }
+        List<User> users = sortBy(sortedType);
+        log.info("Returns sorted users by" + sortedType.name().toLowerCase());
         return userToUserDtoConverter.convertAll(users);
     }
 
-    public List<UserDto> getUsers() {
-        List<UserDto> usersDto  = userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
-        log.info("Returned all users from database");
-        return usersDto;
+    private List<User> sortBy(UserSortedType userSortedType) {
+        List<User> userList = (List<User>) userRepository.findAll();
+        return userList.stream()
+                .sorted(userSortedType.getSortTypeComparator())
+                .collect(Collectors.toList());
     }
 
-    public List<UserDto> getUsersByTypeId(Id id) {
-        UserType userType = new UserType();
-        userType.setUserTypeId(id.getValue());
-        List<UserDto> usersDto = userToUserDtoConverter.convertAll(userRepository.findByUserType(userType));
-        log.info(String.format("Returned all users by type: %d from database", id.getValue()));
+    public List<UserDto> getUsers() {
+        List<UserDto> usersDto = userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
+        log.info("Returned all users from database");
         return usersDto;
     }
 
@@ -125,12 +109,12 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByNick(userName)
+        return userRepository.findByName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with nick %s cannot be found.", userName)));
     }
 
     private void failIfUserAlreadyRegistered(String userName) {
-        Optional<User> maybeUser = userRepository.findByNick(userName);
+        Optional<User> maybeUser = userRepository.findByName(userName);
         if (maybeUser.isPresent()) {
             throw new ValidationException("User already exist: " + maybeUser.get().getFirstName());
         }

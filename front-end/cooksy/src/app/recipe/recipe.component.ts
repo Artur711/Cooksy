@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {RecipesService} from "../service/recipes.service";
-import {Recipe} from "../model/recipe";
-import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {RecipesService} from "../services/recipes.service";
+import {Recipe} from "../models/recipe";
+import {TypeDish} from "../models/type";
+import {Select} from "../models/select";
 
 @Component({
   selector: 'app-recipe',
@@ -9,6 +10,9 @@ import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
+  ingredients: string[] = [];
+  equipments: string[] = [];
+  types: TypeDish[] = [];
   recipes: Recipe[] = [];
   pages = 1;
   page = 1;
@@ -16,19 +20,24 @@ export class RecipeComponent implements OnInit {
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
-    this.recipeService
-      .getRecipesPage(this.page)
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-      )
+    this.getPage();
+  }
+
+  getPage(): void {
+    this.recipeService.getRecipesPage$(this.page, this.ingredients, this.equipments, this.types)
+      // .pipe(
+      //   debounceTime(120),
+      //   distinctUntilChanged(),
+      // )
       .subscribe(recipes => {this.recipes = recipes.recipes
       this.pages = recipes.numberOfPages
       this.page = recipes.page});
   }
 
-  getPage(): void {
-    this.recipeService.getRecipesPage(this.page)
-      .subscribe(recipes => {this.recipes = recipes.recipes});
+  onSelectChange(select: Select): void {
+    this.ingredients = select.ingredients;
+    this.equipments = select.equipments;
+    this.types = select.types;
+    this.getPage();
   }
 }

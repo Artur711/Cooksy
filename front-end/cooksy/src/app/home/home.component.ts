@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from "../service/product.service";
-import {ProductDto} from "../model/dto";
+import {ProductService} from "../services/product.service";
+import {ProductDto} from "../models/dto";
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,10 @@ export class HomeComponent implements OnInit {
   limit = 1;
 
   constructor(private productService: ProductService) { }
+
+  ngOnInit(): void {
+    this.search(this.product);
+  }
 
   show(url: string) {
     this.showModal = true;
@@ -40,10 +44,6 @@ export class HomeComponent implements OnInit {
         this.total = result.total - 4
         this.limit = result.limit
       });
-  }
-
-  ngOnInit(): void {
-    this.search(this.product);
   }
 
   getPage(): void {

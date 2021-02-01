@@ -16,11 +16,11 @@ public class Favorite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long favoriteId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FavoritesService} from "../service/favorites.service";
-import {FavoriteDto} from "../model/dto";
+import {FavoritesService} from "../services/favorites.service";
+import {FavoriteDto} from "../models/dto";
 
 @Component({
   selector: 'app-favorites',
@@ -8,7 +8,7 @@ import {FavoriteDto} from "../model/dto";
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  favorites: FavoriteDto[] | undefined;
+  favorites: FavoriteDto[] = [];
   totalRecords = 1;
   page = 1;
 

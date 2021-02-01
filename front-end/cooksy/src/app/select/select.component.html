@@ -1,136 +1,58 @@
-<div class="d-flex justify-content-around flex-wrap px-3">
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="meatCollapsed()"
-        [attr.aria-expanded]="!meatIsCollapsed" aria-controls="dropdownMeat">Meat</h3>
+<div class="d-flex justify-content-around flex-wrap">
+  <div class="dropdown mt-2">
+    <img class="dropdown-toggle bg-orange" src="assets/image/Icon/dish.png" (click)="collapsed()"
+         [attr.aria-expanded]="!isCollapsed" aria-controls="dropdown" alt="Search">
 
-    <div class="dropdown-menu bg-style" id="dropdownMeat" [ngbCollapse]="meatIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_all">
-        <label class="custom-control-label" for="meat_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_chicken">
-        <label class="custom-control-label" for="meat_chicken">Chicken</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_pork">
-        <label class="custom-control-label" for="meat_pork">Pork</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_beef">
-        <label class="custom-control-label" for="meat_beef">Beef</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_minced">
-        <label class="custom-control-label" for="meat_minced">Minced meat</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_fish">
-        <label class="custom-control-label" for="meat_fish">Fish</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_seafood">
-        <label class="custom-control-label" for="meat_seafood">Seafood</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_vegetarian">
-        <label class="custom-control-label" for="meat_vegetarian">Vegetarian</label>
+    <div class="dropdown-menu bg-style" id="dropdown" [ngbCollapse]="isCollapsed">
+      <div *ngFor="let type of types">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input mx-1" id="{{type.name}}" [(ngModel)]="type.isChecked">
+          <label class="custom-control-label" for="{{type.name}}">{{type.name}}</label>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="vegetablesCollapsed()"
-        [attr.aria-expanded]="!vegetablesIsCollapsed" aria-controls="dropdownVegetables">Vegetables</h3>
+  <h3 class="bg-style-2 col-12 col-md-6 col-xl-4 mt-2">
+    <label class="mr-2" for="search-ingredient">Ingredient</label>
+    <input class="mt-1 col-5" #searchIngredient id="search-ingredient"/>
+    <button class="ml-2 bg-green text-white"
+            (click)="addIngredient(searchIngredient.value); searchIngredient.value = ''">Add</button>
+  </h3>
 
-    <div class="dropdown-menu bg-style" id="dropdownVegetables" [ngbCollapse]="vegetablesIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_all">
-        <label class="custom-control-label" for="vegetables_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_steam">
-        <label class="custom-control-label" for="vegetables_steam">Steam vegetables</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_baked">
-        <label class="custom-control-label" for="vegetables_baked">Baked vegetables</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_tomato">
-        <label class="custom-control-label" for="vegetables_tomato">Tomato</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_paprika">
-        <label class="custom-control-label" for="vegetables_paprika">Paprika</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_cabbage">
-        <label class="custom-control-label" for="vegetables_cabbage">Cabbage</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetables_courgette">
-        <label class="custom-control-label" for="vegetables_courgette">Courgette</label>
+  <h3 class="bg-style-2 col-12 col-md-6 col-xl-4 mt-2">
+    <label class="mr-2" for="search-equipment">Equipment</label>
+    <input class="mt-1 col-5" #searchEquipment id="search-equipment"/>
+    <button class="ml-2 bg-green text-white"
+            (click)="addEquipment(searchEquipment.value); searchEquipment.value = ''">Add</button>
+  </h3>
+
+  <button class="button" (click)="search()">
+    <img class="dropdown-toggle bg-style-2" src="assets/image/Icon/search.png" alt="Search">
+  </button>
+
+  <button *ngIf="ingredients.length != 0 || equipments.length != 0 || checkIfTypeIsUnchecked()" class="button"
+          (click)="removeAll()">
+    <img class="bg-style" src="assets/image/Icon/outline_clear_white_18dp.png" alt="Clear">
+  </button>
+</div>
+
+<div class="col-12">
+  <div class="d-flex flex-wrap justify-content-start" *ngIf="ingredients.length != 0">
+    <div *ngFor="let ingredient of ingredients">
+      <div class="bg-green m-1">{{ingredient}}
+        <button class="button" (click)="removeIngredient(ingredient)">
+          <img src="assets/image/Icon/baseline_clear_white_18dp.png" alt="Clear">
+        </button>
       </div>
     </div>
   </div>
-
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-orange p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="additionalCollapsed()"
-         [attr.aria-expanded]="!additionalIsCollapsed" aria-controls="dropdownAdditional">Additional</h3>
-
-    <div class="dropdown-menu bg-style" id="dropdownAdditional" [ngbCollapse]="additionalIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_all">
-        <label class="custom-control-label" for="additional_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_rice">
-        <label class="custom-control-label" for="additional_rice">Rice</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_groat">
-        <label class="custom-control-label" for="additional_groat">Groat</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_pasta">
-        <label class="custom-control-label" for="additional_pasta">Pasta</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_potatoes">
-        <label class="custom-control-label" for="additional_potatoes">Potatoes</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_baked_potatoes">
-        <label class="custom-control-label" for="additional_baked_potatoes">Baked potatoes</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_mushrooms">
-        <label class="custom-control-label" for="additional_mushrooms">Mushrooms</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="dropdown col-8 col-sm-5 col-lg-3">
-    <h3 class="h5 bg-green p-1 p-md-2 m-1 mx-lg-0 my-lg-2 dropdown-toggle" (click)="promotionCollapsed()"
-         [attr.aria-expanded]="!promotionIsCollapsed" aria-controls="dropdownPromotion">Promotion</h3>
-
-    <div class="dropdown-menu bg-style" id="dropdownPromotion" [ngbCollapse]="promotionIsCollapsed">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="promotion_all">
-        <label class="custom-control-label" for="promotion_all">All</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="meat_promotion">
-        <label class="custom-control-label" for="meat_promotion">Meat promotion</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="vegetable_promotion">
-        <label class="custom-control-label" for="vegetable_promotion">Vegetable promotion</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input mx-1" id="additional_promotion">
-        <label class="custom-control-label" for="additional_promotion">Additional promotion</label>
+  <div class="d-flex flex-wrap justify-content-start" *ngIf="equipments.length != 0">
+    <div *ngFor="let equipment of equipments">
+      <div class="bg-orange m-1">{{equipment}}
+        <button class="button" (click)="removeEquipment(equipment)">
+          <img src="assets/image/Icon/baseline_clear_white_18dp.png" alt="Clear">
+        </button>
       </div>
     </div>
   </div>

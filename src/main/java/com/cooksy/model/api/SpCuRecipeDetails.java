@@ -33,9 +33,9 @@ public class SpCuRecipeDetails {
     @JsonSetter("sourceUrl")
     private String sourceUrl;
 
+    @JsonSetter("readyInMinutes")
+    private Integer readyInMinutes;
+
     @JsonSetter("extendedIngredients")
     private List<SpCuProduct> productList;
-
-//    @JsonSetter("dishTypes")
-//    private List<String> dish;
 }

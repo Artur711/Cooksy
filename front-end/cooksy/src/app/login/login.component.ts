@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
  loginForm = this.formBuilder.group({
    username: [''],
@@ -16,13 +16,6 @@ export class LoginComponent implements OnInit {
  });
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {}
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
-    });
-  }
 
   get form() {return this.loginForm.controls;}
 

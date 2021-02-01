@@ -1,6 +1,6 @@
 
 .bgl-page {
-  background-image: url('src/assets/image/manu_background.jpeg');
+  /*background-image: url('src/assets/image/manu_background.jpeg');*/
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -52,6 +52,10 @@
 
 .list-data{
   margin-top: 1rem;
+}
+
+.sum {
+  border-bottom: white solid 2px;
 }
 
 

@@ -12,6 +12,7 @@ public class SpCuProductToProductDtoConverter {
 
     public ProductDto convert(SpCuProduct product) {
         return new ProductDto(product.getId(),
+                true,
                 product.getName(),
                 product.getOriginal(),
                 product.getAmount(),

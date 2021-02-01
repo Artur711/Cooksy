@@ -1,17 +1,16 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.FavoriteDto;
+import com.cooksy.dto.Id;
 import com.cooksy.dto.RecipeDetailsDto;
 import com.cooksy.dto.UserDto;
 import com.cooksy.service.FavoriteService;
 import com.cooksy.service.RecipeService;
 import com.cooksy.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
-import static com.cooksy.dto.Id.idFromString;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -19,6 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/favorites")
+@Slf4j
 @AllArgsConstructor
 public class FavoriteController {
 
@@ -27,36 +27,37 @@ public class FavoriteController {
     private final RecipeService recipeService;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<FavoriteDto> getAll(@RequestParam(required = false) String userId) {
-        if (userId != null) {
-            return favoriteService.getFavoritesByUser(idFromString(userId));
-        } else {
-            return favoriteService.getAll();
-        }
+    public List<FavoriteDto> getAll() {
+        Id userId = Id.idFromLong(1L);
+        log.info(String.format("Returned favorites by user [id: %d]", userId.getValue()));
+        return favoriteService.getFavoritesByUser(userId);
     }
 
-    @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/recipe/{id}", produces = APPLICATION_JSON_VALUE)
     public FavoriteDto getIsFavorite(@PathVariable String id) {
-        UserDto userDto = userService.getUserById(idFromString("1"));
-        RecipeDetailsDto recipeDetailsDto = recipeService.getRecipeById(idFromString(id).getValue());
+        Id userId = Id.idFromLong(1L);
+        UserDto userDto = userService.getUserById(userId);
+        RecipeDetailsDto recipeDetailsDto = recipeService.getRecipeById(Long.valueOf(id));
         if (!recipeDetailsDto.equals(new RecipeDetailsDto())) {
-            return favoriteService.getFavoriteBuUserAndRecipe(userDto, recipeDetailsDto);
+            FavoriteDto favorite = favoriteService.getFavoriteBuUserAndRecipe(userDto, recipeDetailsDto);
+            log.info(String.format("Returned favorite [id: %d]", favorite.getFavoriteId()));
+            return favorite;
         }
+        log.info("Returned favorite empty object");
         return new FavoriteDto();
     }
-
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
     public void addFavorite(@RequestBody RecipeDetailsDto recipeDto) {
-        UserDto userDto = userService.getUserById(idFromString("1"));
+        Id userId = Id.idFromLong(1L);
+        UserDto userDto = userService.getUserById(userId);
         favoriteService.addToFavorite(new FavoriteDto(0L, userDto, recipeDto));
     }
 
-
-    @DeleteMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void deleteFavorite(@PathVariable String id) {
-        favoriteService.deleteFavorite(idFromString(id));
+    public void delete(@PathVariable("id") String id) {
+        favoriteService.deleteFavorite(Id.idFromString(id));
     }
 }

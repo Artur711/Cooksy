@@ -22,6 +22,7 @@ public class RecipeToRecipeDetailsDtoConverter {
                 recipe.getDescription(),
                 recipe.getPricePerServing(),
                 recipe.getSourceUrl(),
+                recipe.getReadyInMinutes(),
                 productsDto);
     }
 
