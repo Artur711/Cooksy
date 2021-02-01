@@ -80,14 +80,6 @@ public class UserService implements UserDetailsService {
         return usersDto;
     }
 
-    public List<UserDto> getUsersByTypeId(Id id) {
-        UserType userType = new UserType();
-        userType.setUserTypeId(id.getValue());
-        List<UserDto> usersDto = userToUserDtoConverter.convertAll(userRepository.findByUserType(userType));
-        log.info(String.format("Returned all users by type: %d from database", id.getValue()));
-        return usersDto;
-    }
-
     public void addUser(UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         User savedUser = userRepository.save(user);

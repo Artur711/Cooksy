@@ -25,7 +25,7 @@ export class ShoppingListComponent implements OnInit {
     let win = window.open('', 'PRINT', 'height=400,width=600');
 
     if (win) {
-      win.document.write('<html><head><title>' + document.title  + '</title>');
+      win.document.write('<html lang=""><head><title>' + document.title  + '</title>');
       win.document.write('</head><body >');
       win.document.write('<h1>' + document.title  + '</h1>');
       win.document.write('<p><strong>Shopping-list - DD/MM/YYYY</strong></p>');
@@ -36,8 +36,8 @@ export class ShoppingListComponent implements OnInit {
       for (let i = 0; i < this.products.length; i++) {
         let product = this.products[i];
         win.document.write(`<tr><td style="border: black solid 1px">${product.original}</td>
-                <td style="border: black solid 1px">${product.measuresAmount}</td>
-                <td style="border: black solid 1px">${product.measuresUnitShort}</td></tr>`);
+                <td style="border: black solid 1px; text-align: center;">${product.measuresAmount}</td>
+                <td style="border: black solid 1px; text-align: center;">${product.measuresUnitShort}</td></tr>`);
       }
       win.document.write('</table>')
       win.document.write('</body></html>');

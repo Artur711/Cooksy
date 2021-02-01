@@ -1,5 +1,5 @@
 package com.cooksy.client;
-import com.cooksy.api.service.KrogerCredentialsReader;
+import com.cooksy.service.api.KrogerCredentialsReader;
 import com.cooksy.model.api.KrogerResult;
 import com.cooksy.model.api.KrogerToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
