@@ -26,6 +26,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatButtonModule} from "@angular/material/button";
     FrontPageComponent,
     RegisterComponent,
     HomeComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

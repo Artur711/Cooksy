@@ -11,7 +11,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {FrontPageComponent} from "./front-page/front-page.component";
 import {MenuComponent} from "./menu/menu.component";
 import {AlwaysAuthGuardGuard} from "./guards/always-auth-guard.guard";
-
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/start', pathMatch: 'full', canActivate: [AlwaysAuthGuardGuard]},
@@ -27,7 +27,8 @@ const routes: Routes = [
     { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
     { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
     { path: 'favorites/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]}]}
+    { path: 'setting', component: PageNotFoundComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]}]},
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
