@@ -10,7 +10,9 @@
 
         <mat-form-field class="wrap-input">
           <input matInput class="input" type="text" id="username"  placeholder="Username" autocomplete="off" formControlName="username" required>
+          <div class="error" *ngIf="registerForm.get('username')!.hasError('forbiddenName')">{{ registerForm.get('username')!.getError('forbiddenName').value}}</div>
         </mat-form-field>
+
 
         <mat-form-field class="wrap-input">
           <input matInput class="input" type="password" id="password" placeholder="Password" formControlName="password" required>
@@ -34,7 +36,7 @@
           <button mat-raised-button class="login-form-btn" type="submit" [disabled]="!registerForm.valid">Register</button>
         </div>
       </form>
-
+    <div class="error" *ngIf="registerForm.hasError('sameNames')"> Password can't be the same as username</div>
 
     </div>
   </div>
