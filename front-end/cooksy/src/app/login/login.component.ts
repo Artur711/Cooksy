@@ -28,7 +28,7 @@ export class LoginComponent {
       .subscribe(success => {
         if (success) {
           // this.router.navigateByUrl('/menu');
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/menu/home']);
         }
       })
   }

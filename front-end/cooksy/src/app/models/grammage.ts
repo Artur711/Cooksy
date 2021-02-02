@@ -1,5 +1,5 @@
 export interface Grammage {
   gmId: number;
-  quantity:number;
-  grammage:string;
+  quantity: number;
+  grammage: string;
 }
