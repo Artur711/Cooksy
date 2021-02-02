@@ -170,6 +170,14 @@ textarea:focus, input:focus {
   pointer-events: none;
 }
 
+.error {
+  color: black;
+}
+
+/*.ng-invalid input{*/
+/*  background: yellow;*/
+/*}*/
+
 .focus-input::after {
   /* font-family: Poppins-Regular; */
   font-size: 15px;
