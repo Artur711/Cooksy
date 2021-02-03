@@ -14,8 +14,8 @@ import {AlwaysAuthGuard} from "./guards/always-auth.guard";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/start', pathMatch: 'full', canActivate: [AlwaysAuthGuard]},
-  { path: 'start', component: FrontPageComponent, canActivate: [AlwaysAuthGuard]},
+  { path: '', redirectTo: '/cooksy', pathMatch: 'full', canActivate: [AlwaysAuthGuard]},
+  { path: 'cooksy', component: FrontPageComponent, canActivate: [AlwaysAuthGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AlwaysAuthGuard]},
   { path: 'register', component: RegisterComponent, canActivate: [AlwaysAuthGuard]},
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard, AlwaysAuthGuard],

@@ -54,9 +54,9 @@ ul, li {
 [ Button ]*/
 
 .block-btn{
-  width: 50vh;
+  width: 35vh;
   text-align: center;
-  font-size: 5vh;
+  font-size: 3vh;
   border-radius: 15px;
 }
 
