@@ -28,7 +28,8 @@ const routes: Routes = [
     { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
-    { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}]},
+    // { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}
+    ]},
   { path: '**', component: PageNotFoundComponent}
 ];
 

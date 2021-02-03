@@ -69,14 +69,14 @@ export class ShoppingListComponent implements OnInit {
     })
   }
 
-  printPDF() {
+  printPDF(date: string) {
     let win = window.open('', 'PRINT', 'height=400,width=600');
 
     if (win) {
       win.document.write('<html lang=""><head><title>' + document.title  + '</title>');
       win.document.write('</head><body >');
       win.document.write('<h1>' + document.title  + '</h1>');
-      win.document.write('<p><strong>Shopping-list - DD/MM/YYYY</strong></p>');
+      win.document.write(`<p><strong>Shopping-list - ${date}</strong></p>`);
       win.document.write('<table style="border: black double 2px">')
       win.document.write('<tr><th style="border: black solid 1px">Product Description</th>' +
         '<th style="border: black solid 1px">Amount</th>' +
