@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
+import {Product} from "../models/product";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {Product} from "../model/product";
 import {RecipeProduct} from "../model/recipe-product";

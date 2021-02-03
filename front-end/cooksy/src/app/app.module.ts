@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-// @ts-ignore
+
 import { NgxPaginationModule} from "ngx-pagination";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
 import { MenuComponent } from './menu/menu.component';
@@ -27,11 +26,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     RecipeComponent,
     MenuComponent,
     NavbarComponent,
@@ -46,7 +45,8 @@ import {MatButtonModule} from "@angular/material/button";
     FrontPageComponent,
     RegisterComponent,
     HomeComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

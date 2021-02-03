@@ -1,6 +1,11 @@
 package com.cooksy.client;
 
-import com.cooksy.service.ApiKeyReader;
+import com.cooksy.service.api.ApiKeyReader;
+import com.cooksy.exception.ApiRequestException;
+import com.cooksy.model.api.SpCuParameters;
+import com.cooksy.model.api.SpCuRecipeDetails;
+import com.cooksy.model.api.SpCuRecipes;
+import com.cooksy.util.enums.ApiURL;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -25,29 +30,50 @@ public class SpoonacularClient {
                 .build();
     }
 
-    public <T> T getObject(Class<T> tClass, String spoonacularApiUrl) {
-        HttpResponse<String> httpResponse;
-        try {
-            HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
-                    .GET()
-                    .build();
-            httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-
-        } catch (URISyntaxException | IOException | InterruptedException e) {
-            return (T) e.getMessage();
-        }
-        if (httpResponse.statusCode() == 402) {
-            apiKeyReader.next();
-        }
-        return deserialize(httpResponse.body(), tClass);
+    public SpCuRecipeDetails getSpCuRecipeDetails(String id) throws
+            IOException, InterruptedException, URISyntaxException {
+        String urlDetails = ApiURL.DETAILS.getUrl(id) + ApiURL.INFORMATION.getUrl("%s");
+        HttpResponse<String> response = callSpoonacularApi(urlDetails);
+        return deserialize(response.body(), SpCuRecipeDetails.class);
     }
 
-    private <T> T deserialize(String body, Class<T> tClass) {
-        try {
-            return new ObjectMapper().readValue(body, tClass);
-        } catch (JsonProcessingException e) {
-            return (T) e.getMessage();
+    public SpCuRecipes getSpCuRecipes(SpCuParameters spCuParameters) throws
+            IOException, InterruptedException, URISyntaxException {
+        String recipesUrl = ApiURL.RECIPES.getUrl("%s")
+                + ApiURL.PAGE.getUrl(getRecipesPage(spCuParameters.getStart()))
+                + ApiURL.INGREDIENT.getUrl(spCuParameters.getIngredients())
+                + ApiURL.EQUIPMENT.getUrl(spCuParameters.getEquipments())
+                + ApiURL.TYPE.getUrl(spCuParameters.getTypes());
+
+        HttpResponse<String> response = callSpoonacularApi(recipesUrl);
+        return deserialize(response.body(), SpCuRecipes.class);
+    }
+
+    private HttpResponse<String> callSpoonacularApi(String spoonacularApiUrl) throws URISyntaxException,
+            IOException, InterruptedException {
+        HttpResponse<String> httpResponse;
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
+                .GET()
+                .build();
+        httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
+        if (httpResponse.statusCode() == 402) {
+            apiKeyReader.next();
+            throw new ApiRequestException("API Spoonacular request limit reached");
         }
+        return httpResponse;
+    }
+
+    private <T> T deserialize(String body, Class<T> tClass) throws JsonProcessingException {
+        return new ObjectMapper().readValue(body, tClass);
+    }
+
+    private String getRecipesPage(String page) {
+        if (page != null) {
+            int valuePage = Integer.parseInt(page) - 1;
+            return  String.format("%d", valuePage * 10);
+        }
+        return "";
     }
 }

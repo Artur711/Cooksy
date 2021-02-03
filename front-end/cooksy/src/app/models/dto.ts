@@ -1,5 +1,10 @@
 import {RecipeDetails} from "./recipeDetails";
 
+export interface LoginDto {
+  username: string;
+  password: string;
+}
+
 export interface UserDto {
 
   userId: number;

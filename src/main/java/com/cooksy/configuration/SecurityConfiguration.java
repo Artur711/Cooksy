@@ -2,7 +2,7 @@ package com.cooksy.configuration;
 
 import com.cooksy.filter.AuthTokenFilter;
 
-import com.cooksy.util.JwtUtils;
+//import com.cooksy.util.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

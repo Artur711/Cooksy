@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {RecipeDetails} from "../model/recipeDetails";
+import {RecipeDetails} from "../models/recipeDetails";
 import {environment} from "../../environments/environment";
 import {catchError, mapTo} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {FavoriteDto} from "../model/dto";
+import {FavoriteDto} from "../models/dto";
 
 @Injectable({
   providedIn: 'root'

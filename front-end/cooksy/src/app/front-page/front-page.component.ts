@@ -5,13 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './front-page.component.html',
   styleUrls: ['./front-page.component.css']
 })
-export class FrontPageComponent implements OnInit {
+export class FrontPageComponent{
 
-  isLogin = true;
+  constructor() {
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
 }

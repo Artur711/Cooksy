@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
-import {RecipesService} from "../service/recipes.service";
+import {RecipesService} from "../services/recipes.service";
 import {ActivatedRoute} from "@angular/router";
 import {RecipeDetails} from "../model/recipeDetails";
 import {FavoritesService} from "../service/favorites.service";
@@ -16,8 +16,6 @@ export class RecipeDetailsComponent implements OnInit {
   isFavorite = false;
   details$!: RecipeDetails;
 
-
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private recipesService: RecipesService,
@@ -31,8 +29,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.getRecipe();
     this.checkIfFavorite();
   }
-
-
 
   getRecipe(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');

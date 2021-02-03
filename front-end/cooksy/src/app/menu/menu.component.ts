@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   public title = "Home";
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
+  onNavigationChange(newTitle: string): void {
+    this.title = newTitle;
   }
 
   logout(){
     this.authService.doLogoutUser();
+    this.router.navigate(['']);
   }
 
 }

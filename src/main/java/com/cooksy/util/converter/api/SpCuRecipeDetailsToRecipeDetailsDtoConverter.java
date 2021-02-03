@@ -25,6 +25,7 @@ public class SpCuRecipeDetailsToRecipeDetailsDtoConverter {
                 clearString(description),
                 recipeDetails.getPrice()/100,
                 recipeDetails.getSourceUrl(),
+                recipeDetails.getReadyInMinutes(),
                 productsDto);
     }
 

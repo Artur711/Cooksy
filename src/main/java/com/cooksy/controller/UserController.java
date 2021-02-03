@@ -22,13 +22,7 @@ public class UserController {
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public List<UserDto> getAllUsers(@RequestParam(required = false) String sortBy) {
-        if (sortBy == null) {
-            return userService.getUsers();
-        }
-        else if (UserSortedType.isContains(sortBy)) {
-            return userService.getSortedUsers(UserSortedType.valueOf(sortBy));
-        }
-        return userService.getUsersByTypeId(idFromString(sortBy));
+        return (sortBy == null) ? userService.getUsers() : userService.getSortedUsers(UserSortedType.valueOf(sortBy));
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
