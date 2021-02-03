@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AlwaysAuthGuardGuard } from './always-auth-guard.guard';
+import { AlwaysAuthGuard } from './always-auth.guard';
 
 describe('AlwaysAuthGuardGuard', () => {
-  let guard: AlwaysAuthGuardGuard;
+  let guard: AlwaysAuthGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(AlwaysAuthGuardGuard);
+    guard = TestBed.inject(AlwaysAuthGuard);
   });
 
   it('should be created', () => {
