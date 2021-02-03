@@ -53,6 +53,13 @@ ul, li {
 /*------------------------------------------------------------------
 [ Button ]*/
 
+.block-btn{
+  width: 50vh;
+  text-align: center;
+  font-size: 5vh;
+  border-radius: 15px;
+}
+
 
 .wrap-login-form-btn {
   width: 100%;
@@ -64,6 +71,22 @@ ul, li {
   margin: 0 auto;
 }
 
+.login-form {
+  width: 100%;
+}
+
+.login-form-title {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 30px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+.login-form-title i {
+  font-size: 60px;
+}
+
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
@@ -73,3 +96,4 @@ ul, li {
     padding: 77px 15px 33px 15px;
   }
 }
+
