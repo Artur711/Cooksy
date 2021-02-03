@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AlwaysAuthGuardGuard implements CanActivate {
+export class AlwaysAuthGuard implements CanActivate {
   canActivate(){
     console.log("AlwaysAuthGuard");
     return true;
