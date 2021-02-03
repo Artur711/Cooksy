@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 import {RecipesService} from "../service/recipes.service";
 import {ActivatedRoute} from "@angular/router";
 import {RecipeDetails} from "../model/recipeDetails";
 import {FavoritesService} from "../service/favorites.service";
+import {ShoppingListService} from "../service/shopping-list.service";
 
 @Component({
   selector: 'app-recipe-details',
@@ -12,15 +13,17 @@ import {FavoritesService} from "../service/favorites.service";
 })
 export class RecipeDetailsComponent implements OnInit {
   private favoriteId = 0;
-  recipeId: string = '';
   isFavorite = false;
   details$!: RecipeDetails;
+
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private recipesService: RecipesService,
     private favoritesService: FavoritesService,
-    private location: Location
+    private location: Location,
+    private shoppingListService: ShoppingListService
   ) { }
 
 
@@ -28,6 +31,8 @@ export class RecipeDetailsComponent implements OnInit {
     this.getRecipe();
     this.checkIfFavorite();
   }
+
+
 
   getRecipe(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -74,8 +79,7 @@ export class RecipeDetailsComponent implements OnInit {
       });
   }
 
-  // we need to change parameter to global variable at the end
   addRecipeToList() {
-    this.recipesService.addRecipe(this.details$.recipeId.toString(), this.details$.products).subscribe();
+    this.shoppingListService.changeList(this.details$.products);
   }
 }

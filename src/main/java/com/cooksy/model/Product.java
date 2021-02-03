@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -24,20 +23,6 @@ public class Product {
     private Double measuresAmount;
     private String measuresUnitShort;
 
-    @ManyToMany
-            (mappedBy = "products", cascade = CascadeType.ALL)
-    private List<ShpList> shpList;
-
-    public Product(Long productID, String name, String original, Integer amount,
-                   String unit, double measuresAmount, String measuresUnitShort) {
-        this.productID = productID;
-        this.name = name;
-        this.original = original;
-        this.amount = amount;
-        this.unit = unit;
-        this.measuresAmount = measuresAmount;
-        this.measuresUnitShort = measuresUnitShort;
-    }
 }
 
 

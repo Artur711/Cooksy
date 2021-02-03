@@ -11,4 +11,6 @@ export interface Product {
   original: string;
   marketId: number;
   grammage: Grammage;
+  shoppingListId: number;
+  date: string;
 }

@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -20,22 +18,10 @@ public class ShpList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shpListId;
 
-    @ManyToMany
-    private List<Product> products;
+    private String date;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @Transient
-    private String isConfirmed;
-    @Transient
-    private String name;
-    @Transient
-    private Date date;
-
-    public ShpList(List<Product> products, User user) {
-        this.products = products;
-        this.user = user;
+    public ShpList(String date) {
+        this.date = date;
     }
 }

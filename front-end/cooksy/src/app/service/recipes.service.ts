@@ -12,7 +12,7 @@ import {RecipeProduct} from "../model/recipe-product";
 })
 export class RecipesService {
   private recipesUrl = `${environment.apiUrl}/recipes`
-  private apiRecipeUrl = `${environment.apiRecipeUrl}/shopping-list`
+
 
 
   constructor(private http: HttpClient) {
@@ -49,14 +49,5 @@ export class RecipesService {
     };
   }
 
-  addRecipe(recipeID: string | null, products: RecipeProduct[]) {
-    console.log(recipeID);
-    const url = `${this.apiRecipeUrl}/add-to-list`;
-    console.log(url);
-    return this.http.post<RecipeProduct[]>(url, products).pipe(mapTo(true),
-      catchError(error => {
-        console.log(error.error);
-        return of(false)
-      }));
-  }
+
 }
