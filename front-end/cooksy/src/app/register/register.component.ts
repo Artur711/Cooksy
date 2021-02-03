@@ -27,7 +27,6 @@ export class RegisterComponent{
 
   }
 
-
   get form() {
     return this.registerForm.controls;
   }
@@ -43,24 +42,10 @@ export class RegisterComponent{
       })
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/start/login']);
+          this.router.navigate(['/login']);
         }
       })
   }
-
-  // validatorAsyncEmail(control: AbstractControl): Observable<ValidationErrors | null> {
-  //   return this.http.get('http://localhost:8080/emails').pipe(
-  //     map((emails: string[]) => emails.includes(control.value) ? {emailTaken: true} : null),
-  //     catchError(() => of(null))
-  //   );
-  // }
-
-  // private forbiddenEmailValidator(regExp: RegExp): ValidatorFn {
-  //   return (control: AbstractControl): {[key: string]: any} | null => {
-  //     const forbidden = regExp.test(control.value);
-  //     return forbidden ? {forbiddenName: {value: "Wrong email format"}} : null;
-  //   }
-  // }
 }
 
 

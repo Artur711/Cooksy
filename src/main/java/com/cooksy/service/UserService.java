@@ -52,7 +52,10 @@ public class UserService implements UserDetailsService {
     public void register(UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        failIfUserAlreadyRegistered(user.getFirstName());
+        System.out.println(user.getFirstName());
+        System.out.println(user.getEmail());
+        failIfUserAlreadyRegistered(user.getName());
+        failIfEmailAlreadyRegistered(user.getEmail());
         userRepository.save(user);
     }
 
@@ -114,9 +117,17 @@ public class UserService implements UserDetailsService {
     }
 
     private void failIfUserAlreadyRegistered(String userName) {
+        System.out.println(userName);
         Optional<User> maybeUser = userRepository.findByName(userName);
         if (maybeUser.isPresent()) {
             throw new ValidationException("User already exist: " + maybeUser.get().getFirstName());
+        }
+    }
+
+    private void failIfEmailAlreadyRegistered(String email) {
+        Optional<User> maybeUser = userRepository.findByEmail(email);
+        if (maybeUser.isPresent()) {
+            throw new ValidationException("That email is already in use!");
         }
     }
 }
