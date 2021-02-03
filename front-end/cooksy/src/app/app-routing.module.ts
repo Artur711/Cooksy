@@ -12,7 +12,6 @@ import {FrontPageComponent} from "./front-page/front-page.component";
 import {MenuComponent} from "./menu/menu.component";
 import {AlwaysAuthGuard} from "./guards/always-auth.guard";
 
-import {AlwaysAuthGuardGuard} from "./guards/always-auth-guard.guard";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
@@ -29,15 +28,7 @@ const routes: Routes = [
     { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
-    { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}]}
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'recipes', component: RecipeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'recipes/:page', component:RecipeComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'recipes/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'favorites/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]},
-    { path: 'setting', component: PageNotFoundComponent, canActivate: [AuthGuard, AlwaysAuthGuardGuard]}]},
+    { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}]},
   { path: '**', component: PageNotFoundComponent}
 ];
 
