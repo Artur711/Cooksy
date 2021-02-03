@@ -2,11 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Product} from "../models/product";
 import {ShoppingListService} from "../services/shopping-list.service";
-import {ProductService} from "../service/product.service";
-import {Product} from "../model/product";
-import {ShoppingListService} from "../service/shopping-list.service";
 import {formatDate} from '@angular/common';
-import {RecipeProduct} from "../model/recipe-product";
+import {RecipeProduct} from "../models/recipe-product";
 
 @Component({
   selector: 'app-shopping-list',
@@ -84,8 +81,8 @@ export class ShoppingListComponent implements OnInit {
       win.document.write('<tr><th style="border: black solid 1px">Product Description</th>' +
         '<th style="border: black solid 1px">Amount</th>' +
         '<th style="border: black solid 1px">Grammage</th></tr>');
-      for (let i = 0; i < this.products.length; i++) {
-        let product = this.products[i];
+      for (let i = 0; i < this.chosenListProducts.length; i++) {
+        let product = this.chosenListProducts[i];
         win.document.write(`<tr><td style="border: black solid 1px">${product.original}</td>
                 <td style="border: black solid 1px; text-align: center;">${product.measuresAmount}</td>
                 <td style="border: black solid 1px; text-align: center;">${product.measuresUnitShort}</td></tr>`);

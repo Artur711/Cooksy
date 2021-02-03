@@ -56,9 +56,9 @@ public class ProductServiceTest {
     }
 
     private List<Product> prepareData() {
-        return Arrays.asList(new Product(2069L, "balsamic vinegar","3 tablespoons balsamic vinegar", 3, "tablespoons", 3, "Tbsps"),
-                new Product(11215L, "garlic", "1 clove garlic, minced", 1, "clove", 1, "clove"),
-        new Product(11233L, "kale", "1 bunch curly kale, stems removed and chopped", 1, "bunch", 1, "bunch"),
-        new Product(4053L, "olive oil", "Olive oil", 2, "servings", 2, "servings"));
+        return Arrays.asList(new Product(2069L, "balsamic vinegar","3 tablespoons balsamic vinegar", 3, "tablespoons", 3D, "Tbsps"),
+                new Product(11215L, "garlic", "1 clove garlic, minced", 1, "clove", 1D, "clove"),
+        new Product(11233L, "kale", "1 bunch curly kale, stems removed and chopped", 1, "bunch", 1D, "bunch"),
+        new Product(4053L, "olive oil", "Olive oil", 2, "servings", 2D, "servings"));
     }
 }

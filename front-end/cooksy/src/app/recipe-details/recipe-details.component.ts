@@ -2,9 +2,9 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {Location} from '@angular/common';
 import {RecipesService} from "../services/recipes.service";
 import {ActivatedRoute} from "@angular/router";
-import {RecipeDetails} from "../model/recipeDetails";
-import {FavoritesService} from "../service/favorites.service";
-import {ShoppingListService} from "../service/shopping-list.service";
+import {RecipeDetails} from "../models/recipeDetails";
+import {FavoritesService} from "../services/favorites.service";
+import {ShoppingListService} from "../services/shopping-list.service";
 
 @Component({
   selector: 'app-recipe-details',
