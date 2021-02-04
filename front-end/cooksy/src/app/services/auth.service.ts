@@ -15,7 +15,6 @@ export class AuthService {
 
 
   constructor(private http: HttpClient) {}
-  // firstName: string, lastName: string,
   register(user: {username: string, password: string, email: string}): Observable<boolean> {
     return this.http.post<any>(`${environment.apiUrlHost}/register`, user)
       .pipe(

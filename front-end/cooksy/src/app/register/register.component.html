@@ -2,7 +2,11 @@
   <div class="container-login">
     <div class="wrap-login pt-0">
 
-          <form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
+      <button class="button float-right" (click)="goBack()">
+        <img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow">
+      </button>
+
+      <form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
 
         <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
         <span class="login-form-title mb-2 text-white">Cooksy</span>
@@ -17,14 +21,6 @@
         <mat-form-field class="wrap-input">
           <input matInput class="input" type="password" id="password" placeholder="Password" formControlName="password" required>
         </mat-form-field>
-
-<!--        <mat-form-field class="wrap-input">-->
-<!--          <input matInput class="input" type="text" id="firstName" placeholder="First Name" formControlName="firstName" required>-->
-<!--        </mat-form-field>-->
-
-<!--        <mat-form-field class="wrap-input">-->
-<!--          <input matInput class="input" type="text" id="lastName" placeholder="Last Name" formControlName="lastName" required>-->
-<!--        </mat-form-field>-->
 
         <mat-form-field class="wrap-input">
           <input matInput class="input" type="text" id="email" placeholder="Email" formControlName="email"  required>

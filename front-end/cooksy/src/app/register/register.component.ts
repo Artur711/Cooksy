@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators}
 import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {HttpClient} from "@angular/common/http";
+import {Location} from "@angular/common";
 
 
 @Component({
@@ -16,14 +17,14 @@ export class RegisterComponent{
   registerForm = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
     password: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(25)]],
-    // firstName: [''],
-    // lastName: [''],
-    // , [this.validatorAsyncEmail.bind(this)] validatory async idą na trzecie miejsce
     email: ['', [Validators.required, Validators.email]]
   }, {validators: sameNamesValidator});
 
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {
+  constructor(private authService: AuthService,
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private location: Location) {
 
   }
 
@@ -36,8 +37,6 @@ export class RegisterComponent{
       {
         username: this.form.username.value,
         password: this.form.password.value,
-        // firstName: this.form.firstName.value,
-        // lastName: this.form.lastName.value,
         email: this.form.email.value
       })
       .subscribe(success => {
@@ -45,6 +44,10 @@ export class RegisterComponent{
           this.router.navigate(['/login']);
         }
       })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
 

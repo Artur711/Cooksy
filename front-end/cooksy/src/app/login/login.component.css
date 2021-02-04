@@ -246,6 +246,11 @@ button:hover {
 
 }
 
+.button {
+  background: none;
+  border: none;
+}
+
 .login-form-btn {
   font-family: Poppins-Medium;
   font-size: 15px;

@@ -2,6 +2,10 @@
   <div class="container-login">
     <div class="wrap-login pt-0">
 
+      <button class="button float-right" (click)="goBack()">
+        <img src="assets/image/Icon/baseline_reply_white_18dp.png" alt="Arrow">
+      </button>
+
       <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()" >
 
           <img class="img-fluid d-block mx-auto" src="../assets/logo2.png" alt="logo">
