@@ -13,14 +13,14 @@ export class AuthService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private loggedUser?: string;
 
-
   constructor(private http: HttpClient) {}
+
   register(user: {username: string, password: string, email: string}): Observable<boolean> {
     return this.http.post<any>(`${environment.apiUrlHost}/register`, user)
       .pipe(
       mapTo(true),
           catchError(error => {
-            alert(error.error + 'register error');
+            alert('Username or email already in use.');
             return of(false);
           }));
   }
@@ -31,7 +31,7 @@ export class AuthService {
         tap((data: LoginData) => this.doLoginUser(data.username, data.token)),
         mapTo(true),
         catchError(error => {
-          alert(error.error + 'login error');
+          alert('Incorrect login details.');
           return of(false);
         }));
   }
@@ -42,7 +42,7 @@ export class AuthService {
       tap(() => this.doLogoutUser()),
       mapTo(true),
       catchError(error => {
-      alert(error.error + 'logout error');
+      alert('logout error');
       return of(false);
     }));
   }
