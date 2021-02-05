@@ -37,7 +37,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         String authorizationHeaderValue = request.getHeader(AUTHORIZATION_HEADER);
         Optional<String> maybeToken = jwtUtils.getTokenFromHeader(authorizationHeaderValue);
 
-        if (maybeToken.isPresent()) {
+        if (maybeToken.isPresent() && maybeToken.get().length()>40) {
             String token = maybeToken.get();
             String username = jwtUtils.getUsernameFromJwtToken(token);
 

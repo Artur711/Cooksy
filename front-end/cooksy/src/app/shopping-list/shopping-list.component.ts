@@ -26,6 +26,7 @@ export class ShoppingListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.shpListService.create();
     this.shpListService.currentProducts.subscribe(products => this.toBeConfirmedProducts = products);
     this.shpListService.getUserShoppingList().subscribe(products => products.forEach(products => products.forEach(product => this.allProducts.push(product))));
     this.shpListService.getUserShoppingList().subscribe(products => products.forEach(products => products.forEach(product => {

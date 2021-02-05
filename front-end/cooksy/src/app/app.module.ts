@@ -6,7 +6,7 @@ import { NgxPaginationModule} from "ngx-pagination";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { RecipeComponent} from "./recipe/recipe.component";
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,6 +27,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AuthInterceptor} from "./auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [ {
+    provide : HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi   : true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
