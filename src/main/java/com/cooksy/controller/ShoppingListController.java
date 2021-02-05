@@ -30,36 +30,27 @@ public class ShoppingListController {
     private final ProductDtoToProductConverter productDtoToProductConverter;
     private final ProductService productService;
     private final JwtUtils jwtUtils;
-    private final ShoppingListService shoppingListService;
     private final ShoppingProductService shoppingProductService;
     private final ShoppingProductToProductDtoConverter shoppingProductToProductDtoConverter;
 
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<List<ProductDto>> getProductsByUserId() {
-//        @RequestHeader("Authorization") String headerValue  // token rout
-//        String userIdFromToken = getUserIdFromToken(headerValue);
+    public List<List<ProductDto>> getProductsByUserId(@RequestHeader("Authorization") String headerValue) {
         User user = new User();
-        user.setUserId(1L);  // we need to assign user id from token
+        user.setUserId(Long.parseLong(getUserIdFromToken(headerValue)));
 
-        List<List<ProductDto>> userLists = shoppingProductToProductDtoConverter.convertAll(shoppingProductService.getUserLists(user));
-        return userLists;
-
+        return shoppingProductToProductDtoConverter.convertAll(shoppingProductService.getUserLists(user));
     }
 
 
     @PostMapping(value = "/add-to-list", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addRecipeToShoppingList(@RequestBody RequestProductsDto requestProductsDto) {
-
-//        @RequestHeader("Authorization") String headerValue
-//        String userIdFromToken = getUserIdFromToken(headerValue);    // with token rout
+    public void addRecipeToShoppingList(@RequestBody RequestProductsDto requestProductsDto,
+                                        @RequestHeader("Authorization") String headerValue) {
 
         User user = new User();
+        user.setUserId(Long.parseLong(getUserIdFromToken(headerValue)));
 
-//        user.setUserId(Id.idFromString(jwtUtils.getUsernameIDFromJwtToken(userIdFromToken)).getValue());
-
-        user.setUserId(1L);
         List<Product> products = productDtoToProductConverter.convertAll(Arrays.asList(requestProductsDto.getProductDtos()));
         productService.addOnlyNewProducts(products);
 
@@ -72,12 +63,12 @@ public class ShoppingListController {
         if (tokenFromHeader.isPresent()) {
             valueOfToken = tokenFromHeader.get();
         }
-        String usernameIDFromJwtToken;
+        String userIDFromJwtToken;
         try {
-            usernameIDFromJwtToken = jwtUtils.getUsernameIDFromJwtToken(valueOfToken);
+            userIDFromJwtToken = jwtUtils.getUsernameIDFromJwtToken(valueOfToken);
         } catch (RuntimeException e) {
             throw new NotFoundException("User");
         }
-        return usernameIDFromJwtToken;
+        return userIDFromJwtToken;
     }
 }
