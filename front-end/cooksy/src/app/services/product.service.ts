@@ -29,12 +29,6 @@ export class ProductService {
       );
   }
 
-  // getSumOfProducts(products: Product[]): number {
-  //   let sum = 0;
-  //   products.forEach(product => sum = sum + product.price)
-  //   return sum;
-  // }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
