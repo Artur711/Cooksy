@@ -29,7 +29,7 @@ public class UserController {
         userService.updateUser(idFromLong(decodeTokenService.getUserIdFromToken(headerValue)), userDto);
     }
 
-    @DeleteMapping(consumes = APPLICATION_JSON_VALUE)
+    @DeleteMapping()
     @ResponseStatus(NO_CONTENT)
     public void deleteUser(@RequestHeader("Authorization") String headerValue) {
         userService.removeUser(idFromLong(decodeTokenService.getUserIdFromToken(headerValue)));

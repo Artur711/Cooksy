@@ -62,7 +62,8 @@ public class FavoriteController {
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void delete(@PathVariable("id") String id) {
-        favoriteService.deleteFavorite(Id.idFromString(id));
+    public void delete(@PathVariable("id") String id, @RequestHeader("Authorization") String headerValue) {
+        Id userId = Id.idFromLong(decodeTokenService.getUserIdFromToken(headerValue));
+        favoriteService.deleteFavorite(Id.idFromString(id), userId);
     }
 }

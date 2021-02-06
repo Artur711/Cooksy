@@ -47,13 +47,15 @@ public class FavoriteService {
         }
     }
 
-    public void deleteFavorite(Id id) {
-        FavoriteDto favoriteDto = getFavoriteByRecipeId(id);
-        favoriteRepository.deleteByFavoriteId(favoriteDto.getFavoriteId());
-        if (favoriteRepository.findByRecipe(recipeConverter.convert(favoriteDto.getRecipe())).isEmpty()) {
-            recipeService.deleteRecipe(favoriteDto.getRecipe());
+    public void deleteFavorite(Id favoriteId, Id userId) {
+        FavoriteDto favoriteDto = getFavoriteByRecipeId(favoriteId);
+        if (favoriteDto.getUser().getUserId().equals(userId.getValue())) {
+            favoriteRepository.deleteByFavoriteId(favoriteDto.getFavoriteId());
+            if (favoriteRepository.findByRecipe(recipeConverter.convert(favoriteDto.getRecipe())).isEmpty()) {
+                recipeService.deleteRecipe(favoriteDto.getRecipe());
+            }
+            log.info(String.format("Deleted favorite [id: %d]", favoriteId.getValue()));
         }
-        log.info(String.format("Deleted favorite [id: %d]", id.getValue()));
     }
 
     public FavoriteDto getFavoriteBuUserAndRecipe(UserDto userDto, RecipeDetailsDto recipeDto) {
