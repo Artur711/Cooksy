@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {catchError, mapTo, tap} from "rxjs/operators";
 import {LoginData} from "../models/loginData";
 import {environment} from "../../environments/environment";
+import swal from 'sweetalert';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {environment} from "../../environments/environment";
 export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private loggedUser?: string;
+  private loggedUser!: string;
+  private userId!: number;
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +22,8 @@ export class AuthService {
       .pipe(
       mapTo(true),
           catchError(error => {
-            alert('Username or email already in use.');
+            swal("Oops!", "Username or email already in use.", "error");
+            // alert('Username or email already in use.');
             return of(false);
           }));
   }
@@ -28,10 +31,11 @@ export class AuthService {
   login(user: {username: string, password: string}): Observable<boolean> {
     return  this.http.post<any>(`${environment.apiUrlHost}/login`, user)
       .pipe(
-        tap((data: LoginData) => this.doLoginUser(data.username, data.token)),
+        tap((data: LoginData) => this.doLoginUser(data.username, data.token, data.userId)),
         mapTo(true),
         catchError(error => {
-          alert('Incorrect login details.');
+          swal("Oops!", "Incorrect login details.", "error");
+          // alert('Incorrect login details.');
           return of(false);
         }));
   }
@@ -55,8 +59,9 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private doLoginUser(username: string, token: string) {
+  private doLoginUser(username: string, token: string, userId: number) {
     console.log(username + " username")
+    console.log(userId + " userId")
     localStorage.setItem("isLogged", "true");
     this.loggedUser = username;
     this.storeToken(token);

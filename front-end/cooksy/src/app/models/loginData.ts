@@ -1,5 +1,5 @@
 export interface LoginData {
-  // userId: number;
+  userId: number;
   username: string;
   token: string;
 }
