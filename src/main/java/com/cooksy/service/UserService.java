@@ -57,6 +57,7 @@ public class UserService implements UserDetailsService {
         failIfUserAlreadyRegistered(user.getName());
         failIfEmailAlreadyRegistered(user.getEmail());
         userRepository.save(user);
+        log.info(String.format("Registered user [id: %s]", user.getUserId()));
     }
 
     public Authentication login(CredentialsDto credentialsDto) {
@@ -81,12 +82,6 @@ public class UserService implements UserDetailsService {
         List<UserDto> usersDto = userToUserDtoConverter.convertAll((List<User>) userRepository.findAll());
         log.info("Returned all users from database");
         return usersDto;
-    }
-
-    public void addUser(UserDto userDto) {
-        User user = userDtoToUserConverter.convert(userDto);
-        User savedUser = userRepository.save(user);
-        log.info(String.format("Saved user [id: %s]", savedUser.getUserId()));
     }
 
     public void updateUser(Id id, UserDto userDto) {

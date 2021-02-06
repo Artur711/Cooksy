@@ -7,6 +7,7 @@ import com.cooksy.model.JwtResponse;
 import com.cooksy.service.UserService;
 import com.cooksy.util.JwtUtils;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials="true")
 @RestController
 @AllArgsConstructor
+@Slf4j
 public class AuthController {
 
     private final UserService userService;
@@ -34,7 +36,7 @@ public class AuthController {
     public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
         Authentication authentication = userService.login(credentialsDto);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        log.info(String.format("Logged user [nick: %s]", credentialsDto.getNick()));
         return new JwtResponse(jwtUtils.generateJwtToken(authentication));
     }
 
