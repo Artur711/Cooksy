@@ -31,6 +31,10 @@ strong {
   margin-top: 25vh;
 }
 
+ngx-pagination a {
+  color: snow !important;
+}
+
 @media screen and (max-width: 991px) {
   .image-large {
     max-height: 60vw;
