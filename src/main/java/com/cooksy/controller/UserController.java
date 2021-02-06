@@ -20,10 +20,10 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public List<UserDto> getAllUsers(@RequestParam(required = false) String sortBy) {
-        return (sortBy == null) ? userService.getUsers() : userService.getSortedUsers(UserSortedType.valueOf(sortBy));
-    }
+//    @GetMapping(produces = APPLICATION_JSON_VALUE)
+//    public List<UserDto> getAllUsers(@RequestParam(required = false) String sortBy) {
+//        return (sortBy == null) ? userService.getUsers() : userService.getSortedUsers(UserSortedType.valueOf(sortBy));
+//    }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)
     public UserDto getUser(@PathVariable String id) {

@@ -35,11 +35,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/login", "/register", "/swagger**", "/api/v1/*", "/api/v1/recipes/*",
-                        "/api/v1/recipes/recipe-detail/*", "/api/v1/favorites/*", "/api/v1/products/*", "/api/v1/favorites/recipe/*",
-                        "/temp/*", "/shopping-list/*/*", "/shopping-list/*", "/shopping-list").permitAll()
+                .antMatchers("/login", "/register", "/swagger**").permitAll()
                 .anyRequest().authenticated()
-                .and().addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .cors();
 //                .logout()
 //                .logoutSuccessHandler(new LogoutSuccessHandlerConfig());
     }
