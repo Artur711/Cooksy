@@ -27,6 +27,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     RegisterComponent,
     HomeComponent,
     FavoritesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,

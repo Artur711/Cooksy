@@ -11,6 +11,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {FrontPageComponent} from "./front-page/front-page.component";
 import {MenuComponent} from "./menu/menu.component";
 import {AlwaysAuthGuard} from "./guards/always-auth.guard";
+import {SettingComponent} from "./setting/setting.component";
 
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
@@ -28,7 +29,7 @@ const routes: Routes = [
     { path: 'shopping-lists', component: ShoppingListComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
     { path: 'favorites/detail/:id', component: RecipeDetailsComponent, canActivate: [AuthGuard, AlwaysAuthGuard]},
-    // { path: 'setting', component: HomeComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}
+    { path: 'setting', component: SettingComponent, canActivate: [AuthGuard, AlwaysAuthGuard]}
     ]},
   { path: '**', component: PageNotFoundComponent}
 ];
