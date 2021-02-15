@@ -1,7 +1,6 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.CredentialsDto;
-import com.cooksy.dto.Id;
 import com.cooksy.dto.UserDto;
 import com.cooksy.model.JwtResponse;
 import com.cooksy.service.UserService;
