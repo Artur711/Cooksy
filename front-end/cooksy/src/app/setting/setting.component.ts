@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserDto} from "../models/dto";
+import {SettingsService} from "../services/settings.service";
 
 @Component({
   selector: 'app-setting',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
-
-  constructor() { }
+  user: UserDto[] = [];
+  constructor(private settingService: SettingsService) { }
 
   ngOnInit(): void {
+    this.settingService.getUser$()
   }
 
 }
