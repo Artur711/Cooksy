@@ -8,11 +8,11 @@ import {UserDto} from "../models/dto";
   providedIn: 'root'
 })
 export class SettingsService {
-  private settingUrl = `${environment.apiUrl}/setting`
+  private settingUrl = `${environment.apiUrl}/user`
 
   constructor(private http: HttpClient) { }
 
-  getUser$(): Observable<UserDto[]> {
-    return this.http.get<UserDto[]>(this.settingUrl)
+  getUser$(): Observable<UserDto> {
+    return this.http.get<UserDto>(this.settingUrl)
   }
 }

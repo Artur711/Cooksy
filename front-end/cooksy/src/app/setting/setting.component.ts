@@ -8,7 +8,7 @@ import {SettingsService} from "../services/settings.service";
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
-  user: UserDto[] = [];
+  user!: UserDto;
   constructor(private settingService: SettingsService) { }
 
   ngOnInit(): void {
