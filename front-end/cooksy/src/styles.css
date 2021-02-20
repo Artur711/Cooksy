@@ -16,6 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border: none;
 }
 
+span, a {
+  color: snow !important;
+}
+
 @media screen and (max-width: 1581px) {
   .item {
     width: 9vw;

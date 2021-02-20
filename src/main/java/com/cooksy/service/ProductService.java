@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -47,23 +46,9 @@ public class ProductService {
         return productDto;
     }
 
-
-    public List<Product> filterIfAlreadyInDB(List<Product> userProductsToShoppingList) {
-        return userProductsToShoppingList.stream().filter(product -> !productRepository.existsById(product.getProductID()))
-                .collect(Collectors.toList());
-    }
-
-
     public void deleteProduct(Id productID) {
         if (productRepository.existsById(productID.getValue())) {
             productRepository.deleteById(productID.getValue());
         }
-    }
-
-    public void updateTheProduct(String id, ProductDto productDto) {
-        Product convertedProduct = productDtoToProductConverter.convert(productDto);
-        convertedProduct.setProductID(Long.parseLong(id));
-        productRepository.save(convertedProduct);
-        log.info(String.format("Updated product by [id: %s]", id));
     }
 }
