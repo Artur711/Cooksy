@@ -52,8 +52,6 @@ public class UserService implements UserDetailsService {
     public void register(UserDto userDto) {
         User user = userDtoToUserConverter.convert(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        System.out.println(user.getFirstName());
-        System.out.println(user.getEmail());
         failIfUserAlreadyRegistered(user.getName());
         failIfEmailAlreadyRegistered(user.getEmail());
         userRepository.save(user);
