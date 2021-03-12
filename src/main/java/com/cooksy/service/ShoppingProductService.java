@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Data
 public class ShoppingProductService {
+
     private ShoppingProductRepository shoppingProductRepository;
     private ShoppingListService shoppingListService;
-
 
     public void saveProductsToShoppingList(List<Product> products, User user, String date) {
         try {

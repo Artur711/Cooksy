@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
     private final DecodeTokenService decodeTokenService;
 
-    @GetMapping( produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public UserDto getUser(@RequestHeader("Authorization") String headerValue) {
         return userService.getUserById(idFromLong(decodeTokenService.getUserIdFromToken(headerValue)));
     }

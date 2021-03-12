@@ -1,7 +1,6 @@
 package com.cooksy.controller;
 
 import com.cooksy.dto.CredentialsDto;
-import com.cooksy.dto.Id;
 import com.cooksy.dto.UserDto;
 import com.cooksy.model.JwtResponse;
 import com.cooksy.service.UserService;
@@ -30,7 +29,6 @@ public class AuthController {
         userService.register(userDto);
     }
 
-
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
     public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
@@ -38,9 +36,5 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         log.info(String.format("Logged user [nick: %s]", credentialsDto.getNick()));
         return new JwtResponse(jwtUtils.generateJwtToken(authentication));
-    }
-
-    public void logout() {
-        SecurityContextHolder.getContext().setAuthentication(null);
     }
 }

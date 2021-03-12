@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Location} from "@angular/common";
+import swal from "sweetalert";
 
 
 @Component({
@@ -41,6 +42,7 @@ export class RegisterComponent{
       })
       .subscribe(success => {
         if (success) {
+          swal("Yupii!", "Register are successful!", "success");
           this.router.navigate(['/login']);
         }
       })

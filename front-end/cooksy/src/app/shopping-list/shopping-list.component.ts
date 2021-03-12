@@ -33,11 +33,8 @@ export class ShoppingListComponent implements OnInit {
       if (!this.userLists.includes(product.date)) {
         this.userLists.push(product.date)
       }
+      this.userLists = this.userLists.sort((a, b) => (a > b ? -1 : 1));
     })));
-
-    ///\/\/\/\/\/\/\/\/\ does not work --> dont know why :(
-    this.userLists = this.userLists.sort((a, b) => (a > b ? -1 : 1));
-    // this.userLists.sort((a, b) => b - a)
   }
 
   productsApproval(id: number) {
