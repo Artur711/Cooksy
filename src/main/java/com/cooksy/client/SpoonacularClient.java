@@ -1,6 +1,6 @@
 package com.cooksy.client;
 
-import com.cooksy.service.api.ApiKeyReader;
+import com.cooksy.configuration.SpoonacularConfig;
 import com.cooksy.exception.ApiRequestException;
 import com.cooksy.model.api.SpCuParameters;
 import com.cooksy.model.api.SpCuRecipeDetails;
@@ -20,11 +20,11 @@ import java.net.http.HttpResponse;
 @Service
 public class SpoonacularClient {
 
-    private final ApiKeyReader apiKeyReader;
+    private final SpoonacularConfig spoonacularConfig;
     private final HttpClient httpClient;
 
-    public SpoonacularClient(ApiKeyReader apiKeyReader) {
-        this.apiKeyReader = apiKeyReader;
+    public SpoonacularClient(SpoonacularConfig spoonacularConfig) {
+        this.spoonacularConfig = spoonacularConfig;
         this.httpClient =  HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .build();
@@ -53,13 +53,12 @@ public class SpoonacularClient {
             IOException, InterruptedException {
         HttpResponse<String> httpResponse;
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI(String.format(spoonacularApiUrl, apiKeyReader.getKey())))
+                .uri(new URI(String.format(spoonacularApiUrl, spoonacularConfig.getSpoonacular().getApiKey())))
                 .GET()
                 .build();
         httpResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
         if (httpResponse.statusCode() == 402) {
-            apiKeyReader.next();
             throw new ApiRequestException("API Spoonacular request limit reached");
         }
         return httpResponse;
