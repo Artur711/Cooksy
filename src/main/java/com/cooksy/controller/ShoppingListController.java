@@ -19,7 +19,7 @@ import java.util.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://cooksy-api.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:4200", "https://cooksy-frontend.herokuapp.com"})
 @RestController
 @AllArgsConstructor
 @RequestMapping("/shopping-list")
