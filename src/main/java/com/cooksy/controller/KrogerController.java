@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://cooksy-api.herokuapp.com"})
 @RestController
 @Slf4j
 @AllArgsConstructor
