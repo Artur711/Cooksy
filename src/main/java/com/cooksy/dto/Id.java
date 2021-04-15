@@ -24,6 +24,7 @@ public class Id {
 
     @Override
     public String toString() {
+        String x;
         return "Id{" +
                 "value=" + value +
                 '}';
