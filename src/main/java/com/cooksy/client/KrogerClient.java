@@ -1,5 +1,5 @@
 package com.cooksy.client;
-import com.cooksy.service.api.KrogerCredentialsReader;
+import com.cooksy.configuration.KrogerConfig;
 import com.cooksy.model.api.KrogerResult;
 import com.cooksy.model.api.KrogerToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,14 +20,14 @@ import java.nio.charset.StandardCharsets;
 public class KrogerClient {
 
     private final HttpClient httpClient;
-    private final KrogerCredentialsReader reader;
+    private final KrogerConfig krogerConfig;
     private HttpRequest getRequest;
     private HttpResponse<String> httpResponse;
     private KrogerToken token;
 
-    public KrogerClient(KrogerCredentialsReader reader) throws
+    public KrogerClient(KrogerConfig krogerConfig) throws
             InterruptedException, IOException, URISyntaxException {
-        this.reader = reader;
+        this.krogerConfig = krogerConfig;
         this.httpClient =  HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .build();
@@ -57,10 +57,10 @@ public class KrogerClient {
     }
 
     private KrogerToken getToken() throws IOException, InterruptedException, URISyntaxException {
-        String clientId = reader.getClientId();
-        String clientSecret = reader.getClientSecret();
+        String clientId = krogerConfig.getKroger().getClientId();
+        String clientSecret = krogerConfig.getKroger().getClientSecret();
 
-        String grantType = String.format("grant_type=client_credentials&scope=%s", reader.getScope());
+        String grantType = String.format("grant_type=client_credentials&scope=%s", krogerConfig.getKroger().getScope());
         HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(grantType);
 
         String encodedData = DatatypeConverter.printBase64Binary((clientId + ":" + clientSecret)

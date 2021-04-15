@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class FavoriteService {
+public class FavoritesService {
 
     private final FavoriteRepository favoriteRepository;
     private final FavoriteDtoToFavoriteConverter favoriteDtoToFavoriteConverter;
@@ -58,7 +58,7 @@ public class FavoriteService {
         }
     }
 
-    public FavoriteDto getFavoriteBuUserAndRecipe(UserDto userDto, RecipeDetailsDto recipeDto) {
+    public FavoriteDto getFavoriteByUserAndRecipe(UserDto userDto, RecipeDetailsDto recipeDto) {
         Favorite favorite = favoriteDtoToFavoriteConverter.convert(new FavoriteDto(0L, userDto, recipeDto));
         Optional<Favorite> maybeFavorite = favoriteRepository.findByUserAndRecipe(favorite.getUser(), favorite.getRecipe());
 
