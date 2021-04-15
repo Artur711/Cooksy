@@ -36,16 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/login", "/register",
-                        "/v2/api-docs",
-                        "/configuration/ui",
-                        "/swagger-resources",
-                        "/configuration/security",
-                        "/swagger-ui.html",
-                        "/webjars/**",
-                        "/swagger.json",
-                        "/swagger-resources/configuration/ui",
-                        "/swagger-resources/configuration/security"
-                ).permitAll()
+                        "/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+                        "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .cors();

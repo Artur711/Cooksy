@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "api-products.kroger.client-id",
+      "type": "java.lang.String",
+      "description": "Description for api-products.kroger.client-id."
+  }
+] }
