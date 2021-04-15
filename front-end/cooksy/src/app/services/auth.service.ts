@@ -11,13 +11,14 @@ import swal from 'sweetalert';
 })
 export class AuthService {
 
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private JWT_TOKEN = '';
   private loggedUser!: string;
   private userId!: number;
 
   constructor(private http: HttpClient) {}
 
   register(user: {username: string, password: string, email: string}): Observable<boolean> {
+    console.log(environment.apiUrlHost);
     return this.http.post<any>(`${environment.apiUrlHost}/register`, user)
       .pipe(
       mapTo(true),
@@ -60,8 +61,6 @@ export class AuthService {
   }
 
   private doLoginUser(username: string, token: string, userId: number) {
-    console.log(username + " username")
-    console.log(userId + " userId")
     localStorage.setItem("isLogged", "true");
     this.loggedUser = username;
     this.storeToken(token);
@@ -78,7 +77,7 @@ export class AuthService {
   }
 
   private removeToken() {
-    localStorage.removeItem(this.JWT_TOKEN);
+    localStorage.removeItem(this.JWT_TOKEN = '');
   }
 
   public getLoggedUser() {

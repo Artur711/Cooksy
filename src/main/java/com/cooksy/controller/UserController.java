@@ -9,7 +9,7 @@ import static com.cooksy.dto.Id.idFromLong;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://cooksy-frontend.herokuapp.com"})
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/user")
@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
     private final DecodeTokenService decodeTokenService;
 
-    @GetMapping( produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public UserDto getUser(@RequestHeader("Authorization") String headerValue) {
         return userService.getUserById(idFromLong(decodeTokenService.getUserIdFromToken(headerValue)));
     }

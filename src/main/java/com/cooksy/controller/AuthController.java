@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200",allowCredentials="true")
+@CrossOrigin(origins = {"http://localhost:4200", "https://cooksy-frontend.herokuapp.com"})
 @RestController
 @AllArgsConstructor
 @Slf4j
@@ -29,7 +29,6 @@ public class AuthController {
         userService.register(userDto);
     }
 
-
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
     public JwtResponse login (@RequestBody CredentialsDto credentialsDto) {
@@ -37,9 +36,5 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         log.info(String.format("Logged user [nick: %s]", credentialsDto.getNick()));
         return new JwtResponse(jwtUtils.generateJwtToken(authentication));
-    }
-
-    public void logout() {
-        SecurityContextHolder.getContext().setAuthentication(null);
     }
 }
