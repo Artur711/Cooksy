@@ -31,7 +31,7 @@ class ProductRepositoryTest {
         List<Product> afterProducts = (List<Product>) productRepository.findAll();
 
         // then
-        assertAll(() -> assertEquals(beforeProducts.size() - 1,afterProducts.size()),
+        assertAll(() -> assertEquals(beforeProducts.size() - 1, afterProducts.size()),
                 () -> assertTrue(beforeProducts.contains(product)),
                 () -> assertFalse(afterProducts.contains(product)));
     }
@@ -42,7 +42,7 @@ class ProductRepositoryTest {
         Long productId = 1L;
         Product product = new Product();
         product.setProductID(productId);
-        product.setName("Product name test");
+        product.setName("Product name for testing");
         productRepository.save(product);
 
         // when
